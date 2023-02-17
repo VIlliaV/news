@@ -1,0 +1,25 @@
+.header {
+  padding: 16 0;
+  background-color: cadetblue;
+}
+.header-container {
+  display: flex;
+  align-items: baseline;
+}
+.navigation {
+  display: flex;
+  flex-direction: row;
+}
+.navigation-item {
+  display: block;
+  margin-right: 30px;
+}
+.theme-switcher {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.switch {
+  display: block;
+  margin: 0 10px;
+}
