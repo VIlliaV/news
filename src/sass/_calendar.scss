@@ -1,0 +1,50 @@
+.calendar__title {
+  margin-right: 37px;
+
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.39;
+
+  color: #111321;
+}
+
+.calendar__input {
+width: 168px;
+height: 31px;
+
+border: 1px solid #111321;
+border-radius: 20px;
+}
+
+// .calendar__icon {
+// width: 20px; 
+// height: 20px;      
+
+// fill: rgba(68, 64, 246, 1);       
+// }
+
+.calendar__box {
+  width: 250px;
+  height: 250px;
+
+  background: #f8f8f8;
+  box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.week {
+  display: flex;
+  justify-content: space-around;
+}
+
+.week__day {
+  font-family: 'Manrope';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+
+  letter-spacing: -0.078px;
+
+  color: rgba(60, 60, 67, 0.3);
+}
