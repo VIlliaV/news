@@ -48,6 +48,7 @@ async function getCategory() {
       console.log(categories.results);
       return categories.results;
     });
+  return categories;
 }
 
 async function getNewsByCategory(category) {
@@ -73,6 +74,7 @@ async function getPopularNews() {
       console.log(resp.results);
       return resp.results;
     });
+  return news;
 }
 
 export { getCategory, getNewsByCategory, getPopularNews, getNewsBySearch };
