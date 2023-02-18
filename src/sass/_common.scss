@@ -5,7 +5,7 @@ body {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 1.69;
 }
 
 h1,
@@ -22,6 +22,8 @@ p {
 
 li {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 svg {
@@ -34,10 +36,22 @@ img {
   height: auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 .section {
-  padding: 30px 0;
-  @media screen and (min-width: 768px) {
-    padding: 24px 0;
+  margin: 0 auto;
+  width: 320px;
+  padding: 40px 16px 0;
+
+  @media (min-width: 768px) {
+    width: 768px;
+    padding: 48px 16px 0;
+  }
+  @media (min-width: 1280px) {
+    width: 1280px;
+    padding: 60px 16px 0;
   }
 }
 
