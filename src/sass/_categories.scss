@@ -1,0 +1,16 @@
+.buttons-container,
+.categoryBtns-wrapper {
+  position: relative;
+  display: flex;
+  gap: 32px;
+}
+
+/* Hide the myDropdown container by default */
+#myDropdown {
+  display: none;
+}
+
+/* Show the myDropdown container when it does not have the hidden class */
+#myDropdown:not(.hidden) {
+  display: block;
+}
