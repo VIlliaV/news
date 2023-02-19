@@ -1,19 +1,28 @@
 <header>
     <div class = 'header container'>
         <a href="#" class = 'logo' id="myElement">News</a>
-        <ul class = 'menu_list'>
-            <li class= 'menu_item active'>Home</li>
-            <li class= 'menu_item'>Favorite</li>
-            <li class= 'menu_item'>Read</li>
-        </ul>
-        <input type="text" class="search-box" placeholder="Search.">
-        <div class="toggle">
-        <p class="light header_background" id="light">Light</p>
-            <label class="switch">
-                <input type="checkbox" onclick="toggleColor()">
-                <span class="slider round"></span>
-            </label>
-        <p class="header_background" id="dark">Dark</p>
+        <div class="menu_container">
+            <ul class = 'menu_list'>
+                <li class= 'menu_item active'>Home</li>
+                <li class= 'menu_item'>Favorite</li>
+                <li class= 'menu_item'>Read</li>
+            </ul>
+        </div>
+        <div class="search_container">
+            <symbol id="icon-search_desk" viewBox="0 0 34 32">
+                <use href="./images/sprite.svg#icon-search_desk" class="search"></use>
+            </symbol>
+            <input type="text" class="search-box" placeholder="Search │">
+        </div>
+        <div class="toggle_container">
+            <div class="toggle">
+                <p class="light header_background" id="light">Light</p>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                <p class="header_background" id="dark">Dark</p>
+            </div>
         </div>
     </div>
 </header>
