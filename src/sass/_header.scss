@@ -1,5 +1,5 @@
 a {
-    color: black;
+    color: var(--primary);
     text-decoration: none;
 }
 
@@ -32,7 +32,7 @@ a {
   display: block;
   font-weight: 700;
   font-size: 42px;
-  color: black;
+  color: var(--primary);
   text-decoration: none;
   padding-top: 28px;
   padding-bottom: 28px;
@@ -78,11 +78,14 @@ a {
     top: 0;
   }
 
+  .background-color-search {
+    background: var(--second-background);
+  }
+
   .search {
     position: absolute;
     width: 1em;
     height: 1em;
-    // border: 1px solid red;
     margin: 7.58px 0px 8.61px 13.67px;
     stroke: currentColor;
     fill: currentColor;
@@ -96,7 +99,6 @@ a {
     padding-right: 10px;
     margin-left: 147px;
     margin-right: 147px;
-    border-color: black;
 
     @media screen and (max-width: 767px)  {
         max-width: 213px;
@@ -109,6 +111,11 @@ a {
       margin-left: 0px;
       margin-right: 0px;
   }
+}
+
+.dark-border-search {
+  border: 1px solid var(--primary-background);
+  color: var(--primary-background);
 }
 
 .container {
@@ -148,11 +155,11 @@ a {
 
 .active {
   padding-bottom: 5px;
-  border-bottom: 2px solid #4440F6;
+  border-bottom: 2px solid var(--second);
 }
 
 .menu_link.color-switch {
-  color: #FFF;
+  color: var(--primary-background);
 }
   
 .menu_link:hover {
@@ -194,7 +201,7 @@ a {
 }
 
 .light {
-  color: #4440F7;
+  color: var(--second);
 }
 
 .switch input {
@@ -210,8 +217,8 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
-  border: 1px solid #4B48DB;
+  background-color: var(--primary-background);
+  border: 1px solid var(--second);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -223,24 +230,24 @@ a {
   width: 16px;
   left: 2px;
   bottom: 1px;
-  background-color: #4B48DB;
+  background-color: var(--few);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #4440F7;
+  background-color: var(--second);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #4B48DB;
+  box-shadow: 0 0 1px var(--few);
 }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
-  background-color: #fff;
+  background-color: var(--primary-background);
 }
   
 .slider.round {
