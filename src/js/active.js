@@ -1,13 +1,20 @@
 const liElements = document.querySelectorAll('li');
+const activeLink = localStorage.getItem('activeLink');
+
+if (activeLink) {
+  // add the active class to the saved link
+  const link = document.querySelector(`a[href="${activeLink}"]`);
+  link.parentElement.classList.add('active');
+}
 
 liElements.forEach(function(li) {
-  li.addEventListener('click', function() {
-    // remove the active class from all other li elements
+  li.addEventListener('click', function(event) {
     liElements.forEach(function(li) {
       li.classList.remove('active');
     });
 
-    // add the active class to the clicked li element
     this.classList.add('active');
+    const href = this.querySelector('a').getAttribute('href');
+    localStorage.setItem('activeLink', href);
   });
 });
