@@ -11,22 +11,20 @@
   <div class="calendar">
     <p class="calendar__title">Search date news</p>
     <div class="calendar__container">
-      <input type="text" class="calendar__input" />
-      <svg class="calendar__icon--start">
+          <svg class="calendar__icon--start">
         <use href="./images/sprite.svg#calendar"></use>
       </svg>
-      <p class="calendar__data">20/02/2021</p>
-      <span class="calendar__icon--end">
+        <input type="text" class="calendar__input" placeholder="Select date..." />
+         <span class="calendar__icon--end">
         <svg class="calendar__down">
           <use href="./images/sprite.svg#down"></use>
         </svg>
       </span>
-
       <div class="picker">
         <div class="month">
-          <ul class="month__list">
-            <li class="month__item">February 2021</li>
-          </ul>
+          <div class="month__list">
+            <p class="month__data">Date</p>
+          </div>
           <div class="month__arrows">
             <span class="month__arrow--prev">
               <svg class="month__icon">
@@ -48,8 +46,11 @@
           <li class="week__day">Sa</li>
           <li class="week__day">Su</li>
         </ul>
-
         <ul class="day">
+
+          <!-- <li class="day-item inactive">28</li>
+          <li class="day-item inactive">29</li>
+          <li class="day-item inactive">30</li>
           <li class="day-item">1</li>
           <li class="day-item">2</li>
           <li class="day-item">3</li>
@@ -78,8 +79,14 @@
           <li class="day-item">26</li>
           <li class="day-item">27</li>
           <li class="day-item">28</li>
+          <li class="day-item">29</li>
+          <li class="day-item">30</li>
+          <li class="day-item">31</li>
+          <li class="day-item inactive">1</li> -->
+
         </ul>
       </div>
     </div>
   </div>
 </section>
+<script src="./js/calendar.js"></script>
