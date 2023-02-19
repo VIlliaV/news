@@ -46,11 +46,10 @@
 
   &__img {
     max-width: none;
-    background-size: cover;
     border-radius: 4px;
-    background: no-repeat, cover, left top;
-
+    width: 395px;
     height: 395px;
+    background: no-repeat, cover, left top;
   }
 
   &__job-src {
@@ -93,7 +92,7 @@
     font-size: 12px;
     line-height: 1.33;
     text-align: center;
-    color: var(--primary);
+    // color: var(--primary);
   }
 
   &__heart-icon {
@@ -122,7 +121,7 @@
     font-weight: 700;
     line-height: 1.38;
     letter-spacing: -0.01em;
-    color: var(--primary);
+    // color: var(--primary);
   }
 
   &__dicription {
@@ -148,7 +147,7 @@
     font-style: normal;
     font-weight: 400;
 
-    color: var(--primary);
+    // color: var(--primary);
   }
 
   &__bottom {
@@ -203,5 +202,19 @@
   }
   @media (min-width: 1280px) {
     height: 300px;
+  }
+}
+
+.footer__container {
+  width: 320px;
+  height: 120px;
+  background-color: #7a7a7a;
+  @media (min-width: 768px) {
+    width: 768px;
+    height: 146px;
+  }
+  @media (min-width: 1280px) {
+    width: 1280px;
+    height: 146px;
   }
 }
