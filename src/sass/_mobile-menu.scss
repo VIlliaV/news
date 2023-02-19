@@ -1,0 +1,52 @@
+@media only screen and (max-width: 480px) {
+    .js-menu-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .js-menu-container.hidden {
+      display: none;
+    }
+  
+    .js-menu-container ul {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+    }
+  
+    .js-menu-container li {
+      margin: 1rem 0;
+    }
+  
+    .js-menu-container a {
+      text-decoration: none;
+    //   color: black;
+      font-size: 1.5rem;
+    }
+}
+  @media only screen and (min-width: 481px) and (max-width: 1900px) {
+    .js-open-menu {
+        display: none;
+      }
+    
+      .js-menu-container {
+        display: none;
+      }
+  
+      .menu {
+        display: none;
+        }
+  }

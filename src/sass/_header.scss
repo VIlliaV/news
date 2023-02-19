@@ -6,11 +6,11 @@ a {
 .header {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--transpar-second);
 }
 
 .dark-border {
-  border-bottom: 1px solid rgba(244, 244, 244, 0.2);
+  border-bottom: 1px solid var(--transpar-first);
 }
 
 .menu_container {
@@ -47,8 +47,10 @@ a {
 
 @media screen and (max-width: 480px) {
   max-width: 173px;
-  margin-left: 16px;
-  margin-right: 14px;
+  // margin-left: 16px;
+  margin-right: 163px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 }
 
@@ -68,14 +70,27 @@ a {
     margin: 51px 0px 31px 0px;
     position: relative;
 
-  //   @media screen and (max-width: 767px)  {
-  //     margin: 44px 0px 31px 0px;
-  // }
+    @media screen and (max-width: 767px)  {
+      margin: 44px 0px 31px 0px;
+  }
+
+  @media screen and (max-width: 480px)  {
+    margin: 32px 20px 34px 0px;
+}
   }
 
   .search_container svg {
+    justify-content: center;
     position: absolute;
-    top: 0;
+    top: 2.5px;
+    left: 155px;
+    width: 22px;
+    height: 25px;
+    @media screen and (max-width: 767px) {
+      // max-width: 173px;
+      top: 4px;
+      left: 32px
+    }
   }
 
   .background-color-search {
@@ -84,11 +99,19 @@ a {
 
   .search {
     position: absolute;
-    width: 1em;
-    height: 1em;
     margin: 7.58px 0px 8.61px 13.67px;
-    stroke: currentColor;
+    // stroke: currentColor;
     fill: currentColor;
+    width: 12px;
+    height: 12px;
+
+
+
+    @media screen and (max-width: 480px) {
+    // max-width: 173px;
+    width: 15px;
+    height: 15px;
+  }
   }
 
   .search-box {
@@ -107,9 +130,11 @@ a {
     }
 
     @media screen and (max-width: 480px) {
-      max-width: 173px;
+      // max-width: 173px;
+      max-width: 13px;
       margin-left: 0px;
       margin-right: 0px;
+      border: none;
   }
 }
 
@@ -128,6 +153,10 @@ a {
 
 .toggle_container {
   margin: 49px 0px 40px 0px;
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 
 .menu_list {
@@ -256,4 +285,10 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.btn-menu {
+  display: flex;
+  background: none;
+  border: none;
 }

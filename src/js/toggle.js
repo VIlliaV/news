@@ -22,9 +22,6 @@ function toggleColor() {
     menuLinks.forEach(function(link) {
       link.classList.add('color-switch');
     });
-    // menu_items.forEach(function(item) {
-    //   item.style.border = "1px solid rgba(244, 244, 244, 0.2)";
-    // });
     header.classList.add("dark-border");
     search_box.classList.add("background-color-search");
     input.classList.add('dark-border-search');

@@ -14,6 +14,12 @@
             </svg>
             <input type="text" class="search-box" placeholder="Search │">
         </div>
+        <button class="btn-menu js-open-menu" aria-expanded="false" aria-controls="mobile-menu" aria-label="open menu">
+            <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" class="ionicon shape-codepen menu-icon" viewBox="0 0 512 512">
+              <title>Reorder Three</title>
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M96 256h320M96 176h320M96 336h320"/>
+            </svg>
+          </button>
         <div class="toggle_container">
             <div class="toggle">
                 <p class="light header_background" id="light">Light</p>
@@ -26,3 +32,23 @@
         </div>
     </div>
 </header>
+
+
+<div class="menu js-menu-container no-scroll hidden" id="mobile-menu">
+    <button class="btn-menu js-close-menu" aria-label="close menu" id="myElement">
+        <svg width="40" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/>
+        </svg>
+      </button>
+    <ul class="menu_list">
+      <li><a class="menu_link" href="/src/index.html">Home</a></li>
+      <li><a class="menu_link" href="/src/favorite.html">Favorite</a></li>
+      <li><a class="menu_link" href="/src/read.html">Read</a></li>
+    </ul>
+    <p class="header_background" id="theme-label">Light</p>
+    <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider round"></span>
+      </label>
+    <p class="header_background dark" id="dark">Dark</p>
+  </div>
