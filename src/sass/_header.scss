@@ -56,6 +56,10 @@ a {
     align-items: baseline;
     margin: 51px 0px 31px 0px;
     position: relative;
+
+    @media screen and (max-width: 767px)  {
+      margin: 44px 0px 31px 0px;
+  }
   }
 
   .search {
@@ -109,7 +113,7 @@ a {
 }
 }
 
-.menu_item {
+.menu_link {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
@@ -127,8 +131,12 @@ a {
   padding-bottom: 5px;
   border-bottom: 2px solid #4440F6;
 }
+
+.menu_link.color-switch {
+  color: #FFF;
+}
   
-.menu_item:hover {
+.menu_link:hover {
     cursor: pointer;
 }
 
