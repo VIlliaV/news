@@ -68,10 +68,12 @@
   top: 9px;
 }
 
-.picker {
-  // visibility: hidden;
-  // opacity: 0;
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
 
+.picker {
   position: absolute;
   top: 31px;
   right: 0;
@@ -92,7 +94,6 @@
 
 .month__list {
   padding: 11px 0;
-  // margin-right: 46px;
 }
 
 .month__data {
@@ -144,7 +145,7 @@
   flex-wrap: wrap;
 }
 
-.day-item {
+.day__item {
   // height: 25px;
   width: calc(100%/7);
   display: flex;
@@ -167,11 +168,14 @@
 //   margin-bottom: 12px;
 // }
 
-.day-item:hover {
+.day__item:hover {
 background: #4440F6;
 border-radius: 50%;
 }
 
-.day-item.inactive {
+.day__item.inactive--prev {
+  color: #a2a2a2;
+}
+.day__item.inactive--next {
   color: #a2a2a2;
 }
