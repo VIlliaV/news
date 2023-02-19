@@ -6,12 +6,20 @@ a {
 .header {
     display: flex;
     align-items: center;
-    // position: absolute;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dark-border {
+  border-bottom: 1px solid rgba(244, 244, 244, 0.2);
 }
 
 .menu_container {
   margin: 55px 0px 33px 0px;
+
+
+  @media screen and (max-width: 767px)  {
+    margin: 48px 0px 36px 0px;
+}
 
   @media screen and (max-width: 480px) {
     display: none;
@@ -36,15 +44,18 @@ a {
     padding-top: 32px;
     padding-bottom: 30px;
 }
+
+@media screen and (max-width: 480px) {
+  max-width: 173px;
+  margin-left: 16px;
+  margin-right: 14px;
+}
 }
 
 .icon {
     display: flex;
-    width: 1em;
-    height: 1em;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
+    width: 10px;
+    height: 10px;
   }
   .icon-search_desk {
     width: 1.0625em;
@@ -57,19 +68,24 @@ a {
     margin: 51px 0px 31px 0px;
     position: relative;
 
-    @media screen and (max-width: 767px)  {
-      margin: 44px 0px 31px 0px;
+  //   @media screen and (max-width: 767px)  {
+  //     margin: 44px 0px 31px 0px;
+  // }
   }
+
+  .search_container svg {
+    position: absolute;
+    top: 0;
   }
 
   .search {
     position: absolute;
-    stroke: currentColor;
-    fill: currentColor;
     width: 1em;
     height: 1em;
-    border: 1px solid red;
+    // border: 1px solid red;
     margin: 7.58px 0px 8.61px 13.67px;
+    stroke: currentColor;
+    fill: currentColor;
   }
 
   .search-box {
@@ -80,24 +96,27 @@ a {
     padding-right: 10px;
     margin-left: 147px;
     margin-right: 147px;
+    border-color: black;
 
     @media screen and (max-width: 767px)  {
         max-width: 213px;
         margin-left: 25.17px;
         margin-right: 25.17px;
     }
+
+    @media screen and (max-width: 480px) {
+      max-width: 173px;
+      margin-left: 0px;
+      margin-right: 0px;
+  }
 }
 
 .container {
-    max-width: 1280px;
     margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
     position: relative;
-
-    @media screen and (min-width: 1280px) {
-    max-width: 1280px;
-}
+    justify-content: center;
 }
 
 .toggle_container {
@@ -168,6 +187,10 @@ a {
   @media screen and (max-width: 480px) {
     display: none;
 }
+}
+
+.dark {
+  margin-right: 16px;
 }
 
 .light {

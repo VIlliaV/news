@@ -1,6 +1,7 @@
 const liElements = document.querySelectorAll('li');
 const activeLink = localStorage.getItem('activeLink');
 
+
 if (activeLink) {
   // add the active class to the saved link
   const link = document.querySelector(`a[href="${activeLink}"]`);
