@@ -3,7 +3,7 @@ const activeLink = localStorage.getItem('activeLink');
 const logoActive = document.querySelector('.logo');
 
 logoActive.addEventListener('click', () => {
-  localStorage.setItem('activeLink', '/news/index.html');
+  localStorage.setItem('activeLink', '/index.html');
 });
 
 if (activeLink) {
