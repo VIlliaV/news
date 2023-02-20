@@ -1,24 +1,14 @@
-import { getPopularNews } from '../js/api';
-import '../sass/favorite-section.scss';
-
-const newsCards = document.querySelector('.favorite-cards');
-
-window.addEventListener('load', () => {
-    getPopularNews()
-        .then(data => { 
-        appendCardsMurkup(data);
-        console.log(data);
-      })
-      .catch(err => console.log(err));
-    
-});
-
 function generateCardsMurkup(cardsArray) {
-    
   return cardsArray
-    .map(({ media, title, abstract, published_date, url }) => {
-      let imgUrl = media[0]['media-metadata'][2]['url'];
-      return `<li class="favorite-cards__item">
+    .map(
+      ({
+        imgUrl,
+  title,
+  text,
+  date,
+  url,
+      }) => {
+        return `<li class="favorite-cards__item">
           <div class="favorite-cards__image-cont" href="">
             <img
               class="favorite-cards__img"
@@ -37,30 +27,18 @@ function generateCardsMurkup(cardsArray) {
           ${title}
           </h2>
           <p class="favorite-cards__dicription">
-            ${textCropping(abstract)}
+            ${text}
           </p>
           <div class="favorite-cards__bottom">
-            <p class="favorite-cards__date">${published_date}</p>
+            <p class="favorite-cards__date">${date}</p>
             <a class="favorite-cards__link" href="${url}">Read more</a>
           </div>
         </li>`;
-    })
+      }
+    )
     .join('');
 }
 
-function textCropping(text) {
-  let result;
-  if (text.length > 150) {
-    text = text.slice(0, 150);
-    result = text + '...';
-  } else {
-    result = text;
-  }
-  return result;
-}
-
-function appendCardsMurkup(cards) {
+export function appendCardsMurkup(cards) {
   newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
 }
-
-

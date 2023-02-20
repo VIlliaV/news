@@ -1,21 +1,8 @@
-// const themeToggle = document.getElementById('theme-toggle');
-// const themeLabel = document.getElementById('theme-label');
+const currentPageUrl = window.location.pathname;
+const menuItemLink = document.querySelector(`.menu_list-tel li a[href="${currentPageUrl}"]`);
+const menuItem = menuItemLink ? menuItemLink.parentNode : null;
+var body = document.getElementsByTagName("body")[0];
 
-// themeToggle.addEventListener('change', function() {
-//     var body = document.getElementsByTagName("body")[0];
-//   const blackContent = document.querySelector('.content[z-index="1"]');
-
-//   if (this.checked) {
-//     body.style.color = "#2E2E2E";
-//     body.style.color = "#fff";
-
-
-//     // themeLabel.innerText = "Dark";
-//     // blackContent.style.add('black');
-//   } else {
-//     body.style.backgroundColor = "#fff";
-//     body.style.color = "#000";
-//     // themeLabel.innerText = "Light";
-//     // blackContent.style.remove('black');
-//   }
-// });
+if (menuItem) {
+  menuItem.style.backgroundColor = "#4440f6";
+}

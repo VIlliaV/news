@@ -4,7 +4,7 @@ const activeLink = localStorage.getItem('activeLink');
 
 if (activeLink) {
   // add the active class to the saved link
-  const link = document.querySelector(`a[href="${activeLink}"]`);
+  const link = document.querySelector(`.menu_link[href="${activeLink}"]`);
   link.parentElement.classList.add('active');
 }
 
@@ -19,3 +19,6 @@ liElements.forEach(function(li) {
     localStorage.setItem('activeLink', href);
   });
 });
+
+
+
