@@ -8,8 +8,8 @@ header {
 }
 
 .header {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .dark-border {
@@ -48,13 +48,13 @@ header {
     padding-bottom: 30px;
   }
 
-@media screen and (max-width: 480px) {
-  max-width: 173px;
-  // margin-left: 16px;
-  margin-right: 163px;
-  padding-top: 24px;
-  padding-bottom: 24px;
-}
+  @media screen and (max-width: 480px) {
+    max-width: 173px;
+    // margin-left: 16px;
+    margin-right: 163px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }
 
 .icon {
@@ -73,65 +73,65 @@ header {
   margin: 51px 0px 31px 0px;
   position: relative;
 
-    @media screen and (max-width: 767px)  {
-      margin: 44px 0px 31px 0px;
+  @media screen and (max-width: 767px) {
+    margin: 44px 0px 31px 0px;
   }
 
-  @media screen and (max-width: 480px)  {
+  @media screen and (max-width: 480px) {
     margin: 32px 20px 34px 0px;
-}
   }
+}
 
-  .search_container svg {
-    justify-content: center;
-    position: absolute;
+.search_container svg {
+  justify-content: center;
+  position: absolute;
+  top: 4px;
+  left: 13.67px;
+  width: 22px;
+  height: 25px;
+  @media screen and (max-width: 767px) {
     top: 4px;
     left: 13.67px;
-    width: 22px;
-    height: 25px;
-    @media screen and (max-width: 767px) {
-      top: 4px;
-      left: 13.67px
-    }
   }
+}
 
-  .background-color-search {
-    background: var(--second-background);
-  }
+.background-color-search {
+  background: var(--second-background);
+}
 
-  .search {
-    position: absolute;
-    margin: 7.58px 0px 8.61px 13.67px;
-    fill: currentColor;
-    width: 12px;
-    height: 12px;
+.search {
+  position: absolute;
+  margin: 7.58px 0px 8.61px 13.67px;
+  fill: currentColor;
+  width: 12px;
+  height: 12px;
 
-    @media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) {
     width: 15px;
     height: 15px;
   }
+}
+
+.search-box {
+  border-radius: 55px;
+  border-color: black;
+  height: 31px;
+  width: 288px;
+  padding-left: 48px;
+  padding-right: 10px;
+
+  @media screen and (max-width: 767px) {
+    max-width: 213px;
+    // margin-left: 25.17px;
+    // margin-right: 25.17px;
   }
 
-  .search-box {
-    border-radius: 55px;
-    border-color: black;
-    height: 31px;
-    width: 288px;
-    padding-left: 48px;
-    padding-right: 10px;
-
-    @media screen and (max-width: 767px)  {
-        max-width: 213px;
-        // margin-left: 25.17px;
-        // margin-right: 25.17px;
-    }
-
-    @media screen and (max-width: 480px) {
-      // max-width: 173px;
-      max-width: 13px;
-      margin-left: 0px;
-      margin-right: 0px;
-      border: none;
+  @media screen and (max-width: 480px) {
+    // max-width: 173px;
+    max-width: 13px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border: none;
   }
 }
 
@@ -151,7 +151,6 @@ header {
 
 .toggle_container {
   margin: 49px 16px 40px 147px;
-
 
   @media screen and (max-width: 767px) {
     margin: 50.17px 18.63px 37.17px 25.17px; //53px

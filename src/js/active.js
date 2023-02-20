@@ -1,5 +1,10 @@
 const liElements = document.querySelectorAll('.menu_item');
 const activeLink = localStorage.getItem('activeLink');
+const logoActive = document.querySelector('.logo');
+
+logoActive.addEventListener('click', () => {
+  localStorage.setItem('activeLink', '/index.html');
+});
 
 if (activeLink) {
   // add the active class to the saved link
