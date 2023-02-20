@@ -5,9 +5,9 @@ const btnPrevPg = document.querySelector('button.prew-page');
 let windowWidth = 0;
 let wetherPosition = 0;
 let updateRemoveItems;
-setTimeout(() => {
-  updateRemoveItems = deleteItems.slice(8);
-}, 1500);
+// setTimeout(() => {
+//   updateRemoveItems = deleteItems.slice(8);
+// }, 1500);
 let sliceItems;
 const refs = {
   pagination: document.querySelector('.pagination'),
