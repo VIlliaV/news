@@ -2,15 +2,114 @@
 .categoryBtns-wrapper {
   position: relative;
   display: flex;
-  gap: 32px;
+  gap: 1em;
+}
+
+.filter-elements {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+.filter-category__item-bt,
+.filter-category__item-othersBtn {
+  color: #4440f6;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  padding-top: 7.5px;
+  padding-right: 13px;
+  padding-bottom: 7.5px;
+  padding-left: 13px;
+  border-radius: 20px;
+  border: 1px solid #4440f6;
+
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279.98px) {
+  .categoryBtns-wrapper button:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767.98px) {
+  .categoryBtns-wrapper button:nth-child(n + 1) {
+    display: none;
+  }
+}
+
+.filter-category__item-bt:focus,
+.filter-category__item-bt:hover {
+  color: white;
+  background-color: #4440f6;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-category__button-arrow {
+  margin-left: 10px;
+  fill: #4440f6;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-category__item-othersBtn.is-open {
+  color: white;
+  background-color: #4440f6;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-category__item-othersBtn.is-open .filter-category__button-arrow {
+  fill: white;
+  transform: rotateX(180deg);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hide the myDropdown container by default */
 #myDropdown {
+  position: absolute;
   display: none;
 }
 
 /* Show the myDropdown container when it does not have the hidden class */
 #myDropdown:not(.hidden) {
+  overflow: hidden;
   display: block;
+  z-index: 10;
+  width: 100px;
+  padding: 14px;
+  border-radius: 20px;
+  background-color: #f8f8f8;
+}
+
+.sections-list {
+  list-style-type: none;
+  padding: 0;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  letter-spacing: 0.01em;
+
+  background-color: #f8f8f8;
+  color: #4440f7;
+}
+
+.sections-listItem {
+  margin-top: 12px;
+}
+
+.sections-list li:focus,
+.sections-list li:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
