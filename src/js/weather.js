@@ -23,10 +23,10 @@ async function fetchWeatherByGeo(lat, lon) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    if (response.ok) {
-      createWeatherCard(data);
-    }
-    // return data;
+    // if (response.ok) {
+    //   createWeatherCard(data);
+    // }
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -39,7 +39,8 @@ async function getGeoposition() {
         fetchWeatherByGeo(latitude, longitude).then(data => {
           //   createWeatherCard(data);
           //   console.log(data);
-          return data;
+          createWeatherCard(data);
+          //   return data;
         });
       }
     );
@@ -56,11 +57,11 @@ getGeoposition();
 const weatherCard = document.querySelector('.weather');
 
 function createWeatherCard(data) {
-  //   console.log(data);
+  console.log(data);
 
   const location = data.name;
   const temp = Math.round(data.main.temp);
-  const date = format(new Date(data.dt), 'dd LLL y');
+  const date = format(new Date(data.sys.sunrise), 'dd LLL y');
   const day = format(new Date(data.dt), 'eee');
   const weatherStatus = data.weather[0].main;
   const weatherIcon = data.weather[0].icon;
@@ -71,7 +72,7 @@ function createWeatherCard(data) {
       <span class="weather__value">${weatherStatus}</span>
       <p class="weather__location">
         <svg>
-          <use href="./src/images/sprite-full.svg#geo"></use>
+          <use href="./src/images/location.svg"></use>
         </svg>
         <span class="weather__city">${location}</span>
       </p>
