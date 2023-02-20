@@ -2,7 +2,7 @@ import { createNewsMarkup } from './card-markup';
 import { whenNotFoundMarkup } from './not-found-markup';
 
 const KEY = 'api-key=iQPZlbRhGEGKM4smMiUCFTOlyGy9K2EX';
-const MOST_POPULAR_NEWS_URL = `https://api.nytimes.com/svc/mostpopular/v2/viewedq/1.json?${KEY}`;
+const MOST_POPULAR_NEWS_URL = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?${KEY}`;
 
 export const markupList = document.querySelector('#favorite-list');
 export const favoriteGallerySection = document.querySelector(
