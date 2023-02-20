@@ -38,14 +38,15 @@ async function getGeoposition() {
       ({ coords: { latitude, longitude } }) => {
         fetchWeatherByGeo(latitude, longitude).then(data => {
           //   createWeatherCard(data);
-          console.log(data);
+          //   console.log(data);
+          return data;
         });
       }
     );
-    return;
+    // return;
   }
 
-  return;
+  //   return;
 }
 
 fetchWeather();
@@ -70,7 +71,7 @@ function createWeatherCard(data) {
       <span class="weather__value">${weatherStatus}</span>
       <p class="weather__location">
         <svg>
-          <use href="./images/sprite-full.svg#geo"></use>
+          <use href="./src/images/sprite-full.svg#geo"></use>
         </svg>
         <span class="weather__city">${location}</span>
       </p>
