@@ -3,14 +3,17 @@ a {
   text-decoration: none;
 }
 
+header {
+  border-bottom: 1px solid var(--transpar-second);
+}
+
 .header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
 }
 
 .dark-border {
-  border-bottom: 1px solid rgba(244, 244, 244, 0.2);
+  border-bottom: 1px solid var(--transpar-first);
 }
 
 .menu_container {
@@ -18,7 +21,7 @@ a {
   margin-right: 147px;
 
   @media screen and (max-width: 767px) {
-    margin: 48px 0px 36px 0px;
+    margin: 48px 32px 36px 0px;
   }
 
   @media screen and (max-width: 480px) {
@@ -45,11 +48,13 @@ a {
     padding-bottom: 30px;
   }
 
-  @media screen and (max-width: 480px) {
-    max-width: 173px;
-    margin-left: 16px;
-    margin-right: 14px;
-  }
+@media screen and (max-width: 480px) {
+  max-width: 173px;
+  // margin-left: 16px;
+  margin-right: 163px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
 }
 
 .icon {
@@ -68,49 +73,65 @@ a {
   margin: 51px 0px 31px 0px;
   position: relative;
 
-  //   @media screen and (max-width: 767px)  {
-  //     margin: 44px 0px 31px 0px;
-  // }
-}
-
-.search_container svg {
-  position: absolute;
-  top: 8px;
-  left: 13px;
-}
-
-.background-color-search {
-  background: var(--second-background);
-}
-
-.search {
-  position: absolute;
-  width: 1em;
-  height: 1em;
-  margin: 7.58px 0px 8.61px 13.67px;
-  stroke: currentColor;
-  fill: currentColor;
-}
-
-.search-box {
-  border-radius: 55px;
-  height: 31px;
-  width: 288px;
-  padding-left: 35px;
-  padding-right: 10px;
-  // margin-left: 147px;
-  // margin-right: 147px;
-
-  @media screen and (max-width: 767px) {
-    max-width: 213px;
-    margin-left: 25.17px;
-    margin-right: 25.17px;
+    @media screen and (max-width: 767px)  {
+      margin: 44px 0px 31px 0px;
   }
 
-  @media screen and (max-width: 480px) {
-    max-width: 173px;
-    margin-left: 0px;
-    margin-right: 0px;
+  @media screen and (max-width: 480px)  {
+    margin: 32px 20px 34px 0px;
+}
+  }
+
+  .search_container svg {
+    justify-content: center;
+    position: absolute;
+    top: 4px;
+    left: 13.67px;
+    width: 22px;
+    height: 25px;
+    @media screen and (max-width: 767px) {
+      top: 4px;
+      left: 13.67px
+    }
+  }
+
+  .background-color-search {
+    background: var(--second-background);
+  }
+
+  .search {
+    position: absolute;
+    margin: 7.58px 0px 8.61px 13.67px;
+    fill: currentColor;
+    width: 12px;
+    height: 12px;
+
+    @media screen and (max-width: 480px) {
+    width: 15px;
+    height: 15px;
+  }
+  }
+
+  .search-box {
+    border-radius: 55px;
+    border-color: black;
+    height: 31px;
+    width: 288px;
+    padding-left: 48px;
+    padding-right: 10px;
+
+    @media screen and (max-width: 767px)  {
+        max-width: 213px;
+        // margin-left: 25.17px;
+        // margin-right: 25.17px;
+    }
+
+    @media screen and (max-width: 480px) {
+      // max-width: 173px;
+      max-width: 13px;
+      margin-left: 0px;
+      margin-right: 0px;
+      border: none;
   }
 }
 
@@ -120,6 +141,7 @@ a {
 }
 
 .container {
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;
@@ -128,8 +150,16 @@ a {
 }
 
 .toggle_container {
-  margin: 49px 0px 40px 0px;
-  margin-left: 147px;
+  margin: 49px 16px 40px 147px;
+
+
+  @media screen and (max-width: 767px) {
+    margin: 50.17px 18.63px 37.17px 25.17px; //53px
+  }
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 
 .menu_list {
@@ -138,6 +168,17 @@ a {
 
   @media screen and (max-width: 767px) {
     gap: 44px;
+  }
+}
+
+.icon-tab {
+  fill: currentColor;
+
+  @media screen and (max-width: 9280px) {
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    display: block;
   }
 }
 
@@ -198,12 +239,13 @@ a {
   }
 }
 
-.dark {
-  margin-right: 16px;
-}
-
 .light {
   color: var(--second);
+  stroke: var(--second);
+}
+
+.dark {
+  color: rgb(95, 103, 117);
 }
 
 .switch input {
@@ -258,4 +300,10 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.btn-menu {
+  display: flex;
+  background: none;
+  border: none;
 }
