@@ -61,3 +61,4 @@ refs.pagination.addEventListener('click', e => {
   }
   window.scrollTo(0, 0);
 });
+/*-- test-gitKostya --*/
