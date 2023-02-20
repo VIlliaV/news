@@ -71,7 +71,7 @@ async function getPopularNews() {
       return resp.json();
     })
     .then(resp => {
-      console.log(resp.results);
+      //      console.log(resp.results);
       return resp.results;
     });
   return news;
