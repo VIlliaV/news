@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+  // outline: 1px solid rgb(250, 195, 175);
+  // background-color: rgba(0, 255, 106, 0.1);
+}
+
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
 body {
@@ -42,9 +49,14 @@ a {
 
 .section {
   margin: 0 auto;
-  width: 320px;
+  // width: 320px;
   padding: 40px 16px 0;
-
+  @media (max-width: 319px) {
+    width: auto;
+  }
+  @media (min-width: 320px) {
+    width: 320px;
+  }
   @media (min-width: 768px) {
     width: 768px;
     padding: 48px 16px 0;
