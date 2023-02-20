@@ -1,3 +1,4 @@
+console.log('helllo');
 const apiKey = 'iQPZlbRhGEGKM4smMiUCFTOlyGy9K2EX';
 
 async function getCategoriesList(apiKey) {
