@@ -9,6 +9,15 @@
   &-hidden {
     display: none;
   }
+  @media screen and(min-width: 768px) {
+    width: 353px;
+    // height: 685px;
+    padding: 40px 32px 60px 32px;
+  }
+  @media screen and(min-width: 1280px) {
+    width: 395px;
+    padding: 40px 53px;
+  }
 
   // .weather__info
   &__info {

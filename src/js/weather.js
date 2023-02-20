@@ -1,14 +1,10 @@
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 
 const API_WETHER_KEY = '8af80306c215ce6fbaa948ab6db624b1';
 const URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
 async function fetchWeather() {
-  //   weatherCard.innerHTML = `<div class="weather__loading">
-  //   <img src="../images/loading.gif" alt="loading...">
-
-  //     <div>`;
-  const url = `${URL}q=London&units=metric&appid=${API_WETHER_KEY}`;
+  const url = `${URL}q=London&units=metric&appid=${API_WETHER_KEY}&units=metric`;
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -16,17 +12,13 @@ async function fetchWeather() {
       createWeatherCard(data);
     }
     // console.log(data);
-    return data;
+    // return data;
   } catch (error) {
     console.log(error);
   }
 }
 
 async function fetchWeatherByGeo(lat, lon) {
-  //   weatherCard.innerHTML = `<div class="weather__loading">
-  // <img src="../images/loading.gif" alt="loading...">
-
-  //     div>`;
   const url = `${URL}lat=${lat}&lon=${lon}&appid=${API_WETHER_KEY}&units=metric`;
   try {
     const response = await fetch(url);
@@ -34,7 +26,7 @@ async function fetchWeatherByGeo(lat, lon) {
     if (response.ok) {
       createWeatherCard(data);
     }
-    return data;
+    // return data;
   } catch (error) {
     console.log(error);
   }
@@ -45,15 +37,14 @@ async function getGeoposition() {
     await navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         fetchWeatherByGeo(latitude, longitude).then(data => {
+          //   createWeatherCard(data);
           console.log(data);
-          return data;
         });
       }
     );
     return;
-  } else {
-    fetchWeather();
   }
+
   return;
 }
 
@@ -64,12 +55,12 @@ getGeoposition();
 const weatherCard = document.querySelector('.weather');
 
 function createWeatherCard(data) {
-  console.log(data);
+  //   console.log(data);
 
   const location = data.name;
   const temp = Math.round(data.main.temp);
-  // const feelsLike = Math.round(data.main.feels_like);
-  const day = data.dt;
+  const date = format(new Date(data.dt), 'dd LLL y');
+  const day = format(new Date(data.dt), 'eee');
   const weatherStatus = data.weather[0].main;
   const weatherIcon = data.weather[0].icon;
 
@@ -92,10 +83,10 @@ function createWeatherCard(data) {
   />
   <div class="weather__date">
     <p class="weather__day">${day}</p>
-    <p class="weather__year"></p>
+    <p class="weather__year">${date}</p>
   </div>
   <a
-    href="https://sinoptik.ua/"
+    href="https://weather.com/uk-UA/weather/tenday/l/874007233ad152f9a0541234e94fc0722a06a81db728ad9e08be04b58fbe18fa"
     class="weather__link"
     target="_blank"
     rel="noreferrer noopener"
@@ -104,3 +95,5 @@ function createWeatherCard(data) {
 
   weatherCard.innerHTML = card;
 }
+
+export { createWeatherCard };
