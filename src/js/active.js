@@ -3,7 +3,7 @@ const activeLink = localStorage.getItem('activeLink');
 const logoActive = document.querySelector('.logo');
 
 logoActive.addEventListener('click', () => {
-  localStorage.setItem('activeLink', '/index.html');
+  localStorage.setItem('activeLink', '/news/index.html');
 });
 
 if (activeLink) {
@@ -13,6 +13,7 @@ if (activeLink) {
 }
 
 liElements.forEach(function (li) {
+  console.log(li);
   li.addEventListener('click', function (event) {
     liElements.forEach(function (li) {
       li.classList.remove('active');
