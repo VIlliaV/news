@@ -8,7 +8,7 @@ logoActive.addEventListener('click', () => {
 
 if (activeLink) {
   // add the active class to the saved link
-  const link = document.querySelector(`.menu_link[href="/news${activeLink}"]`);
+  const link = document.querySelector(`.menu_link[href="/news/index.html"]`);
   link.parentElement.classList.add('active');
 }
 
