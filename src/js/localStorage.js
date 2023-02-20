@@ -45,6 +45,40 @@ function testFavorite() {
   });
 }
 
+function addToReadingNews(item) {
+  let readingNews = getReadingNews();
+  if (readingNews === null) {
+    favorite = [{ readingNews, date: new Date().toLocaleDateString() }];
+  } else {
+    favorite.push({ readingNews, data: new Date().toLocaleDateString() });
+    localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
+  }
+}
+
+function getDatesReadingNews() {
+  let readingNews = getReadingNews();
+  let data = readingNews.then(resp => {
+    resp.reduse(
+      acc,
+      el => {
+        if (acc.include(el.date)) {
+          return;
+        } else acc.push(el);
+        return acc;
+      },
+      []
+    );
+  });
+  return data;
+}
+
+function getReadingNewsByDate(date) {
+  let readingNews = getReadingNews().then(resp => {
+    resp.filter(news => news.data === date);
+  });
+  return readingNews;
+}
+
 export {
   checkDarkTheme,
   changeTheme,
@@ -52,4 +86,7 @@ export {
   addToFavoriteArticles,
   removeFromFavoriteArticles,
   testFavorite,
+  addToReadingNews,
+  getDatesReadingNews,
+  getReadingNewsByDate,
 };
