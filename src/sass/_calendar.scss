@@ -16,7 +16,7 @@
 
 .calendar__container {
   position: relative;
-    width: 168px;
+  width: 168px;
   height: 31px;
 
   border: 1px solid #111321;
@@ -24,10 +24,11 @@
 }
 
 .calendar__input {
+  cursor: pointer;
   width: 168px;
   height: 31px;
   padding: 5px 44px;
-  opacity: 0.4;
+ 
 
   font-family: 'Manrope';
   font-weight: 400;
@@ -42,12 +43,13 @@
 }
 
 
-.calendar__down {
+.calendar__down,.calendar__up {
   width: 14px;
   height: 14px;
 
   fill: #a2a2a2;
 }
+
 
 .calendar__icon--start {
   position: absolute;
@@ -60,9 +62,9 @@
   fill: #4440f6;
 }
 
+
 .calendar__icon--end {
   position: absolute;
-  cursor: pointer;
 
   left: 141px;
   top: 9px;
@@ -146,36 +148,45 @@
 }
 
 .day__item {
-  // height: 25px;
-  width: calc(100%/7);
+  width: calc(100% / 7);
   display: flex;
   justify-content: center;
-   cursor: pointer;
-  //  margin-bottom: 12px;
-
+  cursor: pointer;
+  
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 14px;
   line-height: 1.78;
-   
+
   letter-spacing: 0.38px;
 
   color: #000000;
 
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// .day-item:nth-child(-n+22){
-//   margin-bottom: 12px;
-// }
 
 .day__item:hover {
-background: #4440F6;
-border-radius: 50%;
+  color: #FFFFFF;
+  background: #4440f6;
+  border-radius: 50%;
+  }
+
+.day__item.inactive--prev, .day__item.inactive--next {
+  color: #a2a2a2;
+   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.day__item.inactive--prev {
-  color: #a2a2a2;
+// 
+
+.day__item.inactive--prev:hover{
+  color: #FFFFFF;
+  background: #4440f6;
 }
-.day__item.inactive--next {
-  color: #a2a2a2;
+
+.day__item.inactive--next:hover {
+  color: #FFFFFF;
+  background: #4440f6;
 }
