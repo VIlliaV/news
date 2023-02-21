@@ -28,8 +28,8 @@ function addToFavoriteArticles(item) {
     favorite = [item];
   } else {
     favorite.push(item);
-    localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   }
+  localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
 }
 
 function removeFromFavoriteArticles(itemId) {
