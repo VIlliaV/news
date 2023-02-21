@@ -1,20 +1,17 @@
 import { getPopularNews } from '../js/api';
-import '../sass/favorite-section.scss';
 
 const newsCards = document.querySelector('.favorite-cards');
 
 window.addEventListener('load', () => {
-    getPopularNews()
-        .then(data => { 
-        appendCardsMurkup(data);
-        console.log(data);
-      })
-      .catch(err => console.log(err));
-    
+  getPopularNews()
+    .then(data => {
+      appendCardsMurkup(data);
+      console.log(data);
+    })
+    .catch(err => console.log(err));
 });
 
 function generateCardsMurkup(cardsArray) {
-    
   return cardsArray
     .map(({ media, title, abstract, published_date, url }) => {
       let imgUrl = media[0]['media-metadata'][2]['url'];
@@ -62,5 +59,3 @@ function textCropping(text) {
 function appendCardsMurkup(cards) {
   newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
 }
-
-

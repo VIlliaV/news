@@ -1,0 +1,53 @@
+@import './common';
+@import './color';
+
+.disappearing {
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 59px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    margin-top: 48px;
+    margin-bottom: 101px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 15px;
+    margin-bottom: 60px;
+  }
+}
+
+.disappearing___title {
+  font-family: Manrope;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 20px;
+  line-height: 27px;
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    font-size: 40px;
+    line-height: 55px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 40px;
+    line-height: 55px;
+  }
+}
+
+.disappearing___picture {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 248px;
+  height: auto;
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    width: 270px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 350px;
+  }
+}
