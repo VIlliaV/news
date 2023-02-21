@@ -21,6 +21,7 @@ function changeTheme() {
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
+// console.log(getFavoriteArticles());
 
 function addToFavoriteArticles(item) {
   let favorite = getFavoriteArticles();
@@ -34,8 +35,14 @@ function addToFavoriteArticles(item) {
 
 function removeFromFavoriteArticles(itemId) {
   let favorite = getFavoriteArticles();
-  const position = favorite.findIndex(option => (option.id = itemId));
-  favorite.splice(position, 1);
+  let indexCard = 0;
+  favorite.map((item, index) => {
+    const cardId = item.uri.slice(38, item.uri.length);
+    if (cardId === itemId) {
+      indexCard = index;
+    }
+  });
+  favorite.splice(indexCard, 1);
   localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
 }
 
@@ -44,6 +51,7 @@ function testFavorite() {
     localStorage.setItem('favoriteArticles', JSON.stringify(resp));
   });
 }
+// testFavorite();
 
 function addToReadingNews(item) {
   let readingNews = getReadingNews();
