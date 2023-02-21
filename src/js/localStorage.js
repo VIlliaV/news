@@ -1,4 +1,4 @@
-import { getPopularNews } from './API';
+import { getPopularNews } from './api';
 
 function checkDarkTheme() {
   const theme = localStorage.getItem('ui-theme');
