@@ -21,7 +21,7 @@ function findIdNews() {
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
-      item => `<li class="favorite-cards__item" id="${readFromLocal(item.uri)}">
+      item => `<li class="favorite-cards__item" id="${item.uri}">
       <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
         <a class="favorite-cards__image-link" >
           <img
