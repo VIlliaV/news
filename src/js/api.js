@@ -1,4 +1,5 @@
 const KEY = 'api-key=iQPZlbRhGEGKM4smMiUCFTOlyGy9K2EX';
+console.log('🚀 ~ KEY:', KEY);
 
 const CAREGORY_URL = `https://api.nytimes.com/svc/news/v3/content/section-list.json?${KEY}`;
 const SEARCH_BY_CAREGORY_URL =
