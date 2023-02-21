@@ -1,4 +1,4 @@
-import { getPopularNews } from '../js/api';
+import { getPopularNews } from './api';
 
 const newsCards = document.querySelector('.favorite-cards');
 
