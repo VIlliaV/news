@@ -1,21 +1,29 @@
 import { getPopularNews } from './api';
-
+import { addToFavoriteArticles, getFavoriteArticles } from './localStorage';
+let idNews = [];
+let newsAll = [];
 const newsCards = document.querySelector('.favorite-cards');
 
 window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
-      appendCardsMurkup(data);
-      console.log(data);
+      generateCardsMurkup(data);
+      newsAll = data;
     })
     .catch(err => console.log(err));
 });
 
+function findIdNews() {
+  const finded = newsAll.find(option => option.uri == idNews);
+  addToFavoriteArticles(finded);
+}
+
 function generateCardsMurkup(cardsArray) {
-  return cardsArray
+  const markup = cardsArray
     .map(
-      item => `<li class="favorite-cards__item">
-        <a class="favorite-cards__image-link" href="${item.url}">
+      item => `<li class="favorite-cards__item" id="${item.uri}">
+      <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
+        <a class="favorite-cards__image-link" >
           <img
             class="favorite-cards__img"
             src="${item.media.map(el => el['media-metadata'][2].url)}"
@@ -24,12 +32,6 @@ function generateCardsMurkup(cardsArray) {
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
-          <button type="button" class="favorite-cards__remove-btn id="remove-btn">
-            Remove from favorite
-            <svg class="favorite-cards__heart-icon" width="32" height="32">
-              <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-            </svg>
-          </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
         </h2>
@@ -47,6 +49,7 @@ function generateCardsMurkup(cardsArray) {
       </li>`
     )
     .join('');
+  newsCards.innerHTML = markup;
 }
 
 function addDefaultText(text) {
@@ -70,17 +73,24 @@ function reformatDate(dateString) {
   return newDate;
 }
 
-// function textCropping(text) {
-//   let result;
-//   if (text.length > 150) {
-//     text = text.slice(0, 150);
-//     result = text + '...';
-//   } else {
-//     result = text;
-//   }
-//   return result;
-// }
+newsCards.addEventListener('click', onAddNews);
 
-function appendCardsMurkup(cards) {
-  newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
+function onAddNews(e) {
+  if (e.target.nodeName === 'INPUT') {
+    e.preventDefault();
+    idNews = e.target.parentElement.id;
+    if (e.target.value === 'Add to favorite') {
+      e.target.value = 'Remove from favorite';
+      findIdNews();
+    } else e.target.value = 'Add to favorite';
+  }
+}
+
+function readFromLocal(item) {
+  const locals = getFavoriteArticles();
+  locals.map(elem => {
+    if (item.uri === elem.uri) {
+      console.log('true');
+    }
+  });
 }

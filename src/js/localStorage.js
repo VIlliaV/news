@@ -1,4 +1,4 @@
-import { getPopularNews } from './API';
+import { getPopularNews } from './api';
 
 function checkDarkTheme() {
   const theme = localStorage.getItem('ui-theme');
@@ -29,8 +29,8 @@ function addToFavoriteArticles(item) {
     favorite = [item];
   } else {
     favorite.push(item);
-    localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   }
+  localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
 }
 
 function removeFromFavoriteArticles(itemId) {
