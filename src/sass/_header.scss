@@ -306,13 +306,118 @@ input:checked + .slider:before {
   // }
 }
 
-@media only screen and (max-width: 480px) {
-  .search-box.active-input {
-    border: 1px #000 solid;
-    max-width: 173px;
-    left: -100px;
-    height: 31px;
-    background-color: #fff;
-    transition: all 0.5s ease;
-  }
-}
+// .background-color-search {
+//   background: var(--second-background);
+// }
+
+// .search {
+//   position: absolute;
+//   margin: 7.58px 0px 8.61px 13.67px;
+//   fill: currentColor;
+//   width: 12px;
+//   height: 12px;
+
+//   @media screen and (max-width: 480px) {
+//     width: 15px;
+//     height: 15px;
+//   }
+// }
+
+// .search-box {
+//   border-radius: 55px;
+//   border-color: black;
+//   height: 31px;
+//   width: 288px;
+//   padding-left: 48px;
+//   padding-right: 10px;
+
+//   @media screen and (max-width: 767px) {
+//     max-width: 213px;
+//     // margin-left: 25.17px;
+//     // margin-right: 25.17px;
+//   }
+
+//   @media screen and (max-width: 480px) {
+//     // max-width: 173px;
+//     max-width: 13px;
+//     margin-left: 0px;
+//     margin-right: 0px;
+//     border: none;
+//   }
+// }
+
+// .dark-border-search {
+//   border: 1px solid var(--primary-background);
+//   color: var(--primary-background);
+// }
+
+// .container {
+//   max-width: 1280px;
+//   margin: 0 auto;
+//   padding: 0 15px;
+//   box-sizing: border-box;
+//   position: relative;
+//   justify-content: center;
+// }
+
+// .toggle_container {
+//   margin: 49px 16px 40px 147px;
+
+//   @media screen and (max-width: 767px) {
+//     margin: 50.17px 18.63px 37.17px 25.17px; //53px
+//   }
+
+//   @media screen and (max-width: 480px) {
+//     display: none;
+//   }
+// }
+
+// .menu_list {
+//   display: flex;
+//   gap: 69px;
+
+//   @media screen and (max-width: 767px) {
+//     gap: 44px;
+//   }
+// }
+
+// .icon-tab {
+//   fill: currentColor;
+
+//   @media screen and (max-width: 9280px) {
+//     display: none;
+//   }
+//   @media screen and (max-width: 767px) {
+//     display: block;
+//   }
+// }
+
+// .menu_link {
+//   font-family: 'Manrope';
+//   font-style: normal;
+//   font-weight: 700;
+//   font-size: 18px;
+//   line-height: 25px;
+
+//   @media screen and (max-width: 767px) {
+//     font-weight: 700;
+//     font-size: 16px;
+//     line-height: 22px;
+//   }
+// }
+
+// .header_background {
+//   font-family: 'Poppins';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 18px;
+//   line-height: 24px;
+
+//   @media screen and (max-width: 768px) {
+//     display: none;
+//   }
+
+//   @media screen and (max-width: 480px) {
+//     display: none;
+//   }
+// }
