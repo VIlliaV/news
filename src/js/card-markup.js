@@ -1,23 +1,9 @@
 import { removeFromFavoriteArticles } from './localStorage';
 
-// const buttonRemove = `<button type="button" class="favorite-cards__remove-btn id="remove-btn">
-// Remove from favorite
-// <svg class="favorite-cards__heart-icon" width="32" height="32">
-//   <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-// </svg>
-// </button>`;
-
-// const buttonAdd = `<button type="button" class="favorite-cards__add-btn id="remove-btn">
-// Add to favorite
-//  <svg class="favorite-cards__heart-full-icon" width="32" height="32">
-//    <use href="/sprite-full.e7f74a66.svg#heart"></use>
-//  </svg>
-//  </button>`;
-
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
-// getFavoriteArticles();
+
 const markupList = document.querySelector('#favorite-list');
 createNewsMarkup(getFavoriteArticles());
 
@@ -58,7 +44,10 @@ export function createNewsMarkup(newsCard) {
       </li>`
     )
     .join('');
-  markupList.innerHTML = newsItemsMarkup;
+  if (newsItemsMarkup !== '') {
+    markupList.innerHTML = newsItemsMarkup;
+    markupList.addEventListener('click', deleteCard);
+  }
 }
 
 function reformatDate(dateString) {
@@ -89,8 +78,6 @@ function getPhoto(item) {
     return '/image-not-found.584be82b.jpg';
   } else return photoUrl;
 }
-
-markupList.addEventListener('click', deleteCard);
 
 function deleteCard(event) {
   event.preventDefault();

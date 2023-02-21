@@ -9,6 +9,6 @@ import './js/weather';
 import './js/pagination';
 
 // import './js/filter';
-import './js/card-markup';
+// import './js/card-markup';
 
 import './js/localStorage';
