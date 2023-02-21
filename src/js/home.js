@@ -5,17 +5,18 @@ const newsCards = document.querySelector('.favorite-cards');
 window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
-      appendCardsMurkup(data);
-      console.log(data);
+      generateCardsMurkup(data);
+      // console.log(newsCards);
     })
     .catch(err => console.log(err));
 });
 
 function generateCardsMurkup(cardsArray) {
-  return cardsArray
+  const markup = cardsArray
     .map(
-      item => `<li class="favorite-cards__item">
-        <a class="favorite-cards__image-link" href="${item.url}">
+      item => `<li class="favorite-cards__item" id="${item.id}">
+      <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
+        <a class="favorite-cards__image-link" >
           <img
             class="favorite-cards__img"
             src="${item.media.map(el => el['media-metadata'][2].url)}"
@@ -24,12 +25,8 @@ function generateCardsMurkup(cardsArray) {
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
-          <button type="button" class="favorite-cards__remove-btn id="remove-btn">
-            Remove from favorite
-            <svg class="favorite-cards__heart-icon" width="32" height="32">
-              <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-            </svg>
-          </button>
+          
+
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
         </h2>
@@ -47,6 +44,7 @@ function generateCardsMurkup(cardsArray) {
       </li>`
     )
     .join('');
+  newsCards.innerHTML = markup;
 }
 
 function addDefaultText(text) {
@@ -81,6 +79,22 @@ function reformatDate(dateString) {
 //   return result;
 // }
 
-function appendCardsMurkup(cards) {
-  newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
+// function appendCardsMurkup(cards) {
+
+// }
+
+newsCards.addEventListener('click', onAddNews);
+let targetArray = [];
+
+function onAddNews(e) {
+  if (e.target.nodeName === 'INPUT') {
+    e.preventDefault();
+    const text = 'Add to favorite';
+    if (e.target.value === text) {
+      e.target.value = 'Remove from favorite';
+      targetArray.push(e.target.parentElement);
+      localStorage.setItem('fav', targetArray.map());
+      // console.log(targetArray);
+    } else e.target.value = text;
+  }
 }
