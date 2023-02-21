@@ -102,6 +102,7 @@ function createWeatherCard(data) {
 
   weatherCard.innerHTML = card;
 }
+console.log('hi');
 
 export { createWeatherCard };
 
