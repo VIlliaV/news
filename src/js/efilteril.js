@@ -36,6 +36,7 @@ getCategory()
     randomSections.forEach(section => {
       const listItem = document.createElement('li');
       listItem.textContent = section;
+      console.log('🚀 ~ section:', section);
       listItem.classList.add('sections-listItem');
       sectionsDropdownList.appendChild(listItem);
     });
