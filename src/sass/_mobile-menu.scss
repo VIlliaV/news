@@ -31,6 +31,8 @@
     }
 
     .icon-tel {
+      border-radius: 50%;
+      border: 1px solid white;
       margin-right: 15px;
     }
 
@@ -52,6 +54,7 @@
     .js-menu-container li {
       padding: 16px;
       display: flex;
+      align-items: center;
     }
   
     .menu_link {
@@ -86,6 +89,16 @@
 
     .dark-tel {
       color: rgb(95, 103, 117);
+    }
+
+    .menu_link_tel {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .active-tel {
+      color: #fff;
     }
 }
   @media only screen and (min-width: 481px) and (max-width: 1900px) {

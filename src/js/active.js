@@ -1,5 +1,6 @@
-const liElements = document.querySelectorAll('li');
+const liElements = document.querySelectorAll('.menu_item');
 const activeLink = localStorage.getItem('activeLink');
+
 
 
 if (activeLink) {
