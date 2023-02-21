@@ -32,7 +32,7 @@ async function getNewsBySearch(word, page = 1, date = 20100101) {
     return err;
   }
   const news = await newsJson.json();
-  console.log(news.response.docs);
+  //  console.log(news.response.docs);
   return news.response.docs;
 }
 
@@ -45,7 +45,7 @@ async function getCategory() {
       return resp.json();
     })
     .then(categories => {
-      console.log(categories.results);
+      //      console.log(categories.results);
       return categories.results;
     });
   return categories;
@@ -58,7 +58,7 @@ async function getNewsByCategory(category) {
     return err;
   }
   const categories = await resp.json();
-  console.log(categories.results);
+  //  console.log(categories.results);
   return categories.results;
 }
 
@@ -71,7 +71,7 @@ async function getPopularNews() {
       return resp.json();
     })
     .then(resp => {
-      console.log(resp.results);
+      //      console.log(resp.results);
       return resp.results;
     });
   return news;

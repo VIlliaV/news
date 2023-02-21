@@ -1,10 +1,15 @@
 <section class="container section categories">
   <!-- Categories -->
-  <div class="buttons-container">
+  <div class="buttons-container filter-elements">
     <div class="categoryBtns-wrapper"></div>
     <div class="otherBtn-wrapper">
-      <button id="othersButton">Others</button>
-      <div id="myDropdown"></div>
+      <button class="filter-category__item-othersBtn" id="othersButton">
+        <span>Others</span>
+        <svg class="filter-category__button-arrow" width="14" height="14">
+          <use href="./images/sprite.svg#down"></use>
+        </svg>
+      </button>
+      <div id="myDropdown" class="hidden"></div>
     </div>
   </div>
   <!-- Calendar -->
@@ -15,11 +20,7 @@
         <svg class="calendar__icon--start">
           <use href="./images/sprite.svg#calendar"></use>
         </svg>
-        <input
-          type="text"
-          class="calendar__input"
-          placeholder="Select date..."
-        />
+        <input type="text" class="calendar__input" placeholder="Select date" />
         <span class="calendar__icon--end">
           <svg class="calendar__down">
             <use href="./images/sprite.svg#down"></use>
@@ -63,3 +64,4 @@
   </div>
 </section>
 <script type="module" src="./js/calendar.js"></script>
+<script type="module" src="/src/js/filter.js"></script>

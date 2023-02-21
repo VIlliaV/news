@@ -9,6 +9,15 @@
   &-hidden {
     display: none;
   }
+  @media screen and(min-width: 768px) {
+    width: 353px;
+    // height: 685px;
+    padding: 40px 32px 60px 32px;
+  }
+  @media screen and(min-width: 1280px) {
+    width: 395px;
+    padding: 40px 53px;
+  }
 
   // .weather__info
   &__info {
@@ -16,6 +25,9 @@
     align-items: center;
     margin-bottom: 20px;
     justify-content: center;
+    @media screen and(min-width: 320px) {
+      margin-bottom: 65px;
+    }
   }
   // .weather__deg
   &__deg {
@@ -24,12 +36,20 @@
     font-weight: 400;
     font-size: 55px;
     line-height: calc((64 / 55));
+    @media screen and (min-width: 320px) {
+      font-size: 64px;
+      line-height: calc(75 / 64);
+      padding-right: 8px;
+    }
   }
   // .weather__geo
   &__geo {
     display: flex;
     flex-direction: column;
     margin-left: 11px;
+    @media screen and(min-width: 320px) {
+      margin-left: 8px;
+    }
   }
   // .weather__value
   &__value {
@@ -37,6 +57,10 @@
     font-size: 24px;
     line-height: calc(28 / 24);
     font-family: 'Roboto';
+    @media screen and (min-width: 320px) {
+      font-size: 36px;
+      line-height: calc(42 / 36);
+    }
   }
   // .weather__location
   &__location {
@@ -50,12 +74,22 @@
     font-family: 'Roboto';
     font-size: 14px;
     line-height: calc(16 / 14);
+    @media screen and(min-width: 320px) {
+      font-size: 20px;
+      line-height: calc(23 / 20);
+      height: 42px;
+      padding-right: 17px;
+    }
 
     svg {
       width: 18px;
       height: 18px;
       color: var(--primary-background);
       margin-right: 5px;
+      @media screen and(min-width: 320px) {
+        width: 27px;
+        height: 27px;
+      }
 
       use {
         fill: currentColor;
@@ -69,6 +103,10 @@
     width: 168px;
     margin-left: auto;
     margin-right: auto;
+    @media screen and(min-width: 320px) {
+      margin-bottom: 65px;
+      width: 205px;
+    }
   }
   // .weather__date
   &__date {
@@ -79,6 +117,11 @@
     font-size: 28px;
     line-height: 33px;
     margin-bottom: 20px;
+    @media screen and(min-width: 320px) {
+      font-size: 36px;
+      line-height: calc(42 / 36);
+      margin-bottom: 28px;
+    }
   }
   &__link {
     display: block;
@@ -95,6 +138,12 @@
     transition: background-color 250ms ease;
     &:hover {
       background: rgba(254, 254, 255, 0.5);
+    }
+    @media screen and(min-width: 320px) {
+      padding: 10px 12px;
+      width: 177px;
+      font-size: 20px;
+      line-height: calc(23 / 20);
     }
   }
 }

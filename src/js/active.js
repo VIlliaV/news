@@ -1,6 +1,10 @@
 const liElements = document.querySelectorAll('.menu_item');
 const activeLink = localStorage.getItem('activeLink');
+const logoActive = document.querySelector('.logo');
 
+logoActive.addEventListener('click', () => {
+  localStorage.setItem('activeLink', '/index.html');
+});
 
 
 if (activeLink) {
@@ -9,9 +13,9 @@ if (activeLink) {
   link.parentElement.classList.add('active');
 }
 
-liElements.forEach(function(li) {
-  li.addEventListener('click', function(event) {
-    liElements.forEach(function(li) {
+liElements.forEach(function (li) {
+  li.addEventListener('click', function (event) {
+    liElements.forEach(function (li) {
       li.classList.remove('active');
     });
 
@@ -20,6 +24,3 @@ liElements.forEach(function(li) {
     localStorage.setItem('activeLink', href);
   });
 });
-
-
-

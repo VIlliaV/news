@@ -4,4 +4,7 @@ import './js/active';
 import './js/toggle_tel';
 import './js/search-open-input';
 import './js/add-li-style';
+import './js/home';
 import './js/weather';
+import './js/pagination';
+import './js/filter';

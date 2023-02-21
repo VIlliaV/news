@@ -1,18 +1,7 @@
-import { getPopularNews } from './api';
+import { markupList } from './favorite';
 
-const newsCards = document.querySelector('.favorite-cards');
-
-window.addEventListener('load', () => {
-  getPopularNews()
-    .then(data => {
-      appendCardsMurkup(data);
-      console.log(data);
-    })
-    .catch(err => console.log(err));
-});
-
-function generateCardsMurkup(cardsArray) {
-  return cardsArray
+export function createNewsMarkup(newsCard) {
+  const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">
         <a class="favorite-cards__image-link" href="${item.url}">
@@ -47,6 +36,13 @@ function generateCardsMurkup(cardsArray) {
       </li>`
     )
     .join('');
+  markupList.innerHTML = newsItemsMarkup;
+}
+
+function reformatDate(dateString) {
+  const [year, month, day] = dateString.split('-');
+  const newDate = `${day}/${month}/${year}`;
+  return newDate;
 }
 
 function addDefaultText(text) {
@@ -63,24 +59,4 @@ function limitText(text) {
   } else {
     return text;
   }
-}
-function reformatDate(dateString) {
-  const [year, month, day] = dateString.split('-');
-  const newDate = `${day}/${month}/${year}`;
-  return newDate;
-}
-
-// function textCropping(text) {
-//   let result;
-//   if (text.length > 150) {
-//     text = text.slice(0, 150);
-//     result = text + '...';
-//   } else {
-//     result = text;
-//   }
-//   return result;
-// }
-
-function appendCardsMurkup(cards) {
-  newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
 }
