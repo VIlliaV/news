@@ -1,4 +1,5 @@
 const KEY = 'api-key=iQPZlbRhGEGKM4smMiUCFTOlyGy9K2EX';
+console.log('🚀 ~ KEY:', KEY);
 
 const CAREGORY_URL = `https://api.nytimes.com/svc/news/v3/content/section-list.json?${KEY}`;
 const SEARCH_BY_CAREGORY_URL =
@@ -32,7 +33,7 @@ async function getNewsBySearch(word, page = 1, date = 20100101) {
     return err;
   }
   const news = await newsJson.json();
-  console.log(news.response.docs);
+  //  console.log(news.response.docs);
   return news.response.docs;
 }
 
@@ -45,7 +46,7 @@ async function getCategory() {
       return resp.json();
     })
     .then(categories => {
-      console.log(categories.results);
+      //      console.log(categories.results);
       return categories.results;
     });
   return categories;
@@ -58,9 +59,12 @@ async function getNewsByCategory(category) {
     return err;
   }
   const categories = await resp.json();
-  console.log(categories.results);
+  //  console.log(categories.results);
   return categories.results;
 }
+
+import { createNewsMarkup } from './card-markup';
+import { whenNotFoundMarkup } from './not-found-markup';
 
 async function getPopularNews() {
   const news = await fetch(`${MOST_POPULAR_NEWS_URL}`)
@@ -71,7 +75,7 @@ async function getPopularNews() {
       return resp.json();
     })
     .then(resp => {
-      console.log(resp.results);
+      //      console.log(resp.results);
       return resp.results;
     });
   return news;
