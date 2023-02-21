@@ -1,4 +1,3 @@
-// console.log('helllo');
 const apiKey = 'iQPZlbRhGEGKM4smMiUCFTOlyGy9K2EX';
 
 async function getCategoriesList(apiKey) {
@@ -23,7 +22,7 @@ async function getCategoriesList(apiKey) {
   }
 }
 
-// console.log(getCategoriesList(apiKey));
+console.log(getCategoriesList(apiKey));
 
 const categoryBtnsWrapper = document.querySelector('.categoryBtns-wrapper');
 
@@ -49,20 +48,15 @@ getCategoriesList(apiKey).then(sections => {
   // Shuffle the sections array to get 13 random sections
   const randomSections = sections.sort(() => Math.random() - 0.5).slice(0, 13);
 
-  // Create a ul element for the section list
-  const list = document.createElement('ul');
-  list.classList.add('sections-list');
-
   // Create an li element for each section and append it to the ul element
+  const sectionsDropdownList = document.querySelector('.sections-list');
+
   randomSections.forEach(section => {
     const listItem = document.createElement('li');
     listItem.textContent = section;
     listItem.classList.add('sections-listItem');
-    list.appendChild(listItem);
+    sectionsDropdownList.appendChild(listItem);
   });
-
-  // Append the ul element to the myDropdown container
-  myDropdown.appendChild(list);
 });
 
 // Add a click event listener to the Others button
@@ -87,3 +81,26 @@ window.addEventListener('resize', function () {
     othersButtonSpan.innerText = 'Categories';
   } else othersButtonSpan.innerText = 'Others';
 });
+
+// Add a click event listener to the buttons and dropdown
+const categoryBtns = document.querySelector('.categoryBtns-wrapper');
+const dropdownList = document.querySelector('.sections-list');
+
+categoryBtns.addEventListener('click', onCategoryButtonClick);
+dropdownList.addEventListener('click', onCategoryButtonClick);
+
+// On click fetch data from API by category
+
+function onCategoryButtonClick(event) {
+  const targetButtonInnerText = event.target.innerText.toLowerCase();
+  const articles = getArticleByCategory(targetButtonInnerText);
+  console.log(articles);
+}
+
+async function getArticleByCategory(category) {
+  const response = await fetch(
+    `https://api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${apiKey}`
+  );
+  const data = await response.json();
+  return data;
+}
