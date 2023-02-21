@@ -1,4 +1,5 @@
 import { getPopularNews } from './api';
+import { whenNotFoundMarkup } from './not-found-markup';
 
 function checkDarkTheme() {
   const theme = localStorage.getItem('ui-theme');
@@ -21,7 +22,13 @@ function changeTheme() {
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
-// console.log(getFavoriteArticles());
+function checkLocalstorage() {
+  let LocalstorageObjects = getFavoriteArticles();
+  if (LocalstorageObjects.length === 0) {
+    whenNotFoundMarkup();
+  }
+}
+checkLocalstorage();
 
 function addToFavoriteArticles(item) {
   let favorite = getFavoriteArticles();
@@ -44,6 +51,7 @@ function removeFromFavoriteArticles(itemId) {
   });
   favorite.splice(indexCard, 1);
   localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
+  checkLocalstorage();
 }
 
 function testFavorite() {
