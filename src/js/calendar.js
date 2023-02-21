@@ -113,6 +113,7 @@ function getDate(currYear, currMonth, currDay) {
     .toString()
     .padStart(2, '0')}/${currYear}`;
   selectData = inputEl.attributes[2].textContent;
+  pickerEl.classList.add('hidden');
    return selectData;
 }
 
