@@ -1,4 +1,4 @@
-import { newsList } from './open_window';
+import { listNews } from './open_window';
 const newsList = document.getElementById('newsList');
 let readMoreId = JSON.parse(localStorage.getItem('readMoreLocal')) || [];
 
