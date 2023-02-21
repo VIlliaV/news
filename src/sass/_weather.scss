@@ -35,10 +35,10 @@
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 55px;
-    line-height: calc((64 / 55));
+    line-height: 1.16;
     @media screen and (min-width: 320px) {
       font-size: 64px;
-      line-height: calc(75 / 64);
+      line-height: 1.17;
       padding-right: 8px;
     }
   }
@@ -55,11 +55,11 @@
   &__value {
     font-weight: 400;
     font-size: 24px;
-    line-height: calc(28 / 24);
+    line-height: 1.17;
     font-family: 'Roboto';
     @media screen and (min-width: 320px) {
       font-size: 36px;
-      line-height: calc(42 / 36);
+      line-height: 1.17;
     }
   }
   // .weather__location
@@ -73,10 +73,10 @@
     border-radius: 10px;
     font-family: 'Roboto';
     font-size: 14px;
-    line-height: calc(16 / 14);
+    line-height: 1.14;
     @media screen and(min-width: 320px) {
       font-size: 20px;
-      line-height: calc(23 / 20);
+      line-height: 1.15;
       height: 42px;
       padding-right: 17px;
     }
@@ -119,7 +119,7 @@
     margin-bottom: 20px;
     @media screen and(min-width: 320px) {
       font-size: 36px;
-      line-height: calc(42 / 36);
+      line-height: 1.17;
       margin-bottom: 28px;
     }
   }
@@ -134,7 +134,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: calc(19 / 16);
+    line-height: 1.19;
     transition: background-color 250ms ease;
     &:hover {
       background: rgba(254, 254, 255, 0.5);
@@ -143,7 +143,7 @@
       padding: 10px 12px;
       width: 177px;
       font-size: 20px;
-      line-height: calc(23 / 20);
+      line-height: 1.15;
     }
   }
 }
