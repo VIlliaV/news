@@ -1,23 +1,17 @@
 <header>
   <div class="header container">
-    <a href="/src/index.html" class="logo" id="myElement">News</a>
+    <a href="#" class="logo" id="myElement">News</a>
     <div class="menu_container">
       <ul class="menu_list">
-        <li class="menu_item">
-          <a class="menu_link" href="/src/index.html">Home</a>
-        </li>
-        <li class="menu_item">
-          <a class="menu_link" href="/src/favorite.html">Favorite</a>
-        </li>
-        <li class="menu_item">
-          <a class="menu_link" href="/src/read.html">Read</a>
-        </li>
+        <li><a class="menu_link" href="/src/index.html">Home</a></li>
+        <li><a class="menu_link" href="/src/favorite.html">Favorite</a></li>
+        <li><a class="menu_link" href="/src/read.html">Read</a></li>
       </ul>
     </div>
     <div class="search_container">
       <input type="text" class="search-box" placeholder="Search │" />
-      <svg id="icon-search_desk" width="16px" height="15px">
-        <use href="./images/sprite-full.svg#search" class="search"></use>
+      <svg id="icon-search_desk" class="search" width="32px" height="32px">
+        <use href="./images/sprite-full.svg#search"></use>
       </svg>
     </div>
     <button
@@ -26,38 +20,21 @@
       aria-controls="mobile-menu"
       aria-label="open menu"
     >
-      <svg
-        width="40"
-        height="40"
-        xmlns="http://www.w3.org/2000/svg"
-        class="ionicon shape-codepen menu-icon"
-        viewBox="0 0 512 512"
-      >
-        <title>Reorder Three</title>
-        <path
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="32"
-          d="M96 256h320M96 176h320M96 336h320"
-        />
+      <svg class="ionicon shape-codepen menu-icon" width="32" height="32">
+        <use href="./images/sprite-full.svg#mob-menu-icon"></use>
       </svg>
     </button>
     <div class="toggle_container">
       <div class="toggle">
-        <p class="light header_background" id="light">Light</p>
+        <p class="visab__text light header_background" id="light">Light</p>
         <svg
           id="icon-search_tab"
+          class="theme__icon light"
           width="18.67px"
           height="18.67px"
           class="icon-tab"
         >
-          <use
-            href="./images/sprite-full.svg#sun"
-            class="light"
-            id="light_tab"
-          ></use>
+          <use href="./images/sprite-full.svg#sun" id="light_tab"></use>
         </svg>
         <label class="switch">
           <input type="checkbox" />
@@ -65,17 +42,14 @@
         </label>
         <svg
           id="icon-search_tab"
+          class="theme__icon dark"
           width="18.67px"
           height="18.67px"
           class="icon-tab"
         >
-          <use
-            href="./images/sprite-full.svg#moon"
-            class="dark"
-            id="dark_tab"
-          ></use>
+          <use href="./images/sprite-full.svg#moon" id="dark_tab"></use>
         </svg>
-        <p class="header_background dark" id="dark">Dark</p>
+        <p class="visab__text header_background dark" id="dark">Dark</p>
       </div>
     </div>
   </div>
