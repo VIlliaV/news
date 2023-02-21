@@ -1,9 +1,25 @@
-import { getPopularNews } from './api';
-import { removeFromFavoriteArticles, testFavorite } from './localStorage';
-console.log(testFavorite());
-getPopularNews();
+import { removeFromFavoriteArticles } from './localStorage';
 
+// const buttonRemove = `<button type="button" class="favorite-cards__remove-btn id="remove-btn">
+// Remove from favorite
+// <svg class="favorite-cards__heart-icon" width="32" height="32">
+//   <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
+// </svg>
+// </button>`;
+
+// const buttonAdd = `<button type="button" class="favorite-cards__add-btn id="remove-btn">
+// Add to favorite
+//  <svg class="favorite-cards__heart-full-icon" width="32" height="32">
+//    <use href="/sprite-full.e7f74a66.svg#heart"></use>
+//  </svg>
+//  </button>`;
+
+function getFavoriteArticles() {
+  return JSON.parse(localStorage.getItem('favoriteArticles'));
+}
+// getFavoriteArticles();
 const markupList = document.querySelector('#favorite-list');
+createNewsMarkup(getFavoriteArticles());
 
 export function createNewsMarkup(newsCard) {
   const newsItemsMarkup = newsCard
@@ -18,7 +34,13 @@ export function createNewsMarkup(newsCard) {
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
-          ${buttonRemove}
+          <button type="button" class="favorite-cards__remove-btn 
+          id="${item.uri.slice(38, item.uri.length)}">
+          Remove from favorite
+          <svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
+          </svg>
+          </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
         </h2>
@@ -68,25 +90,15 @@ function getPhoto(item) {
   } else return photoUrl;
 }
 
-const buttonRemove = `<button type="button" class="favorite-cards__remove-btn id="remove-btn">
-Remove from favorite
-<svg class="favorite-cards__heart-icon" width="32" height="32">
-  <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-</svg>
-</button>`;
+markupList.addEventListener('click', deleteCard);
 
-export const buttonAdd = `<button type="button" class="favorite-cards__add-btn id="remove-btn">
-Add to favorite
- <svg class="favorite-cards__heart-full-icon" width="32" height="32">
-   <use href="/sprite-full.e7f74a66.svg#heart"></use>
- </svg>
- </button>`;
-
-markupList.addEventListener('click', removeFromFavoriteArticles);
-
-// function onDeleteNews(e) {
-//   if (e.target.nodeName === 'BUTTON') {
-//     e.preventDefault();
-//     alert('News Delete!!!');
-//   }
-// }
+function deleteCard(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const uriId = event.target.attributes[2].nodeName;
+  const uriIdClean = uriId.slice(0, uriId.length - 1);
+  removeFromFavoriteArticles(uriIdClean);
+  createNewsMarkup(getFavoriteArticles());
+}

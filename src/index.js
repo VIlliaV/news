@@ -6,4 +6,6 @@ import './js/home';
 import './js/weather';
 import './js/pagination';
 import './js/filter';
-// import './js/change-mob-theme';
+import './js/card-markup';
+
+import './js/localStorage';

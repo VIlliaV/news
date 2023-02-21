@@ -69,13 +69,13 @@ async function getPopularNews() {
   const news = await fetch(`${MOST_POPULAR_NEWS_URL}`)
     .then(resp => {
       if (!resp.ok) {
-        whenNotFoundMarkup();
         throw new Error('Something went wrong 404');
       }
       return resp.json();
     })
     .then(resp => {
-      createNewsMarkup(resp.results);
+      //      console.log(resp.results);
+      return resp.results;
     });
   return news;
 }
