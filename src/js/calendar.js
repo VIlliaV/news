@@ -4,7 +4,6 @@ const prevIcon = document.querySelector('.month__arrow--prev');
 const nextIcon = document.querySelector('.month__arrow--next');
 const inputEl = document.querySelector('.calendar__input');
 const pickerEl = document.querySelector('.picker');
-const calendarEl = document.querySelector('.calendar__box');
 const iconDownEl = document.querySelector('.calendar__down');
 const iconUpEl = document.querySelector('.calendar__up');
 
@@ -13,7 +12,6 @@ let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 let currDay = date.getDate();
 let selectData = '';
-console.log(selectData);
 
 const months = [
   'January',
@@ -30,11 +28,13 @@ const months = [
   'December',
 ];
 
-calendarEl.addEventListener('click', () => {
+
+inputEl.addEventListener('click', () => {
   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
 });
+
 
 function renderCalendar() {
   let firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
@@ -43,6 +43,7 @@ function renderCalendar() {
   let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
   let liTag = '';
 
+  
   for (let i = firstDayofMonth; i > 0; i -= 1) {
     liTag += `<li class="day__item inactive--prev">${
       lastDateofLastMonth - i + 1
@@ -89,6 +90,7 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
+
   if (e.target.nodeName !== 'LI') {
     return;
   }
@@ -99,9 +101,9 @@ daysTag.addEventListener('click', e => {
   if (e.target.classList.contains('inactive--next')) {
     currDay = +e.target.textContent;
     return getDate(currYear, currMonth + 1, currDay);
-  } else console.log(e.target);
-  currDay = +e.target.textContent;
-  return getDate(currYear, currMonth, currDay);
+  } else 
+    currDay = +e.target.textContent;
+   return getDate(currYear, currMonth, currDay);
 });
 
 function getDate(currYear, currMonth, currDay) {
@@ -111,9 +113,7 @@ function getDate(currYear, currMonth, currDay) {
     .toString()
     .padStart(2, '0')}/${currYear}`;
   selectData = inputEl.attributes[2].textContent;
-  console.log(selectData);
-  return selectData;
+   return selectData;
 }
-console.log(selectData);
 
 export { selectData };
