@@ -1,4 +1,4 @@
-console.log('helllo');
+// console.log('helllo');
 const apiKey = 'iQPZlbRhGEGKM4smMiUCFTOlyGy9K2EX';
 
 async function getCategoriesList(apiKey) {
@@ -23,7 +23,7 @@ async function getCategoriesList(apiKey) {
   }
 }
 
-console.log(getCategoriesList(apiKey));
+// console.log(getCategoriesList(apiKey));
 
 const categoryBtnsWrapper = document.querySelector('.categoryBtns-wrapper');
 
