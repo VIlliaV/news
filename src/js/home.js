@@ -1,15 +1,22 @@
 import { getPopularNews } from './api';
-
+import { addToFavoriteArticles } from './localStorage';
+let idNews = [];
+let newsAll = [];
 const newsCards = document.querySelector('.favorite-cards');
 
 window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
       generateCardsMurkup(data);
-      // console.log(newsCards);
+      newsAll = data;
     })
     .catch(err => console.log(err));
 });
+
+function findIdNews() {
+  const finded = newsAll.find(option => option.id == idNews);
+  addToFavoriteArticles(finded);
+}
 
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
@@ -25,8 +32,6 @@ function generateCardsMurkup(cardsArray) {
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
-          
-
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
         </h2>
@@ -68,33 +73,15 @@ function reformatDate(dateString) {
   return newDate;
 }
 
-// function textCropping(text) {
-//   let result;
-//   if (text.length > 150) {
-//     text = text.slice(0, 150);
-//     result = text + '...';
-//   } else {
-//     result = text;
-//   }
-//   return result;
-// }
-
-// function appendCardsMurkup(cards) {
-
-// }
-
 newsCards.addEventListener('click', onAddNews);
-let targetArray = [];
 
 function onAddNews(e) {
   if (e.target.nodeName === 'INPUT') {
     e.preventDefault();
-    const text = 'Add to favorite';
-    if (e.target.value === text) {
+    idNews = e.target.parentElement.id;
+    if (e.target.value === 'Add to favorite') {
       e.target.value = 'Remove from favorite';
-      targetArray.push(e.target.parentElement);
-      localStorage.setItem('fav', targetArray.map());
-      // console.log(targetArray);
-    } else e.target.value = text;
+      findIdNews();
+    } else e.target.value = 'Add to favorite';
   }
 }
