@@ -1,5 +1,5 @@
 import { getPopularNews } from './api';
-import { addToFavoriteArticles } from './localStorage';
+import { addToFavoriteArticles, getFavoriteArticles } from './localStorage';
 let idNews = [];
 let newsAll = [];
 const newsCards = document.querySelector('.favorite-cards');
@@ -14,14 +14,14 @@ window.addEventListener('load', () => {
 });
 
 function findIdNews() {
-  const finded = newsAll.find(option => option.id == idNews);
+  const finded = newsAll.find(option => option.uri == idNews);
   addToFavoriteArticles(finded);
 }
 
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
-      item => `<li class="favorite-cards__item" id="${item.id}">
+      item => `<li class="favorite-cards__item" id="${readFromLocal(item.uri)}">
       <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
         <a class="favorite-cards__image-link" >
           <img
@@ -84,4 +84,13 @@ function onAddNews(e) {
       findIdNews();
     } else e.target.value = 'Add to favorite';
   }
+}
+
+function readFromLocal(item) {
+  const locals = getFavoriteArticles();
+  locals.map(elem => {
+    if (item.uri === elem.uri) {
+      console.log('true');
+    }
+  });
 }
