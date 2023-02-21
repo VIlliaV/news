@@ -59,7 +59,7 @@ function testFavorite() {
     localStorage.setItem('favoriteArticles', JSON.stringify(resp));
   });
 }
-// testFavorite();
+testFavorite();
 
 function addToReadingNews(item) {
   let readingNews = getReadingNews();
