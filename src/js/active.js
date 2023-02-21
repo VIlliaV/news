@@ -1,7 +1,7 @@
 const liElements = document.querySelectorAll('.menu_item');
 const activeLink = localStorage.getItem('activeLink');
 const logoActive = document.querySelector('.logo');
-console.log(activeLink);
+
 logoActive.addEventListener('click', () => {
   localStorage.setItem('activeLink', '/index.html');
 });
@@ -14,7 +14,6 @@ if (activeLink) {
 
 liElements.forEach(function (li) {
   li.addEventListener('click', function (event) {
-    console.log(li);
     liElements.forEach(function (li) {
       li.classList.remove('active');
     });
