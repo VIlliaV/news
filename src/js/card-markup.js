@@ -1,4 +1,9 @@
-import { markupList } from './favorite';
+import { getPopularNews } from './api';
+import { removeFromFavoriteArticles, testFavorite } from './localStorage';
+console.log(testFavorite());
+getPopularNews();
+
+const markupList = document.querySelector('#favorite-list');
 
 export function createNewsMarkup(newsCard) {
   const newsItemsMarkup = newsCard
@@ -6,19 +11,14 @@ export function createNewsMarkup(newsCard) {
       item => `<li class="favorite-cards__item">
         <a class="favorite-cards__image-link" href="${item.url}">
           <img
-            class="favorite-cards__img"
-            src="${item.media.map(el => el['media-metadata'][2].url)}"
+            class="favorite-cards__img" width="440"
+            src="${getPhoto(item)}"
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
-          <button type="button" class="favorite-cards__remove-btn id="remove-btn">
-            Remove from favorite
-            <svg class="favorite-cards__heart-icon" width="32" height="32">
-              <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-            </svg>
-          </button>
+          ${buttonRemove}
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
         </h2>
@@ -60,3 +60,33 @@ function limitText(text) {
     return text;
   }
 }
+
+function getPhoto(item) {
+  const photoUrl = item.media.map(el => el['media-metadata'][2].url);
+  if (photoUrl.length === 0) {
+    return '/image-not-found.584be82b.jpg';
+  } else return photoUrl;
+}
+
+const buttonRemove = `<button type="button" class="favorite-cards__remove-btn id="remove-btn">
+Remove from favorite
+<svg class="favorite-cards__heart-icon" width="32" height="32">
+  <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
+</svg>
+</button>`;
+
+export const buttonAdd = `<button type="button" class="favorite-cards__add-btn id="remove-btn">
+Add to favorite
+ <svg class="favorite-cards__heart-full-icon" width="32" height="32">
+   <use href="/sprite-full.e7f74a66.svg#heart"></use>
+ </svg>
+ </button>`;
+
+markupList.addEventListener('click', removeFromFavoriteArticles);
+
+// function onDeleteNews(e) {
+//   if (e.target.nodeName === 'BUTTON') {
+//     e.preventDefault();
+//     alert('News Delete!!!');
+//   }
+// }

@@ -62,17 +62,20 @@ async function getNewsByCategory(category) {
   return categories.results;
 }
 
+import { createNewsMarkup } from './card-markup';
+import { whenNotFoundMarkup } from './not-found-markup';
+
 async function getPopularNews() {
   const news = await fetch(`${MOST_POPULAR_NEWS_URL}`)
     .then(resp => {
       if (!resp.ok) {
+        whenNotFoundMarkup();
         throw new Error('Something went wrong 404');
       }
       return resp.json();
     })
     .then(resp => {
-      //      console.log(resp.results);
-      return resp.results;
+      createNewsMarkup(resp.results);
     });
   return news;
 }
