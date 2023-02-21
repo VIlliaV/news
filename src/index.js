@@ -5,4 +5,4 @@ import './js/toggle_tel';
 import './js/home';
 import './js/weather';
 import './js/pagination';
-import './js/filter';
+import './js/filter-illia';
