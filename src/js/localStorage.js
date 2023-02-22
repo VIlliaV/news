@@ -1,4 +1,5 @@
-import { getPopularNews } from './API';
+import { getPopularNews } from './api';
+import { whenNotFoundMarkup } from './not-found-markup';
 
 function checkDarkTheme() {
   const theme = localStorage.getItem('ui-theme');
@@ -21,6 +22,12 @@ function changeTheme() {
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
+function checkLocalstorage() {
+  let LocalstorageObjects = getFavoriteArticles() || {};
+  if (LocalstorageObjects.length === 0) {
+    whenNotFoundMarkup();
+  }
+}
 
 function addToFavoriteArticles(item) {
   let favorite = getFavoriteArticles();
@@ -28,15 +35,22 @@ function addToFavoriteArticles(item) {
     favorite = [item];
   } else {
     favorite.push(item);
-    localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   }
+  localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
 }
 
 function removeFromFavoriteArticles(itemId) {
   let favorite = getFavoriteArticles();
-  const position = favorite.findIndex(option => (option.id = itemId));
-  favorite.splice(position, 1);
+  let indexCard = 0;
+  favorite.map((item, index) => {
+    const cardId = item.uri.slice(38, item.uri.length);
+    if (cardId === itemId) {
+      indexCard = index;
+    }
+  });
+  favorite.splice(indexCard, 1);
   localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
+  checkLocalstorage();
 }
 
 function testFavorite() {
@@ -44,6 +58,7 @@ function testFavorite() {
     localStorage.setItem('favoriteArticles', JSON.stringify(resp));
   });
 }
+
 
 async function testReding() {
   const news = await getPopularNews();
@@ -55,6 +70,7 @@ async function testReding() {
 
 function getReadingNews() {
   return JSON.parse(localStorage.getItem('readingNews'));
+
 }
 
 function addToReadingNews(item) {
@@ -62,9 +78,11 @@ function addToReadingNews(item) {
   addNews.date = new Date().toLocaleDateString();
   let readingNews = getReadingNews();
   if (readingNews === null) {
+
     readingNews = addNews;
   } else {
     readingNews.push(addNews);
+
   }
   localStorage.setItem('readingNews', JSON.stringify(readingNews));
 }
@@ -82,8 +100,10 @@ function getDatesReadingNews() {
 }
 
 function getReadingNewsByDate(date) {
+
   let readingNews = getReadingNews();
   return readingNews.filter(news => news.date === date);
+
 }
 
 export {

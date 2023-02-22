@@ -1,3 +1,8 @@
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .calendar {
   display: flex;
   align-items: center;
@@ -28,7 +33,6 @@
   width: 168px;
   height: 31px;
   padding: 5px 44px;
- 
 
   font-family: 'Manrope';
   font-weight: 400;
@@ -42,14 +46,24 @@
   border-radius: 20px;
 }
 
+.calendar__input:hover {
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #4440f6;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
 
-.calendar__down,.calendar__up {
+.calendar__down,
+.calendar__up {
+  position: absolute;
+
+  left: 141px;
+  top: 9px;
   width: 14px;
   height: 14px;
 
   fill: #a2a2a2;
 }
-
 
 .calendar__icon--start {
   position: absolute;
@@ -63,16 +77,21 @@
 }
 
 
-.calendar__icon--end {
-  position: absolute;
-
-  left: 141px;
-  top: 9px;
+.calendar__input:hover > .calendar__icon--start {
+  fill: #ffffff;
 }
 
-.hidden {
-  visibility: hidden;
-  opacity: 0;
+.calendar__input:hover > .calendar__down {
+  fill: #ffffff;
+}
+
+.calendar__input:hover > .calendar__up {
+  fill: #ffffff;
+}
+.calendar__open {
+   color: #ffffff;
+    fill: #ffffff;
+    background-color: #4440f6;
 }
 
 .picker {
@@ -153,7 +172,7 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-  
+
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 14px;
@@ -167,27 +186,27 @@
     border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 .day__item:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background: #4440f6;
   border-radius: 50%;
-  }
+}
 
-.day__item.inactive--prev, .day__item.inactive--next {
+.day__item.inactive--prev,
+.day__item.inactive--next {
   color: #a2a2a2;
-   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// 
+//
 
-.day__item.inactive--prev:hover{
-  color: #FFFFFF;
+.day__item.inactive--prev:hover {
+  color: #ffffff;
   background: #4440f6;
 }
 
 .day__item.inactive--next:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background: #4440f6;
 }

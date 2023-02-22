@@ -3,17 +3,18 @@ const daysTag = document.querySelector('.day');
 const prevIcon = document.querySelector('.month__arrow--prev');
 const nextIcon = document.querySelector('.month__arrow--next');
 const inputEl = document.querySelector('.calendar__input');
+const dataEl = document.querySelector('.calendar__text');
 const pickerEl = document.querySelector('.picker');
-const calendarEl = document.querySelector('.calendar__box');
 const iconDownEl = document.querySelector('.calendar__down');
 const iconUpEl = document.querySelector('.calendar__up');
+const iconStartEl = document.querySelector('.calendar__icon--start');
 
 let date = new Date();
 let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 let currDay = date.getDate();
 let selectData = '';
-console.log(selectData);
+
 
 const months = [
   'January',
@@ -30,10 +31,20 @@ const months = [
   'December',
 ];
 
-calendarEl.addEventListener('click', () => {
+
+inputEl.addEventListener('click', () => {
   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
+  if (!pickerEl.classList.contains('hidden')) {
+    inputEl.classList.add('calendar__open');
+    iconUpEl.classList.add('calendar__open');
+     iconStartEl.classList.add('calendar__open');
+    // inputEl.style.backgroundColor = '#4440f6';
+    // dataEl.style.color = '#ffffff';
+    // iconUpEl.style.fill = '#ffffff';
+    // iconStartEl.style.fill = '#ffffff';
+  }
 });
 
 function renderCalendar() {
@@ -89,6 +100,7 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
+  
   if (e.target.nodeName !== 'LI') {
     return;
   }
@@ -99,21 +111,25 @@ daysTag.addEventListener('click', e => {
   if (e.target.classList.contains('inactive--next')) {
     currDay = +e.target.textContent;
     return getDate(currYear, currMonth + 1, currDay);
-  } else console.log(e.target);
-  currDay = +e.target.textContent;
+  } else currDay = +e.target.textContent;
   return getDate(currYear, currMonth, currDay);
 });
 
 function getDate(currYear, currMonth, currDay) {
-  inputEl.attributes[2].textContent = `${currDay
-    .toString()
-    .padStart(2, '0')}/${(currMonth + 1)
+  dataEl.textContent = `${currDay.toString().padStart(2, '0')}/${(currMonth + 1)
     .toString()
     .padStart(2, '0')}/${currYear}`;
-  selectData = inputEl.attributes[2].textContent;
-  console.log(selectData);
-  return selectData;
+  selectData = dataEl.textContent;
+  pickerEl.classList.add('hidden');
+  iconDownEl.classList.remove('hidden');
+  iconUpEl.classList.add('hidden');
+  // inputEl.style.backgroundColor = '#ffffff';
+  // iconStartEl.style.fill = '#4440f6';
+  // iconDownEl.style.fill = '#a2a2a2';
+    inputEl.classList.remove('calendar__open');
+    iconUpEl.classList.remove('calendar__open');
+    iconStartEl.classList.remove('calendar__open');
+     return selectData;
 }
-console.log(selectData);
 
 export { selectData };
