@@ -28,13 +28,11 @@ const months = [
   'December',
 ];
 
-
 inputEl.addEventListener('click', () => {
   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
 });
-
 
 function renderCalendar() {
   let firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
@@ -43,7 +41,6 @@ function renderCalendar() {
   let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
   let liTag = '';
 
-  
   for (let i = firstDayofMonth; i > 0; i -= 1) {
     liTag += `<li class="day__item inactive--prev">${
       lastDateofLastMonth - i + 1
@@ -90,7 +87,6 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
-
   if (e.target.nodeName !== 'LI') {
     return;
   }
@@ -101,9 +97,8 @@ daysTag.addEventListener('click', e => {
   if (e.target.classList.contains('inactive--next')) {
     currDay = +e.target.textContent;
     return getDate(currYear, currMonth + 1, currDay);
-  } else 
-    currDay = +e.target.textContent;
-   return getDate(currYear, currMonth, currDay);
+  } else currDay = +e.target.textContent;
+  return getDate(currYear, currMonth, currDay);
 });
 
 function getDate(currYear, currMonth, currDay) {
@@ -114,7 +109,9 @@ function getDate(currYear, currMonth, currDay) {
     .padStart(2, '0')}/${currYear}`;
   selectData = inputEl.attributes[2].textContent;
   pickerEl.classList.add('hidden');
-   return selectData;
+  iconUpEl.classList.add('hidden');
+  iconDownEl.classList.remove('hidden');
+  return selectData;
 }
 
 export { selectData };
