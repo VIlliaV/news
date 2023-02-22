@@ -28,7 +28,6 @@ function checkLocalstorage() {
     whenNotFoundMarkup();
   }
 }
-checkLocalstorage();
 
 function addToFavoriteArticles(item) {
   let favorite = getFavoriteArticles();
