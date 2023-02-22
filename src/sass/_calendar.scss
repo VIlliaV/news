@@ -47,6 +47,7 @@
 }
 
 .calendar__input:hover {
+  color: #ffffff;
   cursor: pointer;
   background-color: #4440f6;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -75,23 +76,23 @@
   fill: #4440f6;
 }
 
-.calendar__input:hover ~ .calendar__icon--start {
+
+.calendar__input:hover > .calendar__icon--start {
   fill: #ffffff;
 }
 
-.calendar__input:hover ~ .calendar__down {
+.calendar__input:hover > .calendar__down {
   fill: #ffffff;
 }
 
-.calendar__input:hover ~ .calendar__up {
+.calendar__input:hover > .calendar__up {
   fill: #ffffff;
 }
-
-// .calendar__open::-webkit-input-placeholder {
-//    color: #ffffff;
-// }
-
-
+.calendar__open {
+   color: #ffffff;
+    fill: #ffffff;
+    background-color: #4440f6;
+}
 
 .picker {
   position: absolute;
