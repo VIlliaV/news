@@ -77,8 +77,12 @@ dropdownList.addEventListener('click', onCategoryButtonClick);
 // On click fetch data from API by category
 
 function onCategoryButtonClick(event) {
-  const targetButtonInnerText = event.target.innerText.toLowerCase();
+  const targetButtonInnerText = encodeURIComponent(
+    event.target.innerText.toLowerCase()
+  );
+  console.log(targetButtonInnerText);
   getNewsByCategory(targetButtonInnerText).then(data => {
+    console.log(data);
     generateCardsMurkup(data);
     newsAll = data;
   });
