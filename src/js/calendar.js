@@ -3,6 +3,7 @@ const daysTag = document.querySelector('.day');
 const prevIcon = document.querySelector('.month__arrow--prev');
 const nextIcon = document.querySelector('.month__arrow--next');
 const inputEl = document.querySelector('.calendar__input');
+const dataEl = document.querySelector('.calendar__text');
 const pickerEl = document.querySelector('.picker');
 const iconDownEl = document.querySelector('.calendar__down');
 const iconUpEl = document.querySelector('.calendar__up');
@@ -13,6 +14,7 @@ let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 let currDay = date.getDate();
 let selectData = '';
+
 
 const months = [
   'January',
@@ -29,17 +31,19 @@ const months = [
   'December',
 ];
 
+
 inputEl.addEventListener('click', () => {
   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
   if (!pickerEl.classList.contains('hidden')) {
-    inputEl.style.backgroundColor = '#4440f6';
-    // console.dir(typeof inputEl.attributes[2].textContent.style.color = 'red');
-        // inputEl.classList.add('.calendar__open');
-    // // console.dir(inputEl.style);
-    iconUpEl.style.fill = '#ffffff';
-    iconStartEl.style.fill = '#ffffff';
+    inputEl.classList.add('calendar__open');
+    iconUpEl.classList.add('calendar__open');
+     iconStartEl.classList.add('calendar__open');
+    // inputEl.style.backgroundColor = '#4440f6';
+    // dataEl.style.color = '#ffffff';
+    // iconUpEl.style.fill = '#ffffff';
+    // iconStartEl.style.fill = '#ffffff';
   }
 });
 
@@ -96,6 +100,7 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
+  
   if (e.target.nodeName !== 'LI') {
     return;
   }
@@ -111,19 +116,20 @@ daysTag.addEventListener('click', e => {
 });
 
 function getDate(currYear, currMonth, currDay) {
-  inputEl.attributes[2].textContent = `${currDay
-    .toString()
-    .padStart(2, '0')}/${(currMonth + 1)
+  dataEl.textContent = `${currDay.toString().padStart(2, '0')}/${(currMonth + 1)
     .toString()
     .padStart(2, '0')}/${currYear}`;
-  selectData = inputEl.attributes[2].textContent;
+  selectData = dataEl.textContent;
   pickerEl.classList.add('hidden');
   iconDownEl.classList.remove('hidden');
   iconUpEl.classList.add('hidden');
-  inputEl.style.backgroundColor = '#ffffff';
-  iconStartEl.style.fill = '#4440f6';
-  iconDownEl.style.fill = '#a2a2a2';
-  return selectData;
+  // inputEl.style.backgroundColor = '#ffffff';
+  // iconStartEl.style.fill = '#4440f6';
+  // iconDownEl.style.fill = '#a2a2a2';
+    inputEl.classList.remove('calendar__open');
+    iconUpEl.classList.remove('calendar__open');
+    iconStartEl.classList.remove('calendar__open');
+     return selectData;
 }
 
 export { selectData };
