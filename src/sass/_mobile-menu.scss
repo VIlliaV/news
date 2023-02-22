@@ -1,3 +1,4 @@
+
 @media only screen and (max-width: 480px) {
     .js-menu-container {
       position: fixed;
@@ -15,6 +16,7 @@
   background: black;
 }
 
+
     .block-close-btn {
       margin: 24px 32px 79px 16px;
       justify-content: space-between;
@@ -27,6 +29,7 @@
     font-weight: 700;
     font-size: 36px;
     line-height: 33px;
+
     color: var(--primary);
     }
 
@@ -58,6 +61,7 @@
     }
   
     .menu_link {
+
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -114,3 +118,4 @@
         display: none;
         }
   }
+

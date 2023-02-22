@@ -1,4 +1,5 @@
-import { getPopularNews } from './API';
+import { getPopularNews } from './api';
+import { whenNotFoundMarkup } from './not-found-markup';
 
 function checkDarkTheme() {
   const theme = localStorage.getItem('ui-theme');
@@ -21,6 +22,13 @@ function changeTheme() {
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
+function checkLocalstorage() {
+  let LocalstorageObjects = getFavoriteArticles() || {};
+  if (LocalstorageObjects.length === 0) {
+    whenNotFoundMarkup();
+  }
+}
+checkLocalstorage();
 
 function addToFavoriteArticles(item) {
   let favorite = getFavoriteArticles();
@@ -28,15 +36,22 @@ function addToFavoriteArticles(item) {
     favorite = [item];
   } else {
     favorite.push(item);
-    localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   }
+  localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
 }
 
 function removeFromFavoriteArticles(itemId) {
   let favorite = getFavoriteArticles();
-  const position = favorite.findIndex(option => (option.id = itemId));
-  favorite.splice(position, 1);
+  let indexCard = 0;
+  favorite.map((item, index) => {
+    const cardId = item.uri.slice(38, item.uri.length);
+    if (cardId === itemId) {
+      indexCard = index;
+    }
+  });
+  favorite.splice(indexCard, 1);
   localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
+  checkLocalstorage();
 }
 
 function testFavorite() {
