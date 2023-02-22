@@ -108,13 +108,9 @@ function deleteCard(event) {
 
 function onLoadFavorits(item) {
   const localRead = getFavoriteArticles();
-  // console.log(localRead);
+
   if (localRead) {
     for (let i = 0; i < localRead.length; i += 1) {
-      console.log(i);
-      console.log(localRead[i].uri);
-      console.log(item);
-      console.log(localRead[i].uri === item);
       if (localRead[i].uri === item) {
         return (result = 'Remove from favorite');
       }
@@ -126,7 +122,6 @@ function onLoadFavorits(item) {
 
 function isMedia(item) {
   if (item.media) {
-    // console.log(item.media);
     return item.media.map(el => el['media-metadata'][2].url);
   } else if (item.multimedia) {
     return item.multimedia[2].url;
