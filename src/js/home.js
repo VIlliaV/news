@@ -31,7 +31,7 @@ function generateCardsMurkup(cardsArray) {
         <a class="favorite-cards__image-link" >
           <img
             class="favorite-cards__img"
-            src="${item.media.map(el => el['media-metadata'][2].url)}"
+            src="${isMedia(item)}"
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
@@ -99,3 +99,16 @@ function deleteCard(event) {
   removeFromFavoriteArticles(uriIdClean);
   createNewsMarkup(getFavoriteArticles());
 }
+
+function isMedia(item) {
+  if (item.media) {
+    // console.log(item.media);
+    return item.media.map(el => el['media-metadata'][2].url);
+  } else if (item.multimedia) {
+    return item.multimedia[2].url;
+  }
+
+  return '/image-not-found.584be82b.jpg';
+}
+
+export { generateCardsMurkup };

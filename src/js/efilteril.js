@@ -1,5 +1,6 @@
 import { getCategory } from './api';
 import { getNewsByCategory } from './api';
+import { generateCardsMurkup } from './home';
 
 const categoryBtnsWrapper = document.querySelector('.categoryBtns-wrapper');
 const myDropdown = document.querySelector('#myDropdown');
@@ -36,7 +37,7 @@ getCategory()
     randomSections.forEach(section => {
       const listItem = document.createElement('li');
       listItem.textContent = section;
-      console.log('🚀 ~ section:', section);
+
       listItem.classList.add('sections-listItem');
       sectionsDropdownList.appendChild(listItem);
     });
@@ -77,8 +78,9 @@ dropdownList.addEventListener('click', onCategoryButtonClick);
 
 function onCategoryButtonClick(event) {
   const targetButtonInnerText = event.target.innerText.toLowerCase();
-  console.log('🚀 ~ targetButtonInnerText:', targetButtonInnerText);
-
-  const articles = getNewsByCategory(targetButtonInnerText);
-  console.log(articles);
+  getNewsByCategory(targetButtonInnerText).then(data => {
+    generateCardsMurkup(data);
+    newsAll = data;
+  });
+  // const articles = getNewsByCategory(targetButtonInnerText);
 }
