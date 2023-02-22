@@ -108,7 +108,7 @@ function deleteCard(event) {
 
 function onLoadFavorits(item) {
   const localRead = getFavoriteArticles();
-
+  let result = [];
   if (localRead) {
     for (let i = 0; i < localRead.length; i += 1) {
       if (localRead[i].uri === item) {
