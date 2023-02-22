@@ -1,5 +1,9 @@
 import { getPopularNews } from './api';
-import { addToFavoriteArticles, getFavoriteArticles } from './localStorage';
+import {
+  addToFavoriteArticles,
+  getFavoriteArticles,
+  removeFromFavoriteArticles,
+} from './localStorage';
 
 let idNews = [];
 let newsAll = [];
@@ -83,15 +87,15 @@ function onAddNews(e) {
     if (e.target.value === 'Add to favorite') {
       e.target.value = 'Remove from favorite';
       findIdNews();
-    } else e.target.value = 'Add to favorite';
+    } else {
+      e.target.value = 'Add to favorite';
+      deleteCard();
+    }
   }
 }
 
-function readFromLocal(item) {
-  const locals = getFavoriteArticles();
-  locals.map(elem => {
-    if (item.uri === elem.uri) {
-      console.log('true');
-    }
-  });
+function deleteCard(event) {
+  const uriIdClean = idNews.slice(0, idNews.length - 1);
+  removeFromFavoriteArticles(uriIdClean);
+  createNewsMarkup(getFavoriteArticles());
 }
