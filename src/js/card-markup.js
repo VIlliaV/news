@@ -7,7 +7,7 @@ function getFavoriteArticles() {
 const markupList = document.querySelector('#favorite-list');
 createNewsMarkup(getFavoriteArticles());
 
-export function createNewsMarkup(newsCard) {
+function createNewsMarkup(newsCard) {
   const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">

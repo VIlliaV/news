@@ -8,13 +8,15 @@ async function fetchWeather() {
   try {
     const response = await fetch(url);
     const data = await response.json();
+
     if (response.ok) {
       createWeatherCard(data);
     }
+
     // console.log(data);
     // return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -50,7 +52,7 @@ async function getGeoposition() {
   //   return;
 }
 
-fetchWeather();
+// fetchWeather();
 
 getGeoposition();
 

@@ -1,9 +1,5 @@
 import { getPopularNews } from './api';
-import {
-  addToFavoriteArticles,
-  getFavoriteArticles,
-  testFavorite,
-} from './localStorage';
+import { addToFavoriteArticles, getFavoriteArticles } from './localStorage';
 
 let idNews = [];
 let newsAll = [];
