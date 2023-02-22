@@ -60,13 +60,17 @@ function testFavorite() {
   });
 }
 
+function getReadingNews() {
+  return JSON.parse(localStorage.getItem('ReadingNews'));
+}
+
 function addToReadingNews(item) {
   let readingNews = getReadingNews();
   if (readingNews === null) {
-    favorite = [{ readingNews, date: new Date().toLocaleDateString() }];
+    readingNews = [{ readingNews, date: new Date().toLocaleDateString() }];
   } else {
-    favorite.push({ readingNews, data: new Date().toLocaleDateString() });
-    localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
+    readingNews.push({ readingNews, date: new Date().toLocaleDateString() });
+    localStorage.setItem('readingNews', JSON.stringify(favorite));
   }
 }
 
@@ -89,7 +93,7 @@ function getDatesReadingNews() {
 
 function getReadingNewsByDate(date) {
   let readingNews = getReadingNews().then(resp => {
-    resp.filter(news => news.data === date);
+    resp.filter(news => news.date === date);
   });
   return readingNews;
 }
