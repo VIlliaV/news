@@ -6,6 +6,7 @@ const inputEl = document.querySelector('.calendar__input');
 const pickerEl = document.querySelector('.picker');
 const iconDownEl = document.querySelector('.calendar__down');
 const iconUpEl = document.querySelector('.calendar__up');
+const iconStartEl = document.querySelector('.calendar__icon--start');
 
 let date = new Date();
 let currYear = date.getFullYear();
@@ -32,6 +33,14 @@ inputEl.addEventListener('click', () => {
   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
+  if (!pickerEl.classList.contains('hidden')) {
+    inputEl.style.backgroundColor = '#4440f6';
+    // console.dir(typeof inputEl.attributes[2].textContent.style.color = 'red');
+        // inputEl.classList.add('.calendar__open');
+    // // console.dir(inputEl.style);
+    iconUpEl.style.fill = '#ffffff';
+    iconStartEl.style.fill = '#ffffff';
+  }
 });
 
 function renderCalendar() {
@@ -109,8 +118,11 @@ function getDate(currYear, currMonth, currDay) {
     .padStart(2, '0')}/${currYear}`;
   selectData = inputEl.attributes[2].textContent;
   pickerEl.classList.add('hidden');
-  iconUpEl.classList.add('hidden');
   iconDownEl.classList.remove('hidden');
+  iconUpEl.classList.add('hidden');
+  inputEl.style.backgroundColor = '#ffffff';
+  iconStartEl.style.fill = '#4440f6';
+  iconDownEl.style.fill = '#a2a2a2';
   return selectData;
 }
 
