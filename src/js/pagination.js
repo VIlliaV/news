@@ -122,3 +122,57 @@ pg.addEventListener('click', e => {
     handleButtonRight();
   }
 });
+//buttom dynamic pagin//
+function pagination() {
+  const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
+
+  const range = delta + 4;
+
+  let render = '';
+  let renderTwoSide = '';
+  let dot = `<li class="pg-item"><a class="pg-link">...</a></li>`;
+  let countTruncate = 0;
+
+  const numberTruncateLeft = curPage - delta;
+  const numberTruncateRight = curPage + delta;
+
+  let active = '';
+  for (let pos = 1; pos <= totalPages; pos++) {
+    active = pos === curPage ? 'active' : '';
+    if (totalPages >= 2 * range - 1) {
+      if (numberTruncateLeft > 3 && numberTruncateRight < totalPages - 3 + 1) {
+        if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
+          renderTwoSide += renderPage(pos, active);
+        }
+      } else {
+        if (
+          (curPage < range && pos <= range) ||
+          (curPage > totalPages - range && pos >= totalPages - range + 1) ||
+          pos === totalPages ||
+          pos === 1
+        ) {
+          render += renderPage(pos, active);
+        } else {
+          countTruncate++;
+          if (countTruncate === 1) render += dot;
+        }
+      }
+    } else {
+      render += renderPage(pos, active);
+    }
+  }
+
+  if (renderTwoSide) {
+    renderTwoSide =
+      renderPage(1) + dot + renderTwoSide + dot + renderPage(totalPages);
+    pg.innerHTML = renderTwoSide;
+  } else {
+    pg.innerHTML = render;
+  }
+}
+
+function renderPage(index, active = '') {
+  return ` <li class="pg-item ${active}" data-page="${index}">
+        <a class="pg-link" href="#">${index}</a>
+    </li>`;
+}
