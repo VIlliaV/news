@@ -3,6 +3,7 @@ import {
   addToFavoriteArticles,
   getFavoriteArticles,
   removeFromFavoriteArticles,
+  checkLocalstorage,
 } from './localStorage';
 
 let idNews = [];
@@ -14,6 +15,7 @@ window.addEventListener('load', () => {
     .then(data => {
       generateCardsMurkup(data);
       newsAll = data;
+      // onloadFavorits();
     })
     .catch(err => console.log(err));
 });
@@ -27,8 +29,12 @@ function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
       item => `<li class="favorite-cards__item" id="${item.uri}">
-      <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
-        <a class="favorite-cards__image-link" >
+      <input type="submit" class="favorite-cards__remove-btn" value="${onLoadFavorits(
+        item.uri
+      )}">
+        <a class="favorite-cards__image-link" target="_blank" href="${
+          item.url
+        }">
           <img
             class="favorite-cards__img"
             src="${isMedia(item)}"
@@ -47,7 +53,7 @@ function generateCardsMurkup(cardsArray) {
           <p class="favorite-cards__date">${reformatDate(
             item.published_date
           )}</p>
-          <a class="favorite-cards__link" href="${item.url}">
+          <a class="favorite-cards__link" href="${item.url}" target="_blank">
             Read more
           </a>
         </div>
@@ -98,6 +104,23 @@ function deleteCard(event) {
   const uriIdClean = idNews.slice(0, idNews.length - 1);
   removeFromFavoriteArticles(uriIdClean);
   createNewsMarkup(getFavoriteArticles());
+}
+
+function onLoadFavorits(item) {
+  const localRead = getFavoriteArticles();
+  // console.log(localRead);
+  if (localRead) {
+    for (let i = 0; i < localRead.length; i += 1) {
+      console.log(i);
+      console.log(localRead[i].uri);
+      console.log(item);
+      console.log(localRead[i].uri === item);
+      if (localRead[i].uri === item) {
+        return (result = 'Remove from favorite');
+      }
+    }
+    return (result = 'Add to favorite');
+  }
 }
 
 function isMedia(item) {
