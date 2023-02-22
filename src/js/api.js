@@ -33,7 +33,7 @@ async function getNewsBySearch(word, page = 1, date = 20100101) {
     return err;
   }
   const news = await newsJson.json();
-  //  console.log(news.response.docs);
+   console.log(news.response.docs);
   return news.response.docs;
 }
 

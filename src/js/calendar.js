@@ -110,6 +110,7 @@ daysTag.addEventListener('click', e => {
   return getDate(currYear, currMonth, currDay);
 });
 
+
 function getDate(currYear, currMonth, currDay) {
   inputEl.attributes[2].textContent = `${currDay
     .toString()
@@ -123,6 +124,7 @@ function getDate(currYear, currMonth, currDay) {
   inputEl.style.backgroundColor = '#ffffff';
   iconStartEl.style.fill = '#4440f6';
   iconDownEl.style.fill = '#a2a2a2';
+  localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
   return selectData;
 }
 
