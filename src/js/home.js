@@ -3,6 +3,7 @@ import {
   addToFavoriteArticles,
   getFavoriteArticles,
   removeFromFavoriteArticles,
+  checkLocalstorage,
 } from './localStorage';
 import debounce from 'lodash.debounce';
 
@@ -18,6 +19,7 @@ window.addEventListener('load', () => {
     .then(data => {
       generateCardsMurkup(data);
       newsAll = data;
+      // onloadFavorits();
     })
     .catch(err => console.log(err));
 });
@@ -31,8 +33,12 @@ function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
       item => `<li class="favorite-cards__item" id="${item.uri}">
-      <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
-        <a class="favorite-cards__image-link" >
+      <input type="submit" class="favorite-cards__remove-btn" value="${onLoadFavorits(
+        item.uri
+      )}">
+        <a class="favorite-cards__image-link" target="_blank" href="${
+          item.url
+        }">
           <img
             class="favorite-cards__img"
             src="${isMedia(item)}"
@@ -49,9 +55,11 @@ function generateCardsMurkup(cardsArray) {
         </p>
         <div class="favorite-cards__bottom">
           <p class="favorite-cards__date">${reformatDate(
-            item.published_date)
-          }</p>
-          <a class="favorite-cards__link" href="${item.url}">
+
+            item.published_date
+          )}</p>
+          <a class="favorite-cards__link" href="${item.url}" target="_blank">
+
             Read more
           </a>
         </div>
@@ -104,9 +112,22 @@ function deleteCard(event) {
   createNewsMarkup(getFavoriteArticles());
 }
 
+function onLoadFavorits(item) {
+  const localRead = getFavoriteArticles();
+  let result = [];
+  if (localRead) {
+    for (let i = 0; i < localRead.length; i += 1) {
+      if (localRead[i].uri === item) {
+        return (result = 'Remove from favorite');
+      }
+    }
+    return (result = 'Add to favorite');
+  }
+  return (result = 'Add to favorite');
+}
+
 function isMedia(item) {
   if (item.media) {
-    // console.log(item.media);
     return item.media.map(el => el['media-metadata'][2].url);
   } else if (item.multimedia) {
     return item.multimedia[2].url;

@@ -16,7 +16,6 @@ function fixDate(date) {
 async function getNewsBySearch(word, page = 1, date = 20100101) {
   let begin_date = 0;
   let end_date = 0;
-
   if (date === 20100101) {
     begin_date = date;
     end_date = fixDate(new Date().toLocaleDateString());
@@ -28,13 +27,16 @@ async function getNewsBySearch(word, page = 1, date = 20100101) {
   const newsJson = await fetch(
     `${SEARCH_BY_WORD_URL}&q=${word}&page=${page}&begin_date=${begin_date}&end_date=${end_date}`
   );
+
   if (!newsJson.ok) {
     const err = new Error('Something went wrong 404');
     return err;
   }
-  const news = await newsJson.json();
-   console.log(news.response.docs);
-  return news.response.docs;
+
+  const news = await newsJson.json().response.docs;
+  localStorage.setItem('openedNews', JSON.stringify(news));
+  return news;
+
 }
 
 async function getCategory() {
@@ -46,7 +48,6 @@ async function getCategory() {
       return resp.json();
     })
     .then(categories => {
-      //      console.log(categories.results);
       return categories.results;
     });
   return categories;
@@ -58,16 +59,16 @@ async function getNewsByCategory(category) {
     const err = new Error('Something went wrong 404');
     return err;
   }
-  const categories = await resp.json();
-  //  console.log(categories.results);
-  return categories.results;
+  const newsByCategory = await resp.json().results;
+  localStorage.setItem('openedNews', JSON.stringify(newsByCategory));
+  return newsByCategory;
 }
 
 // import { createNewsMarkup } from './card-markup';
 // import { whenNotFoundMarkup } from './not-found-markup';
 
 async function getPopularNews() {
-  const news = await fetch(`${MOST_POPULAR_NEWS_URL}`)
+  const popularNews = await fetch(`${MOST_POPULAR_NEWS_URL}`)
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Something went wrong 404');
@@ -75,10 +76,20 @@ async function getPopularNews() {
       return resp.json();
     })
     .then(resp => {
-      //      console.log(resp.results);
       return resp.results;
     });
-  return news;
+  localStorage.setItem('openedNews', JSON.stringify(popularNews));
+  return popularNews;
 }
 
-export { getCategory, getNewsByCategory, getPopularNews, getNewsBySearch };
+function gerCurrentNews() {
+  return JSON.parse(localStorage.getItem('openedNews'));
+}
+
+export {
+  gerCurrentNews,
+  getCategory,
+  getNewsByCategory,
+  getPopularNews,
+  getNewsBySearch,
+};

@@ -1,4 +1,4 @@
-// import throttle from 'lodash';
+import throttle from 'lodash';
 
 const currentPageUrl = window.location.pathname;
 console.log(currentPageUrl);
