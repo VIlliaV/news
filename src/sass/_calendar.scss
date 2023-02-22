@@ -28,7 +28,6 @@
   border-radius: 20px;
 }
 
-
 .calendar__input {
   cursor: pointer;
   width: 168px;
@@ -58,7 +57,7 @@
 .calendar__down,
 .calendar__up {
   position: absolute;
- 
+
   left: 141px;
   top: 9px;
   width: 14px;
@@ -69,7 +68,7 @@
 
 .calendar__icon--start {
   position: absolute;
-   margin-right: 14px;
+  margin-right: 14px;
   left: 12px;
   top: 6px;
   width: 20px;
@@ -96,6 +95,7 @@
 
 .picker {
   position: absolute;
+  z-index: 1;
   top: 31px;
   right: 0;
   width: 250px;
