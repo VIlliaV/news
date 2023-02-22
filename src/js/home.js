@@ -121,6 +121,7 @@ function onLoadFavorits(item) {
     }
     return (result = 'Add to favorite');
   }
+  return (result = 'Add to favorite');
 }
 
 function isMedia(item) {
