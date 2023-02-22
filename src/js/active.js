@@ -6,6 +6,7 @@ logoActive.addEventListener('click', () => {
   localStorage.setItem('activeLink', '/index.html');
 });
 
+
 if (activeLink) {
   // add the active class to the saved link
   const link = document.querySelector(`.menu_link[href="${activeLink}"]`);
