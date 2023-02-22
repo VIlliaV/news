@@ -62,7 +62,7 @@ otherBtnWrapper.addEventListener('click', e => {
 });
 
 window.addEventListener('resize', function () {
-  if (window.innerWidth >= 480 && window.innerWidth < 768) {
+  if (window.innerWidth >= 320 && window.innerWidth < 768) {
     othersButtonSpan.innerText = 'Categories';
   } else othersButtonSpan.innerText = 'Others';
 });

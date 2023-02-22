@@ -7,7 +7,8 @@
 .categoryBtns-wrapper {
   position: relative;
   display: flex;
-  gap: 1em;
+  gap: 16px;
+  // padding-left: 8px;
 }
 
 .filter-elements {
@@ -15,23 +16,23 @@
   justify-content: flex-start;
   align-items: center;
 
-  padding-top: 24px;
-  padding-bottom: 40px;
+  margin-top: 28px;
+  margin-bottom: 60px;
 }
 
 .filter-category__item-bt,
 .filter-category__item-othersBtn {
   display: flex;
-  color: #4440f6;
-  background-color: #ffffff;
+  color: #4b48db;
+  background-color: #f4f4f4;
   cursor: pointer;
 
-  padding-top: 7.5px;
-  padding-right: 13px;
-  padding-bottom: 7.5px;
-  padding-left: 13px;
+  padding-top: 8px;
+  padding-right: 21px;
+  padding-bottom: 8px;
+  padding-left: 21px;
   border-radius: 20px;
-  border: 1px solid #4440f6;
+  border: 1px solid #4440f7;
 
   font-size: 12px;
   line-height: 16px;
@@ -45,11 +46,28 @@
   .categoryBtns-wrapper button:nth-child(n + 5) {
     display: none;
   }
+  .buttons-container,
+  .categoryBtns-wrapper {
+    gap: 14px;
+  }
+  .filter-elements {
+    margin-bottom: 48px;
+  }
 }
 
-@media screen and (min-width: 480px) and (max-width: 767.98px) {
+@media screen and (min-width: 320px) and (max-width: 767.98px) {
   .categoryBtns-wrapper button:nth-child(n + 1) {
     display: none;
+  }
+  .filter-category__item-othersBtn {
+    padding-top: 7.5px;
+    padding-right: 13px;
+    padding-bottom: 7.5px;
+    padding-left: 13px;
+  }
+
+  .calendar__input {
+    font-size: 12px;
   }
 }
 
@@ -93,25 +111,47 @@
   overflow: hidden;
   display: block;
   z-index: 10;
-  width: 100px;
-  padding: 14px;
+  width: 168px;
+  padding-top: 14px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 12px;
   border-radius: 20px;
   background-color: #f8f8f8;
+  filter: drop-shadow(0px 10px 60px rgba(0, 0, 0, 0.1));
+}
+
+@media screen and (min-width: 320px) and (max-width: 767.98px) {
+  #myDropdown:not(.hidden) {
+    width: 148px;
+    padding: 14px;
+  }
+  .buttons-container {
+    gap: 0;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 1279.98px) {
+  .calendar__title {
+    display: none;
+  }
 }
 
 .sections-list {
   list-style-type: none;
   padding: 0;
   font-size: 12px;
-  line-height: calc(16 / 12);
+  line-height: 1.33;
   letter-spacing: 0.01em;
 
   background-color: #f8f8f8;
   color: #4440f7;
-}
-
-.sections-listItem {
-  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100px;
 }
 
 .sections-list li:focus,
