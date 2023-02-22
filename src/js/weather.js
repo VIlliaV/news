@@ -52,7 +52,7 @@ async function getGeoposition() {
   //   return;
 }
 
-// fetchWeather();
+fetchWeather();
 
 getGeoposition();
 
