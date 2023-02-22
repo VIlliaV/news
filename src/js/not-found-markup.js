@@ -1,6 +1,8 @@
-import { favoriteGallerySection } from './favorite';
+const favoriteGallerySection = document.querySelector(
+  '#favorite-galery-section'
+);
 
-export function whenNotFoundMarkup() {
+function whenNotFoundMarkup() {
   const notFoundImage = `<img
     class="not-found__img"
     src="/image-not-found.584be82b.jpg"
@@ -8,3 +10,5 @@ export function whenNotFoundMarkup() {
   />`;
   favoriteGallerySection.innerHTML = notFoundImage;
 }
+
+export { whenNotFoundMarkup };

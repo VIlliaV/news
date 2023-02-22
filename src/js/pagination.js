@@ -108,7 +108,7 @@ const valuePage = {
   totalPages: 3,
 };
 
-pagination();
+// pagination();
 
 pg.addEventListener('click', e => {
   const ele = e.target;

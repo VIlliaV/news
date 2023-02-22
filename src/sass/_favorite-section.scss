@@ -88,6 +88,30 @@
     background-color: rgba(68, 64, 247, 0.7);
   }
 
+  &__add-btn {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 126px;
+    height: 28px;
+    background: var(--primary-background);
+    border-radius: 20px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    border: 0;
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    text-align: center;
+    // color: var(--primary);
+  }
+
   &__remove-btn {
     position: absolute;
     right: 12px;
@@ -112,15 +136,18 @@
     // color: var(--primary);
   }
 
+  &__heart-full-icon {
+    width: 16px;
+    height: 16px;
+    fill: rgb(255, 255, 255);
+  }
+
   &__heart-icon {
     width: 16px;
     height: 16px;
-    fill: aqua;
   }
 
   &__news-title {
-    // width: 288px;
-    // height: 99px;
     font-size: 24px;
     @media (max-width: 319px) {
       width: auto;

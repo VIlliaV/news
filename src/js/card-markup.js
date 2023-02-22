@@ -1,23 +1,31 @@
-import { markupList } from './favorite';
+import { removeFromFavoriteArticles } from './localStorage';
 
-export function createNewsMarkup(newsCard) {
+function getFavoriteArticles() {
+  return JSON.parse(localStorage.getItem('favoriteArticles'));
+}
+
+const markupList = document.querySelector('#favorite-list');
+createNewsMarkup(getFavoriteArticles());
+
+function createNewsMarkup(newsCard) {
   const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">
         <a class="favorite-cards__image-link" href="${item.url}">
           <img
-            class="favorite-cards__img"
-            src="${item.media.map(el => el['media-metadata'][2].url)}"
+            class="favorite-cards__img" width="440"
+            src="${getPhoto(item)}"
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
-          <button type="button" class="favorite-cards__remove-btn id="remove-btn">
-            Remove from favorite
-            <svg class="favorite-cards__heart-icon" width="32" height="32">
-              <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-            </svg>
+          <button type="button" class="favorite-cards__remove-btn
+          id="${item.uri.slice(38, item.uri.length)}">
+          Remove from favorite
+          <svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
+          </svg>
           </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
@@ -36,7 +44,10 @@ export function createNewsMarkup(newsCard) {
       </li>`
     )
     .join('');
-  markupList.innerHTML = newsItemsMarkup;
+  if (newsItemsMarkup !== '') {
+    markupList.innerHTML = newsItemsMarkup;
+    markupList.addEventListener('click', deleteCard);
+  }
 }
 
 function reformatDate(dateString) {
@@ -59,4 +70,22 @@ function limitText(text) {
   } else {
     return text;
   }
+}
+
+function getPhoto(item) {
+  const photoUrl = item.media.map(el => el['media-metadata'][2].url);
+  if (photoUrl.length === 0) {
+    return '/image-not-found.584be82b.jpg';
+  } else return photoUrl;
+}
+
+function deleteCard(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const uriId = event.target.attributes[2].nodeName;
+  const uriIdClean = uriId.slice(0, uriId.length - 1);
+  removeFromFavoriteArticles(uriIdClean);
+  createNewsMarkup(getFavoriteArticles());
 }
