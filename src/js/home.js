@@ -1,5 +1,10 @@
 import { getPopularNews } from './api';
-import { addToFavoriteArticles, getFavoriteArticles } from './localStorage';
+import {
+  addToFavoriteArticles,
+  getFavoriteArticles,
+  testFavorite,
+} from './localStorage';
+
 let idNews = [];
 let newsAll = [];
 const newsCards = document.querySelector('.favorite-cards');

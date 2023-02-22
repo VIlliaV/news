@@ -23,7 +23,7 @@ function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
 function checkLocalstorage() {
-  let LocalstorageObjects = getFavoriteArticles();
+  let LocalstorageObjects = getFavoriteArticles() || {};
   if (LocalstorageObjects.length === 0) {
     whenNotFoundMarkup();
   }
@@ -60,6 +60,7 @@ function testFavorite() {
   });
 }
 testFavorite();
+console.log('start test');
 
 function addToReadingNews(item) {
   let readingNews = getReadingNews();
