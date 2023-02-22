@@ -32,9 +32,11 @@ async function getNewsBySearch(word, page = 1, date = 20100101) {
     const err = new Error('Something went wrong 404');
     return err;
   }
+
   const news = await newsJson.json().response.docs;
   localStorage.setItem('openedNews', JSON.stringify(news));
   return news;
+
 }
 
 async function getCategory() {

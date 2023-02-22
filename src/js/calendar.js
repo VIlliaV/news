@@ -115,6 +115,7 @@ daysTag.addEventListener('click', e => {
   return getDate(currYear, currMonth, currDay);
 });
 
+
 function getDate(currYear, currMonth, currDay) {
   dataEl.textContent = `${currDay.toString().padStart(2, '0')}/${(currMonth + 1)
     .toString()
@@ -123,13 +124,16 @@ function getDate(currYear, currMonth, currDay) {
   pickerEl.classList.add('hidden');
   iconDownEl.classList.remove('hidden');
   iconUpEl.classList.add('hidden');
+
   // inputEl.style.backgroundColor = '#ffffff';
   // iconStartEl.style.fill = '#4440f6';
   // iconDownEl.style.fill = '#a2a2a2';
     inputEl.classList.remove('calendar__open');
     iconUpEl.classList.remove('calendar__open');
     iconStartEl.classList.remove('calendar__open');
+      localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
      return selectData;
+
 }
 
 export { selectData };
