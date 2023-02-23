@@ -1,8 +1,6 @@
 import { getPopularNews } from './api';
 import { whenNotFoundMarkup } from './not-found-markup';
 
-const storage = { read: 'readingNews', favor: 'favoriteArticles' };
-
 function checkDarkTheme() {
   const theme = localStorage.getItem('ui-theme');
   if (theme !== null) {
@@ -33,9 +31,7 @@ function checkLocalstorage() {
 
 function addToFavoriteArticles(item) {
   let favorite = getFavoriteArticles();
-  if (checkIfIncludedNews(item, storage.favor)) {
-    return;
-  } else if (favorite === null) {
+  if (favorite === null) {
     favorite = [item];
   } else {
     favorite.push(item);
@@ -63,24 +59,6 @@ function testFavorite() {
   });
 }
 
-
-function getUniqueId(storage) {
-  const arr = JSON.parse(localStorage.getItem(`${storage}`));
-  return arr.reduce((acc, item) => {
-    acc.push(item.id);
-    return acc;
-  }, []);
-}
-
-function checkIfIncludedNews(item, storage) {
-  let listID = getUniqueId(storage);
-  if (listID.includes(item.Id)) {
-    return true;
-  }
-  return false;
-}
-
-
 async function testReding() {
   const news = await getPopularNews();
   for (elNews of news) {
@@ -98,17 +76,14 @@ function addToReadingNews(item) {
   addNews.date = new Date().toLocaleDateString();
   let readingNews = getReadingNews();
 
-  if (checkIfIncludedNews(item, storage.read)) {
-    return;
-  } else if (readingNews === null) {
-    readingNews = addNews;
-
+  if (readingNews === null) {
+    readingNews = [addNews];
   } else {
     readingNews.push(addNews);
   }
   localStorage.setItem('readingNews', JSON.stringify(readingNews));
 }
-// testFavorite();
+
 function getDatesReadingNews() {
   let readingNews = getReadingNews();
   let arrDate = [];
