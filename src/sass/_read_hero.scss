@@ -1,53 +1,45 @@
 @import './common';
 @import './color';
 
-.disappearing {
-  text-align: center;
-  align-content: center;
-  justify-content: center;
-  margin-bottom: 59px;
-
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
-    margin-top: 48px;
-    margin-bottom: 101px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    margin-top: 15px;
-    margin-bottom: 60px;
-  }
+.date-list {
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
-
-.disappearing___title {
-  font-family: Manrope;
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 20px;
-  line-height: 27px;
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
-    font-size: 40px;
-    line-height: 55px;
-  }
-  @media screen and (min-width: 1280px) {
-    font-size: 40px;
-    line-height: 55px;
-  }
-}
-
-.disappearing___picture {
-  margin-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
+.date-list-search {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 248px;
-  height: auto;
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
-    width: 270px;
-  }
+  gap: 30px;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.date-list__btn {
+  display: flex;
+  align-items: start;
+  width: 100%;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #929292;
+  margin-top: 30px;
+  margin-bottom: 20px;
 
-  @media screen and (min-width: 1280px) {
-    width: 350px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(24 / 14);
+
+  letter-spacing: 0.02em;
+
+  color: var(--primary);
+}
+.date-list__btn-block {
+  display: flex;
+  padding-top: 8px;
+}
+.date-list__btn-text {
+  margin-right: 8px;
+}
+.date-list__btn-icon {
+  &.turn {
+    transform: rotate(180deg);
   }
 }

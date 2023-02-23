@@ -63,6 +63,7 @@ function testFavorite() {
   });
 }
 
+
 function getUniqueId(storage) {
   const arr = JSON.parse(localStorage.getItem(`${storage}`));
   return arr.reduce((acc, item) => {
@@ -78,6 +79,7 @@ function checkIfIncludedNews(item, storage) {
   }
   return false;
 }
+
 
 async function testReding() {
   const news = await getPopularNews();
@@ -95,16 +97,18 @@ function addToReadingNews(item) {
   const addNews = item;
   addNews.date = new Date().toLocaleDateString();
   let readingNews = getReadingNews();
+
   if (checkIfIncludedNews(item, storage.read)) {
     return;
   } else if (readingNews === null) {
     readingNews = addNews;
+
   } else {
     readingNews.push(addNews);
   }
   localStorage.setItem('readingNews', JSON.stringify(readingNews));
 }
-
+// testFavorite();
 function getDatesReadingNews() {
   let readingNews = getReadingNews();
   let arrDate = [];

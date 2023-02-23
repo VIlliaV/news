@@ -11,12 +11,9 @@
 .calendar__title {
   margin-right: 37px;
 
-  font-family: 'Manrope';
   font-weight: 700;
   font-size: 18px;
   line-height: 1.39;
-
-  // color: #111321;
 }
 
 .calendar__container {
@@ -34,13 +31,12 @@
   height: 31px;
   padding: 5px 44px;
 
-  font-family: 'Manrope';
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: 0.02em;
 
   color: #111321;
+  background-color: #ffffff;
 
   border: 1px solid #111321;
   border-radius: 20px;
@@ -76,7 +72,6 @@
   fill: #4440f6;
 }
 
-
 .calendar__input:hover > .calendar__icon--start {
   fill: #ffffff;
 }
@@ -89,9 +84,9 @@
   fill: #ffffff;
 }
 .calendar__open {
-   color: #ffffff;
-    fill: #ffffff;
-    background-color: #4440f6;
+  color: #ffffff;
+  fill: #ffffff;
+  background-color: #4440f6;
 }
 
 .picker {
@@ -120,7 +115,6 @@
 
 .month__data {
   margin-right: 8px;
-  font-family: 'Manrope';
   font-weight: 500;
   font-size: 16px;
   line-height: 1.37;
@@ -153,8 +147,6 @@
 }
 
 .week__day {
-  font-family: 'Manrope';
-  font-weight: 400;
   font-size: 12px;
   line-height: 1.5;
   letter-spacing: -0.078px;
@@ -173,7 +165,6 @@
   justify-content: center;
   cursor: pointer;
 
-  font-family: 'Manrope';
   font-weight: 500;
   font-size: 14px;
   line-height: 1.78;
@@ -198,8 +189,6 @@
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-//
 
 .day__item.inactive--prev:hover {
   color: #ffffff;

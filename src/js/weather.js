@@ -57,6 +57,7 @@ fetchWeather();
 getGeoposition();
 
 const weatherCard = document.querySelector('.weather');
+const newsCards = document.querySelector('.favorite-cards');
 
 function createWeatherCard(data) {
   //   console.log(data);
@@ -74,7 +75,7 @@ function createWeatherCard(data) {
   const weatherStatus = data.weather[0].main;
   const weatherIcon = data.weather[0].icon;
 
-  const card = `<div class="weather__info">
+  const card = `<li class="favorite-cards__item weather" id=""><div class="weather__info">
     <span class="weather__deg">${temp}&deg;</span>
     <div class="weather__geo">
       <span class="weather__value">${weatherStatus}</span>
@@ -100,9 +101,9 @@ function createWeatherCard(data) {
     target="_blank"
     rel="noreferrer noopener"
     >weather for week</a
-  >`;
+  ></li>`;
 
-  weatherCard.innerHTML = card;
+  newsCards.insertAdjacentHTML('beforeend', card);
 }
 // console.log('hi');
 

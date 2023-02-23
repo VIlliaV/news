@@ -15,7 +15,6 @@ let currMonth = date.getMonth();
 let currDay = date.getDate();
 let selectData = '';
 
-
 const months = [
   'January',
   'February',
@@ -31,7 +30,6 @@ const months = [
   'December',
 ];
 
-
 inputEl.addEventListener('click', () => {
   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
@@ -39,11 +37,7 @@ inputEl.addEventListener('click', () => {
   if (!pickerEl.classList.contains('hidden')) {
     inputEl.classList.add('calendar__open');
     iconUpEl.classList.add('calendar__open');
-     iconStartEl.classList.add('calendar__open');
-    // inputEl.style.backgroundColor = '#4440f6';
-    // dataEl.style.color = '#ffffff';
-    // iconUpEl.style.fill = '#ffffff';
-    // iconStartEl.style.fill = '#ffffff';
+    iconStartEl.classList.add('calendar__open');
   }
 });
 
@@ -100,12 +94,15 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
-  
+  //  e.target.style.backgroundColor = '#4440f6';
+  //  e.target.style.borderRadius = '50%';
+  //  e.target.style.color = '#ffffff';
   if (e.target.nodeName !== 'LI') {
     return;
   }
   if (e.target.classList.contains('inactive--prev')) {
     currDay = +e.target.textContent;
+    console.log(currYear, currMonth, currDay);
     return getDate(currYear, currMonth - 1, currDay);
   }
   if (e.target.classList.contains('inactive--next')) {
@@ -115,21 +112,37 @@ daysTag.addEventListener('click', e => {
   return getDate(currYear, currMonth, currDay);
 });
 
+
 function getDate(currYear, currMonth, currDay) {
+  if (currMonth === -1) {
+    currMonth = 11;
+    currYear = currYear - 1;
+  }
+
+  if (currMonth === 12) {
+    currMonth = 0;
+    currYear = currYear + 1;
+  }
   dataEl.textContent = `${currDay.toString().padStart(2, '0')}/${(currMonth + 1)
     .toString()
     .padStart(2, '0')}/${currYear}`;
+
   selectData = dataEl.textContent;
   pickerEl.classList.add('hidden');
   iconDownEl.classList.remove('hidden');
   iconUpEl.classList.add('hidden');
+
+
   // inputEl.style.backgroundColor = '#ffffff';
   // iconStartEl.style.fill = '#4440f6';
   // iconDownEl.style.fill = '#a2a2a2';
     inputEl.classList.remove('calendar__open');
     iconUpEl.classList.remove('calendar__open');
-    iconStartEl.classList.remove('calendar__open');
+  iconStartEl.classList.remove('calendar__open');
+      localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
      return selectData;
+
+
 }
 
 export { selectData };

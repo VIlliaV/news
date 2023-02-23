@@ -27,4 +27,4 @@ function addReadMore(event) {
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
 }
 
-newsList.addEventListener('click', addReadMore);
+// newsList.addEventListener('click', addReadMore);
