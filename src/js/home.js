@@ -29,6 +29,8 @@ function findIdNews() {
   addToFavoriteArticles(finded);
 }
 
+// fill = '#4b48da';style="fill: var(--color4, #4b48da)"
+
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
@@ -50,9 +52,7 @@ function generateCardsMurkup(cardsArray) {
                item.uri.length
              )}">
              ${onLoadFavorits(item.uri)}
-             <svg class="favorite-cards__heart-icon" width="32" height="32">
-            <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-          </svg>
+             
           </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
@@ -100,21 +100,18 @@ function reformatDate(dateString) {
 newsCards.addEventListener('click', onAddNews);
 
 function onAddNews(e) {
-  let resultMarkup = [];
-  const svgUrl = document.querySelector('.favorite-cards__heart-icon');
   if (e.target.nodeName === 'BUTTON') {
     e.preventDefault();
-    // console.dir(e.target.lastElementChild);
-    console.dir(svgUrl.firstElementChild);
     idNews = e.target.parentElement.parentElement.id;
     if (e.target.firstChild.data.trim() === 'Add to favorite') {
       e.target.firstChild.data = `Remove from favorite`;
-      svgUrl.firstElementChild.href.baseVal =
-        '/sprite-full.e7f74a66.svg#heart-full';
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        '#4b48db';
       findIdNews();
     } else {
       e.target.firstChild.data = `Add to favorite`;
-      svgUrl.firstElementChild.href.baseVal = '/sprite-full.e7f74a66.svg#heart';
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        'transparent';
       deleteCard(event);
     }
   }
@@ -131,12 +128,18 @@ function onLoadFavorits(item) {
   if (localRead) {
     for (let i = 0; i < localRead.length; i += 1) {
       if (localRead[i].uri === item) {
-        return (result = `Remove from favorite`);
+        return (result = `Remove from favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="var(--few)" style="stroke: var(--few)" ></use>
+          </svg>`);
       }
     }
-    return (result = `Add to favorite`);
+    return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="transparent" style="stroke: var(--few)" ></use>
+          </svg>`);
   }
-  return (result = `Add to favorite`);
+  return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="transparent" style="stroke: var(--few)" ></use>
+          </svg>`);
 }
 
 function isMedia(item) {
@@ -161,6 +164,10 @@ function onSearch(e) {
   }
 
   const currentDate = localStorage.getItem('CURRENT_DATA') || `"01/01/1997"`;
+
+  function changeDate(date) {
+    const dateParts = date.split('/');
+
 
   function changeDate(date) {
     const dateParts = date.split('/');
