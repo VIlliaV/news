@@ -1,4 +1,5 @@
 import { removeFromFavoriteArticles, addToReadingNews } from './localStorage';
+import { whenNotFoundMarkup } from './not-found-markup';
 import { gerCurrentNews } from './api';
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
@@ -13,6 +14,10 @@ createNewsMarkup(getFavoriteArticles());
 function createNewsMarkup(newsCard) {
   newsAll = newsCard;
 
+  if (newsCard === null || newsCard.length === 0) {
+    return whenNotFoundMarkup();
+  }
+  // console.log(newsCard);
   const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">
@@ -50,10 +55,10 @@ function createNewsMarkup(newsCard) {
       </li>`
     )
     .join('');
-  if (newsItemsMarkup !== '') {
-    markupList.innerHTML = newsItemsMarkup;
-    markupList.addEventListener('click', deleteCard);
-  }
+  // if (newsItemsMarkup !== '') {
+  markupList.innerHTML = newsItemsMarkup;
+  markupList.addEventListener('click', deleteCard);
+  // }
 }
 
 function reformatDate(dateString) {
