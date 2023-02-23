@@ -60,7 +60,7 @@ const weatherCard = document.querySelector('.weather');
 const newsCards = document.querySelector('.favorite-cards');
 
 function createWeatherCard(data) {
-  //   console.log(data);
+  // console.log(data.dt);
   //   const timestamp = 1645398199; // приклад Unix Timestamp
   //   const date = new Date(timestamp * 1000); // перетворюємо Unix Timestamp в мілісекунди
   //   const formattedDate = format(date, 'dd/MM/yyyy'); // форматуємо дату у потрібний формат за допомогою date-fns
@@ -107,7 +107,7 @@ function createWeatherCard(data) {
 }
 // console.log('hi');
 
-export { createWeatherCard };
+export { createWeatherCard, fetchWeatherByGeo };
 
 // <svg>
 //   <use href="./src/images/location.svg"></use>
