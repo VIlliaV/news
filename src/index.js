@@ -1,6 +1,6 @@
 import './js/active-tel';
 import './js/add-li-style';
-import './js/active-input-open';
+
 import './js/search-open-input';
 import './js/home';
 import './js/active';

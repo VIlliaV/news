@@ -1,4 +1,5 @@
 import { getPopularNews, getNewsBySearch } from './api';
+import { createWeatherCard, fetchWeatherByGeo } from './weather';
 import {
   addToFavoriteArticles,
   getFavoriteArticles,
@@ -34,8 +35,10 @@ function findIdNews() {
 
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
-    .map(
-      item => `<li class="favorite-cards__item" id="${item.uri}">
+    .map((item, i) => {
+      console.log(i);
+      if (i !== 2) {
+        return `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
         }">
@@ -64,13 +67,16 @@ function generateCardsMurkup(cardsArray) {
           <p class="favorite-cards__date">${reformatDate(
             item.published_date
           )}</p><a class="favorite-cards__link" href="${
-        item.url
-      }" target="_blank">
+          item.url
+        }" target="_blank">
             Read more
           </a>
         </div>
-      </li>`
-    )
+      </li>`;
+      } else {
+        createWeatherCard();
+      }
+    })
     .join('');
   // newsCards.insertAdjacentHTML('beforeend', markup);
   newsCards.innerHTML = markup;
@@ -215,7 +221,8 @@ function newDate(date) {
 function generateCardsMurkupForInput(cardsArray) {
   const markup = cardsArray
     .map(
-      item => `<li class="favorite-cards__item" id="${item.uri}">
+      item =>
+        `<li class="favorite-cards__item" id="${item.uri}">
       <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
         <a class="favorite-cards__image-link" >
           <img
