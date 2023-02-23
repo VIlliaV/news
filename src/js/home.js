@@ -146,7 +146,9 @@ function onLoadFavorits(item) {
 function isMedia(item) {
   if (item.media) {
     return item.media.map(el => el['media-metadata'][2].url);
-  } else if (item.multimedia.length) {
+  }
+  // console.log(item.multimedia.length);
+  else if (!item.multimedia == '') {
     if (item.multimedia[2].crop_name == 'blog480')
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
