@@ -29,6 +29,8 @@ function findIdNews() {
   addToFavoriteArticles(finded);
 }
 
+// fill = '#4b48da';style="fill: var(--color4, #4b48da)"
+
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
@@ -50,9 +52,7 @@ function generateCardsMurkup(cardsArray) {
                item.uri.length
              )}">
              ${onLoadFavorits(item.uri)}
-             <svg class="favorite-cards__heart-icon" width="32" height="32">
-            <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-          </svg>
+             
           </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
@@ -61,7 +61,11 @@ function generateCardsMurkup(cardsArray) {
         ${limitText(item.abstract)}
         </p>
         <div class="favorite-cards__bottom">
-          <p class="favorite-cards__date">${reformatDate(item.published_date)}</p><a class="favorite-cards__link" href="${item.url}" target="_blank">
+          <p class="favorite-cards__date">${reformatDate(
+            item.published_date
+          )}</p><a class="favorite-cards__link" href="${
+        item.url
+      }" target="_blank">
             Read more
           </a>
         </div>
@@ -96,21 +100,18 @@ function reformatDate(dateString) {
 newsCards.addEventListener('click', onAddNews);
 
 function onAddNews(e) {
-  let resultMarkup = [];
-  const svgUrl = document.querySelector('.favorite-cards__heart-icon');
   if (e.target.nodeName === 'BUTTON') {
     e.preventDefault();
-    // console.dir(e.target.lastElementChild);
-    console.dir(svgUrl.firstElementChild);
     idNews = e.target.parentElement.parentElement.id;
     if (e.target.firstChild.data.trim() === 'Add to favorite') {
       e.target.firstChild.data = `Remove from favorite`;
-      svgUrl.firstElementChild.href.baseVal =
-        '/sprite-full.e7f74a66.svg#heart-full';
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        '#4b48db';
       findIdNews();
     } else {
       e.target.firstChild.data = `Add to favorite`;
-      svgUrl.firstElementChild.href.baseVal = '/sprite-full.e7f74a66.svg#heart';
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        'transparent';
       deleteCard(event);
     }
   }
@@ -127,12 +128,18 @@ function onLoadFavorits(item) {
   if (localRead) {
     for (let i = 0; i < localRead.length; i += 1) {
       if (localRead[i].uri === item) {
-        return (result = `Remove from favorite`);
+        return (result = `Remove from favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="var(--few)" style="stroke: var(--few)" ></use>
+          </svg>`);
       }
     }
-    return (result = `Add to favorite`);
+    return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="transparent" style="stroke: var(--few)" ></use>
+          </svg>`);
   }
-  return (result = `Add to favorite`);
+  return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="transparent" style="stroke: var(--few)" ></use>
+          </svg>`);
 }
 
 function isMedia(item) {
@@ -157,14 +164,13 @@ function onSearch(e) {
 
   const currentDate = localStorage.getItem('CURRENT_DATA');
 
-function changeDate(date) {
-    const dateParts = date.split("/");
+  function changeDate(date) {
+    const dateParts = date.split('/');
     const year = dateParts[2].split('"');
     const month = dateParts[1];
     const day = dateParts[0].split('"');
     const fullData = [year[0], month, day[1]].join('');
     return fullData;
-
   }
   const clickCurrentDay = changeDate(currentDate);
   console.log(clickCurrentDay);
@@ -172,7 +178,7 @@ function changeDate(date) {
   const apiKey = 'ItcTRzMEchmrtb2N2HI5uMgEjAjMlgCo';
   const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&begin_date=${clickCurrentDay}&end_date=${clickCurrentDay}&api-key=${apiKey}`;
 
-function searchNews() {
+  function searchNews() {
     return fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -205,7 +211,7 @@ function newDate(date) {
 function generateCardsMurkupForInput(cardsArray) {
   const markup = cardsArray
     .map(
-      item =>  `<li class="favorite-cards__item" id="${item.uri}">
+      item => `<li class="favorite-cards__item" id="${item.uri}">
       <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
         <a class="favorite-cards__image-link" >
           <img
@@ -214,8 +220,8 @@ function generateCardsMurkupForInput(cardsArray) {
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
-          item.subsection_name
-        )}</p>
+            item.subsection_name
+          )}</p>
         </a>
         <h2 class="favorite-cards__news-title">${item.headline.main}
         </h2>
