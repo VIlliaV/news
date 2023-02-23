@@ -36,7 +36,6 @@ async function getNewsBySearch(word, page = 1, date = 20100101) {
   const news = await newsJson.json().response.docs;
   localStorage.setItem('openedNews', JSON.stringify(news));
   return news;
-
 }
 
 async function getCategory() {
@@ -53,13 +52,31 @@ async function getCategory() {
   return categories;
 }
 
+// async function getNewsByCategory(category) {
+//   const resp = await fetch(`${SEARCH_BY_CAREGORY_URL}${category}.json?${KEY}`);
+//   if (!resp.ok) {
+//     const err = new Error('Something went wrong 404');
+//     return err;
+//   }
+
+//   const newsByCategory = await resp.json().results;
+//   localStorage.setItem('openedNews', JSON.stringify(newsByCategory));
+//   return newsByCategory;
+// }
+
 async function getNewsByCategory(category) {
-  const resp = await fetch(`${SEARCH_BY_CAREGORY_URL}${category}.json?${KEY}`);
-  if (!resp.ok) {
-    const err = new Error('Something went wrong 404');
-    return err;
-  }
-  const newsByCategory = await resp.json().results;
+  const newsByCategory = await fetch(
+    `${SEARCH_BY_CAREGORY_URL}${category}.json?${KEY}`
+  )
+    .then(resp => {
+      if (!resp.ok) {
+        throw new Error('Something went wrong 404');
+      }
+      return resp.json();
+    })
+    .then(newsByCategory => {
+      return newsByCategory.results;
+    });
   localStorage.setItem('openedNews', JSON.stringify(newsByCategory));
   return newsByCategory;
 }
