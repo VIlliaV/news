@@ -59,42 +59,45 @@ function testFavorite() {
   });
 }
 
+async function testReding() {
+  const news = await getPopularNews();
+  for (elNews of news) {
+    elNews.date = elNews.published_date;
+  }
+  localStorage.setItem('readingNews', JSON.stringify(news));
+}
+
 function getReadingNews() {
-  return JSON.parse(localStorage.getItem('ReadingNews'));
+  return JSON.parse(localStorage.getItem('readingNews'));
 }
 
 function addToReadingNews(item) {
+  const addNews = item;
+  addNews.date = new Date().toLocaleDateString();
   let readingNews = getReadingNews();
   if (readingNews === null) {
-    readingNews = [{ readingNews, date: new Date().toLocaleDateString() }];
+    readingNews = [addNews];
   } else {
-    readingNews.push({ readingNews, date: new Date().toLocaleDateString() });
-    localStorage.setItem('readingNews', JSON.stringify(favorite));
+    readingNews.push(addNews);
   }
+  localStorage.setItem('readingNews', JSON.stringify(readingNews));
 }
-
+// testFavorite();
 function getDatesReadingNews() {
   let readingNews = getReadingNews();
-  let data = readingNews.then(resp => {
-    resp.reduse(
-      acc,
-      el => {
-        if (acc.include(el.date)) {
-          return;
-        } else acc.push(el);
-        return acc;
-      },
-      []
-    );
-  });
-  return data;
+  let arrDate = [];
+
+  for (elNews of readingNews) {
+    if (!arrDate.includes(elNews.date)) {
+      arrDate.push(elNews.date);
+    }
+  }
+  return arrDate;
 }
 
 function getReadingNewsByDate(date) {
-  let readingNews = getReadingNews().then(resp => {
-    resp.filter(news => news.date === date);
-  });
-  return readingNews;
+  let readingNews = getReadingNews();
+  return readingNews.filter(news => news.date === date);
 }
 
 export {
@@ -107,4 +110,5 @@ export {
   addToReadingNews,
   getDatesReadingNews,
   getReadingNewsByDate,
+  testReding,
 };

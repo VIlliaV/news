@@ -112,6 +112,7 @@ daysTag.addEventListener('click', e => {
   return getDate(currYear, currMonth, currDay);
 });
 
+
 function getDate(currYear, currMonth, currDay) {
   if (currMonth === -1) {
     currMonth = 11;
@@ -130,10 +131,18 @@ function getDate(currYear, currMonth, currDay) {
   pickerEl.classList.add('hidden');
   iconDownEl.classList.remove('hidden');
   iconUpEl.classList.add('hidden');
-  inputEl.classList.remove('calendar__open');
-  iconUpEl.classList.remove('calendar__open');
+
+
+  // inputEl.style.backgroundColor = '#ffffff';
+  // iconStartEl.style.fill = '#4440f6';
+  // iconDownEl.style.fill = '#a2a2a2';
+    inputEl.classList.remove('calendar__open');
+    iconUpEl.classList.remove('calendar__open');
   iconStartEl.classList.remove('calendar__open');
-  return selectData;
+      localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
+     return selectData;
+
+
 }
 
 export { selectData };
