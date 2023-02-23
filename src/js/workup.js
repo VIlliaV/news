@@ -1,19 +1,12 @@
 function generateCardsMurkup(cardsArray) {
   return cardsArray
-    .map(
-      ({
-        imgUrl,
-  title,
-  text,
-  date,
-  url,
-      }) => {
-        return `<li class="favorite-cards__item">
+    .map(({ imgUrl, title, text, date, url }) => {
+      return `<li class="favorite-cards__item">
           <div class="favorite-cards__image-cont" href="">
             <img
               class="favorite-cards__img"
               src="${imgUrl}"
-              alt="asia-businesswoman"
+              alt="asiabusinesswoman"
             />
             <p class="favorite-cards__job-src">Job searching</p>
             <button class="favorite-cards__remove-btn">
@@ -34,14 +27,10 @@ function generateCardsMurkup(cardsArray) {
             <a class="favorite-cards__link" href="${url}">Read more</a>
           </div>
         </li>`;
-      }
-    )
+    })
     .join('');
 }
 
 export function appendCardsMurkup(cards) {
   newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
 }
-
-
-
