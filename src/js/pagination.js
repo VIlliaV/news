@@ -1,7 +1,7 @@
 import { gerCurrentNews } from './api.js';
 import { generateCardsMurkup } from './home.js';
 
-const newsCards = document.querySelector('.favorite-cards__list');
+const newsCards = document.querySelector('.favorite-cards');
 const pagination = document.querySelector('.pagination');
 const prevBtn = document.querySelector('.pagination__prev-btn');
 const nextBtn = document.querySelector('.pagination__next-btn');
@@ -67,7 +67,7 @@ nextBtn.addEventListener('click', () => {
 // инициализация пагинации. создает разметку пагинации, включая кнопки "назад" и "вперед", список номеров страниц и активную страницу (первую страницу).//
 //Затем она настраивает обработчики событий для каждой страницы и кнопок "назад" и "вперед".В обработчиках событий//
 function initPagination() {
-  const newsArray = getCurrentNews();
+  const newsArray = gerCurrentNews();
   const cardsPerPage = getCardsPerPage();
   const totalPages = Math.ceil(newsArray.length / cardsPerPage);
   const paginationContainer = document.querySelector('.pagination');
@@ -104,7 +104,7 @@ function initPagination() {
     const startIndex = (pageNum - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
     const pageArray = newsArray.slice(startIndex, endIndex);
-    generateCardsMarkup(pageArray);
+    generateCardsMurkup(pageArray);
   }
 
   paginationContainer.addEventListener('click', event => {
@@ -153,4 +153,4 @@ function initPagination() {
   nextBtn.disabled = totalPages === 1;
 }
 
-// initPagination();
+initPagination();
