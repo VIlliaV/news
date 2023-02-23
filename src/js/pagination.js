@@ -152,3 +152,5 @@ function initPagination() {
   prevBtn.disabled = true;
   nextBtn.disabled = totalPages === 1;
 }
+
+// initPagination();

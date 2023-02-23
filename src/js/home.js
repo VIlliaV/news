@@ -144,16 +144,16 @@ function onLoadFavorits(item) {
 }
 
 function isMedia(item) {
-  if (item.media) {
+  if (item.media && item.media.length !== 0) {
     return item.media.map(el => el['media-metadata'][2].url);
-  }
-  // console.log(item.multimedia.length);
-  else if (!item.multimedia == '') {
+  } else if (!item.multimedia == '') {
+    console.log(item.multimedia);
     if (item.multimedia[2].crop_name == 'blog480')
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  return './image-not-found.584be82b.jpg';
+
+  return './images/image-not-found.jpg';
 }
 
 function onSearch(e) {
