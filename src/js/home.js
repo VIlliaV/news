@@ -162,7 +162,7 @@ function onSearch(e) {
     resetMarkup();
     return;
   }
-
+}
   const currentDate = localStorage.getItem('CURRENT_DATA') || `"01/01/1997"`;
 
   function changeDate(date) {
