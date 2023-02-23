@@ -1,3 +1,4 @@
+// import { onAddNews } from './home';
 import { removeFromFavoriteArticles, addToReadingNews } from './localStorage';
 import { whenNotFoundMarkup } from './not-found-markup';
 import { gerCurrentNews } from './api';
@@ -33,10 +34,7 @@ function createNewsMarkup(newsCard) {
           )}</p>
           <button type="button" class="favorite-cards__remove-btn
           id="${item.uri.slice(38, item.uri.length)}">
-          Remove from favorite
-          <svg class="favorite-cards__heart-icon" width="32" height="32">
-            <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
-          </svg>
+          ${onLoadFavorits(item.uri)}
           </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
@@ -57,8 +55,46 @@ function createNewsMarkup(newsCard) {
     .join('');
   // if (newsItemsMarkup !== '') {
   markupList.innerHTML = newsItemsMarkup;
-  markupList.addEventListener('click', deleteCard);
+  markupList.addEventListener('click', onAddNews);
   // }
+}
+
+function onLoadFavorits(item) {
+  const localRead = getFavoriteArticles();
+  let result = [];
+  if (localRead) {
+    for (let i = 0; i < localRead.length; i += 1) {
+      if (localRead[i].uri === item) {
+        return (result = `Remove from favorite<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="var(--few)" style="stroke: var(--few)" d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
+          </svg>`);
+      }
+    }
+    return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="transparent" style="stroke: var(--few)"  d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
+          </svg>`);
+  }
+  return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="transparent" style="stroke: var(--few)" d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
+          </svg>`);
+}
+
+function onAddNews(e) {
+  if (e.target.nodeName === 'BUTTON') {
+    e.preventDefault();
+    idNews = e.target.parentElement.parentElement.id;
+    if (e.target.firstChild.data.trim() === 'Add to favorite') {
+      e.target.firstChild.data = `Remove from favorite`;
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        '#4b48db';
+      findIdNews();
+    } else {
+      e.target.firstChild.data = `Add to favorite`;
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        'transparent';
+      deleteCard(event);
+    }
+  }
 }
 
 function reformatDate(dateString) {
@@ -99,7 +135,6 @@ function deleteCard(event) {
   const uriId = event.target.attributes[2].nodeName;
   const uriIdClean = uriId.slice(0, uriId.length - 1);
   removeFromFavoriteArticles(uriIdClean);
-  createNewsMarkup(getFavoriteArticles());
 }
 
 markupList.addEventListener('click', goToRead);

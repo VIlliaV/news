@@ -245,4 +245,4 @@ function generateCardsMurkupForInput(cardsArray) {
   newsCards.innerHTML = markup;
 }
 
-export { generateCardsMurkup };
+export { generateCardsMurkup, onLoadFavorits, onAddNews };
