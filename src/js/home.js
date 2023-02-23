@@ -61,7 +61,11 @@ function generateCardsMurkup(cardsArray) {
         ${limitText(item.abstract)}
         </p>
         <div class="favorite-cards__bottom">
-          <p class="favorite-cards__date">${reformatDate(item.published_date)}</p><a class="favorite-cards__link" href="${item.url}" target="_blank">
+          <p class="favorite-cards__date">${reformatDate(
+            item.published_date
+          )}</p><a class="favorite-cards__link" href="${
+        item.url
+      }" target="_blank">
             Read more
           </a>
         </div>
@@ -138,11 +142,12 @@ function onLoadFavorits(item) {
 function isMedia(item) {
   if (item.media) {
     return item.media.map(el => el['media-metadata'][2].url);
-  } else if (item.multimedia) {
-    return item.multimedia[2].url;
+  } else if (item.multimedia.length) {
+    if (item.multimedia[2].crop_name == 'blog480')
+      return `https://www.nytimes.com/${item.multimedia[2].url}`;
+    else return item.multimedia[2].url;
   }
-
-  return '/image-not-found.584be82b.jpg';
+  return './image-not-found.584be82b.jpg';
 }
 
 function onSearch(e) {
@@ -155,24 +160,25 @@ function onSearch(e) {
     return;
   }
 
-  const currentDate = localStorage.getItem('CURRENT_DATA');
+  const currentDate = localStorage.getItem('CURRENT_DATA') || `"01/01/1997"`;
 
-function changeDate(date) {
-    const dateParts = date.split("/");
+  function changeDate(date) {
+    const dateParts = date.split('/');
+
     const year = dateParts[2].split('"');
     const month = dateParts[1];
     const day = dateParts[0].split('"');
     const fullData = [year[0], month, day[1]].join('');
     return fullData;
-
   }
+
   const clickCurrentDay = changeDate(currentDate);
   console.log(clickCurrentDay);
 
   const apiKey = 'ItcTRzMEchmrtb2N2HI5uMgEjAjMlgCo';
   const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&begin_date=${clickCurrentDay}&end_date=${clickCurrentDay}&api-key=${apiKey}`;
 
-function searchNews() {
+  function searchNews() {
     return fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -205,17 +211,17 @@ function newDate(date) {
 function generateCardsMurkupForInput(cardsArray) {
   const markup = cardsArray
     .map(
-      item =>  `<li class="favorite-cards__item" id="${item.uri}">
+      item => `<li class="favorite-cards__item" id="${item.uri}">
       <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
         <a class="favorite-cards__image-link" >
           <img
             class="favorite-cards__img"
-            src="https://www.nytimes.com/${isMedia(item)}"
+            src="${isMedia(item)}"
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
-          item.subsection_name
-        )}</p>
+            item.subsection_name
+          )}</p>
         </a>
         <h2 class="favorite-cards__news-title">${item.headline.main}
         </h2>
