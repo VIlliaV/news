@@ -17,6 +17,7 @@ const mobMenu = document.querySelector('.mob-menu');
 const mobLinkText = document.querySelectorAll('.mob-link-text');
 const mobLogo = document.querySelector('.mob-logo');
 const xBtn = document.querySelector('.mob-menu__x');
+const burgerBtn = document.querySelector('.burger-icon');
 
 function toggleColor() {
   if (toggleSwitch.checked) {
@@ -25,7 +26,7 @@ function toggleColor() {
       text.style.color = '#f4f4f4';
     });
     mobLogo.style.color = '#f4f4f4';
-
+    burgerBtn.style.fill = '#fff';
     xBtn.style.fill = '#fff';
     body.style.backgroundColor = '#2E2E2E';
     body.style.color = '#fff';
@@ -50,6 +51,7 @@ function toggleColor() {
       text.style.color = '#111321';
     });
     mobLogo.style.color = '#111321';
+    burgerBtn.style.fill = '#111321';
     xBtn.style.fill = '#111321';
     body.style.backgroundColor = '#fff';
     body.style.color = '#000';
