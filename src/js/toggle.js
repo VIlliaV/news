@@ -32,7 +32,7 @@ function toggleColor() {
     mobLogo.style.color = '#f4f4f4';
     burgerBtn.style.fill = '#fff';
     xBtn.style.fill = '#fff';
-    // disappearingTitle.style.color = '#fff';
+    disappearingTitle.style.color = '#fff';
     searchIcon.classList.remove('search-icon-move-black');
     searchIcon.classList.add('search-icon-move-wight');
 
@@ -62,7 +62,7 @@ function toggleColor() {
     burgerBtn.style.fill = '#111321';
     xBtn.style.fill = '#111321';
 
-    // disappearingTitle.style.color = '#000';
+    disappearingTitle.style.color = '#000';
     searchIcon.classList.add('search-icon-move-black');
     searchIcon.classList.remove('search-icon-move-wight');
 
