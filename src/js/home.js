@@ -158,9 +158,8 @@ function isMedia(item) {
 
 function onSearch(e) {
   e.preventDefault();
-
   const inputValue = e.target.value;
-
+  e.target.value = '';
   if (!inputValue) {
     resetMarkup();
     return;
