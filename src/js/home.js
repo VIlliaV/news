@@ -129,17 +129,17 @@ function onLoadFavorits(item) {
   if (localRead) {
     for (let i = 0; i < localRead.length; i += 1) {
       if (localRead[i].uri === item) {
-        return (result = `Remove from favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
-            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="var(--few)" style="stroke: var(--few)" ></use>
+        return (result = `Remove from favorite<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="var(--few)" style="stroke: var(--few)" d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
           </svg>`);
       }
     }
-    return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
-            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="transparent" style="stroke: var(--few)" ></use>
+    return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="transparent" style="stroke: var(--few)"  d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
           </svg>`);
   }
-  return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="32" height="32">
-            <use href="/sprite-full.e7f74a66.svg#heart-full" fill="transparent" style="stroke: var(--few)" ></use>
+  return (result = `Add to favorite<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="transparent" style="stroke: var(--few)" d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
           </svg>`);
 }
 
