@@ -17,3 +17,4 @@ import './js/pagination';
 
 import './js/input';
 import './js/open_window';
+import './js/input-change-size';

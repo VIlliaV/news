@@ -7,3 +7,4 @@ import './js/read';
 
 import './js/active-tel';
 import './js/input';
+import './js/input-change-size';

@@ -6,3 +6,4 @@ import './js/card-markup';
 
 import './js/input';
 import './js/open_window';
+import './js/input-change-size';

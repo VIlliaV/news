@@ -1,15 +1,3 @@
-// const iconDark = document.querySelector('.dark');
-
-// function swichMarkup() {
-//   const switchString = `<label class="switch">
-//   <input type="checkbox" />
-//   <span class="slider round"></span>
-// </label>`;
-//   iconDark.insertAdjacentHTML('beforebegin', switchString);
-// }
-// swichMarkup();
-// swichMarkup();
-
 const colorState = localStorage.getItem('colorState') || '#fff';
 const toggleState = localStorage.getItem('toggleState') || 'off';
 const toggleSwitch = document.querySelector('.toggle input[type="checkbox"]');
@@ -25,12 +13,24 @@ const header = document.getElementsByTagName('header')[0];
 const search_box = document.getElementsByTagName('input')[0];
 const input = document.querySelector('.search-box');
 
+const mobMenu = document.querySelector('.mob-menu');
+const mobLinkText = document.querySelectorAll('.mob-link-text');
+const mobLogo = document.querySelector('.mob-logo');
+const xBtn = document.querySelector('.mob-menu__x');
+
 function toggleColor() {
   if (toggleSwitch.checked) {
+    mobMenu.style.backgroundColor = '#2E2E2E';
+    mobLinkText.forEach(text => {
+      text.style.color = '#f4f4f4';
+    });
+    mobLogo.style.color = '#f4f4f4';
+
+    xBtn.style.fill = '#fff';
     body.style.backgroundColor = '#2E2E2E';
     body.style.color = '#fff';
     element.style.color = '#fff';
-    colorState = '#2E2E2E';
+    // colorState = '#2E2E2E';
     element_dark.style.color = '#5F6775';
     element_light.style.color = '#4B48DB';
     element_dark_tab.style.color = '#5F6775';
@@ -45,10 +45,16 @@ function toggleColor() {
     search_box.classList.add('background-color-search');
     input.classList.add('dark-border-search');
   } else {
+    mobMenu.style.backgroundColor = '#fff';
+    mobLinkText.forEach(text => {
+      text.style.color = '#111321';
+    });
+    mobLogo.style.color = '#111321';
+    xBtn.style.fill = '#111321';
     body.style.backgroundColor = '#fff';
     body.style.color = '#000';
     element.style.color = '#000';
-    colorState = '#fff';
+    // colorState = '#fff';
     element_dark.style.color = '#4B48DB';
     element_light.style.color = '#5F6775';
     element_dark_tab.style.color = '#4B48DB';
