@@ -153,7 +153,7 @@ function isMedia(item) {
     else return item.multimedia[2].url;
   }
 
-  return './image-not-found.jpg';
+  return './src/images/image-not-found.jpg';
 }
 
 function onSearch(e) {
