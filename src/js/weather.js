@@ -1,4 +1,4 @@
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 
 const API_WETHER_KEY = '8af80306c215ce6fbaa948ab6db624b1';
 const URL = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -52,7 +52,7 @@ async function getGeoposition() {
   //   return;
 }
 
-// fetchWeather();
+fetchWeather();
 
 getGeoposition();
 
