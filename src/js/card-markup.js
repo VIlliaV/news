@@ -1,5 +1,9 @@
 // import { onAddNews } from './home';
-import { removeFromFavoriteArticles, addToReadingNews } from './localStorage';
+import {
+  removeFromFavoriteArticles,
+  addToReadingNews,
+  addToFavoriteArticles,
+} from './localStorage';
 import { whenNotFoundMarkup } from './not-found-markup';
 import { gerCurrentNews } from './api';
 function getFavoriteArticles() {

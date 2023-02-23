@@ -73,9 +73,8 @@ function generateCardsMurkup(cardsArray) {
           </a>
         </div>
       </li>`;
-      } else {
-        createWeatherCard();
       }
+      // createWeatherCard(`16166532237676`);
     })
     .join('');
   // newsCards.insertAdjacentHTML('beforeend', markup);
