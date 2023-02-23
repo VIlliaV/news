@@ -42,3 +42,6 @@ function generateCardsMurkup(cardsArray) {
 export function appendCardsMurkup(cards) {
   newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
 }
+
+
+
