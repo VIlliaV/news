@@ -145,11 +145,12 @@ function onLoadFavorits(item) {
 function isMedia(item) {
   if (item.media) {
     return item.media.map(el => el['media-metadata'][2].url);
-  } else if (item.multimedia) {
-    return item.multimedia[2].url;
+  } else if (item.multimedia.length) {
+    if (item.multimedia[2].crop_name == 'blog480')
+      return `https://www.nytimes.com/${item.multimedia[2].url}`;
+    else return item.multimedia[2].url;
   }
-
-  return '/image-not-found.584be82b.jpg';
+  return './image-not-found.584be82b.jpg';
 }
 
 function onSearch(e) {
@@ -162,16 +163,22 @@ function onSearch(e) {
     return;
   }
 
-  const currentDate = localStorage.getItem('CURRENT_DATA');
+  const currentDate = localStorage.getItem('CURRENT_DATA') || `"01/01/1997"`;
 
   function changeDate(date) {
     const dateParts = date.split('/');
+
+
+  function changeDate(date) {
+    const dateParts = date.split('/');
+
     const year = dateParts[2].split('"');
     const month = dateParts[1];
     const day = dateParts[0].split('"');
     const fullData = [year[0], month, day[1]].join('');
     return fullData;
   }
+
   const clickCurrentDay = changeDate(currentDate);
   console.log(clickCurrentDay);
 
@@ -216,7 +223,7 @@ function generateCardsMurkupForInput(cardsArray) {
         <a class="favorite-cards__image-link" >
           <img
             class="favorite-cards__img"
-            src="https://www.nytimes.com/${isMedia(item)}"
+            src="${isMedia(item)}"
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
