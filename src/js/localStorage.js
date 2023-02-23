@@ -69,7 +69,7 @@ function addToReadingNews(item) {
     localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   }
 }
-
+// testFavorite();
 function getDatesReadingNews() {
   let readingNews = getReadingNews();
   let data = readingNews.then(resp => {

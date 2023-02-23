@@ -67,7 +67,7 @@ a {
 
 .container {
   margin: 0 auto;
-  // padding: 16px 0;
+  padding: 0 16px 0;
   @media (max-width: 319px) {
     width: auto;
   }
@@ -82,4 +82,7 @@ a {
     width: 1280px;
     // padding: 60px 16px 0;
   }
+}
+.no-scroll {
+  overflow: hidden;
 }
