@@ -22,7 +22,9 @@ function createNewsMarkup(newsCard) {
   const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">
-        <a class="favorite-cards__image-link" href="${item.url}">
+        <a class="favorite-cards__image-link" href="${
+          item.url
+        }" target="_blank">
           <img
             class="favorite-cards__img" width="440"
             src="${getPhoto(item)}"
@@ -141,7 +143,7 @@ markupList.addEventListener('click', goToRead);
 
 function findIdNews() {
   const finded = newsAll.find(option => option.uri == idNews);
-  addToReadingNews(finded);
+  addToFavoriteArticles(finded);
 }
 
 function goToRead(e) {
