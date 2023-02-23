@@ -54,12 +54,7 @@ function generateCardsMurkup(cardsArray) {
         ${limitText(item.abstract)}
         </p>
         <div class="favorite-cards__bottom">
-          <p class="favorite-cards__date">${reformatDate(
-
-            item.published_date
-          )}</p>
-          <a class="favorite-cards__link" href="${item.url}" target="_blank">
-
+          <p class="favorite-cards__date">${reformatDate(item.published_date)}</p><a class="favorite-cards__link" href="${item.url}" target="_blank">
             Read more
           </a>
         </div>
@@ -84,6 +79,7 @@ function limitText(text) {
     return text;
   }
 }
+
 function reformatDate(dateString) {
   const [year, month, day] = dateString.split('-');
   const newDate = `${day}/${month}/${year}`;
@@ -147,14 +143,13 @@ function onSearch(e) {
   }
 
   const currentDate = localStorage.getItem('CURRENT_DATA');
-  console.log(currentDate);
-  function changeDate(date) {
+
+function changeDate(date) {
     const dateParts = date.split("/");
-    const year = dateParts[2].toString();
-    const month = dateParts[1].toString();
-    const day = dateParts[0].toString();
-    const fullData = [year, month, day].join("");
-    // const fullFulldata = fullData.split('""');
+    const year = dateParts[2].split('"');
+    const month = dateParts[1];
+    const day = dateParts[0].split('"');
+    const fullData = [year[0], month, day[1]].join('');
     return fullData;
 
   }
@@ -162,10 +157,9 @@ function onSearch(e) {
   console.log(clickCurrentDay);
 
   const apiKey = 'ItcTRzMEchmrtb2N2HI5uMgEjAjMlgCo';
-  // const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&api-key=${apiKey}`;
-  const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&begin_date=20120101&end_date=${clickCurrentDay}&api-key=${apiKey}`;
+  const apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&begin_date=${clickCurrentDay}&end_date=${clickCurrentDay}&api-key=${apiKey}`;
 
-  https: function searchNews() {
+function searchNews() {
     return fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -189,10 +183,16 @@ function resetMarkup() {
   newsCards.innerHTML = '';
 }
 
+function newDate(date) {
+  const [year, month, other] = date.split('-');
+  const day = other.split('T')[0];
+  return `${day}/${month}/${year}`;
+}
+
 function generateCardsMurkupForInput(cardsArray) {
   const markup = cardsArray
     .map(
-      item => `<li class="favorite-cards__item" id="${item.uri}">
+      item =>  `<li class="favorite-cards__item" id="${item.uri}">
       <input type="submit" class="favorite-cards__remove-btn" value="Add to favorite">
         <a class="favorite-cards__image-link" >
           <img
@@ -201,8 +201,8 @@ function generateCardsMurkupForInput(cardsArray) {
             alt="${item.per_facet}"
           />
           <p class="favorite-cards__category">${addDefaultText(
-            item.subsection_name
-          )}</p>
+          item.subsection_name
+        )}</p>
         </a>
         <h2 class="favorite-cards__news-title">${item.headline.main}
         </h2>
@@ -210,7 +210,7 @@ function generateCardsMurkupForInput(cardsArray) {
         ${limitText(item.abstract)}
         </p>
         <div class="favorite-cards__bottom">
-          <p class="favorite-cards__date">${item.pub_date}</p>
+          <p class="favorite-cards__date">${newDate(item.pub_date)}</p>
           <a class="favorite-cards__link" href="${item.web_url}">
             Read more
           </a>
