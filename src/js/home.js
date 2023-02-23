@@ -5,6 +5,7 @@ import {
   removeFromFavoriteArticles,
   checkLocalstorage,
 } from './localStorage';
+
 import debounce from 'lodash.debounce';
 
 let idNews = [];
@@ -35,7 +36,6 @@ function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
       item => `<li class="favorite-cards__item" id="${item.uri}">
-   
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
         }">
@@ -146,13 +146,13 @@ function onLoadFavorits(item) {
 function isMedia(item) {
   if (item.media && item.media.length !== 0) {
     return item.media.map(el => el['media-metadata'][2].url);
-  } else if (!item.multimedia == '') {
-    console.log(item.multimedia);
+  } else if (item.multimedia && item.multimedia.length !== 0) {
+    // console.log(item.multimedia && item.multimedia.length !== 0);
     if (item.multimedia[2].crop_name == 'blog480')
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  return './main/src/images/asiabusinesswoman.jpg';
+  return '/image-not-found.584be82b.jpg';
 }
 
 function onSearch(e) {
@@ -195,8 +195,8 @@ function onSearch(e) {
 
   searchNews()
     .then(data => {
-      resetMarkup();
       generateCardsMurkupForInput(data);
+      // resetMarkup();
       console.log(data);
     })
     .catch(err => console.log(err));
