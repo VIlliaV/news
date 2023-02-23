@@ -1,13 +1,18 @@
-import { removeFromFavoriteArticles } from './localStorage';
-
+import { removeFromFavoriteArticles, addToReadingNews } from './localStorage';
+import { gerCurrentNews } from './api';
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
+
+let newsAll = [];
+let idNews = [];
 
 const markupList = document.querySelector('#favorite-list');
 createNewsMarkup(getFavoriteArticles());
 
 function createNewsMarkup(newsCard) {
+  newsAll = newsCard;
+
   const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">
@@ -16,6 +21,7 @@ function createNewsMarkup(newsCard) {
             class="favorite-cards__img" width="440"
             src="${getPhoto(item)}"
             alt="${item.per_facet}"
+          
           />
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
@@ -33,7 +39,7 @@ function createNewsMarkup(newsCard) {
         <p class="favorite-cards__dicription">
         ${limitText(item.abstract)}
         </p>
-        <div class="favorite-cards__bottom">
+        <div class="favorite-cards__bottom" id="${item.uri}">
           <p class="favorite-cards__date">${reformatDate(
             item.published_date
           )}</p>
@@ -84,8 +90,24 @@ function deleteCard(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
+
   const uriId = event.target.attributes[2].nodeName;
   const uriIdClean = uriId.slice(0, uriId.length - 1);
   removeFromFavoriteArticles(uriIdClean);
   createNewsMarkup(getFavoriteArticles());
+}
+
+markupList.addEventListener('click', goToRead);
+
+function findIdNews() {
+  const finded = newsAll.find(option => option.uri == idNews);
+  addToReadingNews(finded);
+}
+
+function goToRead(e) {
+  if (e.target.nodeName === 'A') {
+    idNews = e.target.parentElement.id;
+    window.location.href = e.target.href;
+    findIdNews();
+  }
 }
