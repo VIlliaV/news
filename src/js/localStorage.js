@@ -59,7 +59,6 @@ function testFavorite() {
   });
 }
 
-
 async function testReding() {
   const news = await getPopularNews();
   for (elNews of news) {
@@ -70,7 +69,6 @@ async function testReding() {
 
 function getReadingNews() {
   return JSON.parse(localStorage.getItem('readingNews'));
-
 }
 
 function addToReadingNews(item) {
@@ -78,11 +76,9 @@ function addToReadingNews(item) {
   addNews.date = new Date().toLocaleDateString();
   let readingNews = getReadingNews();
   if (readingNews === null) {
-
-    readingNews = addNews;
+    readingNews = [addNews];
   } else {
     readingNews.push(addNews);
-
   }
   localStorage.setItem('readingNews', JSON.stringify(readingNews));
 }
@@ -100,10 +96,8 @@ function getDatesReadingNews() {
 }
 
 function getReadingNewsByDate(date) {
-
   let readingNews = getReadingNews();
   return readingNews.filter(news => news.date === date);
-
 }
 
 export {
