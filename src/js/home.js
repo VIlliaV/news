@@ -152,7 +152,7 @@ function isMedia(item) {
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  return '/main/src/images/asiabusinesswoman.jpg';
+  return './main/src/images/asiabusinesswoman.jpg';
 }
 
 function onSearch(e) {
