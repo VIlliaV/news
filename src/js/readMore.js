@@ -1,6 +1,6 @@
 import { newsList } from './open_window';
 
-newsList.addEventListener('click', linkReadMore);
+// newsList.addEventListener('click', linkReadMore);
 
 let readMoreId = [];
 isLocalEmpty();

@@ -1,5 +1,6 @@
-const colorState = localStorage.getItem('colorState') || '#fff';
-const toggleState = localStorage.getItem('toggleState') || 'off';
+//
+let colorState = localStorage.getItem('colorState') || '#fff';
+let toggleState = localStorage.getItem('toggleState') || 'off';
 const toggleSwitch = document.querySelector('.toggle input[type="checkbox"]');
 const element = document.getElementById('myElement');
 const body = document.getElementsByTagName('body')[0];
@@ -12,12 +13,15 @@ const menu_items = document.querySelectorAll('.menu_item');
 const header = document.getElementsByTagName('header')[0];
 const search_box = document.getElementsByTagName('input')[0];
 const input = document.querySelector('.search-box');
+const searchIcon = document.querySelector('.search');
 
 const mobMenu = document.querySelector('.mob-menu');
 const mobLinkText = document.querySelectorAll('.mob-link-text');
 const mobLogo = document.querySelector('.mob-logo');
 const xBtn = document.querySelector('.mob-menu__x');
 const burgerBtn = document.querySelector('.burger-icon');
+
+const disappearingTitle = document.querySelector('.disappearing___title');
 
 function toggleColor() {
   if (toggleSwitch.checked) {
@@ -28,10 +32,14 @@ function toggleColor() {
     mobLogo.style.color = '#f4f4f4';
     burgerBtn.style.fill = '#fff';
     xBtn.style.fill = '#fff';
+    disappearingTitle.style.color = '#fff';
+    searchIcon.classList.remove('search-icon-move-black');
+    searchIcon.classList.add('search-icon-move-wight');
+
     body.style.backgroundColor = '#2E2E2E';
     body.style.color = '#fff';
     element.style.color = '#fff';
-    // colorState = '#2E2E2E';
+    colorState = '#2E2E2E';
     element_dark.style.color = '#5F6775';
     element_light.style.color = '#4B48DB';
     element_dark_tab.style.color = '#5F6775';
@@ -53,16 +61,25 @@ function toggleColor() {
     mobLogo.style.color = '#111321';
     burgerBtn.style.fill = '#111321';
     xBtn.style.fill = '#111321';
+
+    disappearingTitle.style.color = '#000';
+    searchIcon.classList.add('search-icon-move-black');
+    searchIcon.classList.remove('search-icon-move-wight');
+
     body.style.backgroundColor = '#fff';
     body.style.color = '#000';
     element.style.color = '#000';
-    // colorState = '#fff';
+    colorState = '#fff';
     element_dark.style.color = '#4B48DB';
     element_light.style.color = '#5F6775';
     element_dark_tab.style.color = '#4B48DB';
     element_light_tab.style.color = '#5F6775';
     element_dark_tab.style.stroke = '#4B48DB';
     element_light_tab.style.border = '#4B48DB';
+
+    // if (iconSearchMove.style.width >= 767) {
+    //   iconSearchMove.style.fill = '#000';
+    // }
 
     menuLinks.forEach(function (link) {
       link.classList.remove('color-switch');
