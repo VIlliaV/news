@@ -72,7 +72,8 @@ function generateCardsMurkup(cardsArray) {
       </li>`
     )
     .join('');
-  newsCards.insertAdjacentHTML('beforeend', markup);
+  // newsCards.insertAdjacentHTML('beforeend', markup);
+  newsCards.innerHTML = markup;
 }
 
 function addDefaultText(text) {
@@ -162,12 +163,8 @@ function onSearch(e) {
     resetMarkup();
     return;
   }
-}
+
   const currentDate = localStorage.getItem('CURRENT_DATA') || `"01/01/1997"`;
-
-  function changeDate(date) {
-    const dateParts = date.split('/');
-
 
   function changeDate(date) {
     const dateParts = date.split('/');
@@ -244,7 +241,8 @@ function generateCardsMurkupForInput(cardsArray) {
       </li>`
     )
     .join('');
-  newsCards.insertAdjacentHTML('beforeend', markup);
+  // newsCards.insertAdjacentHTML('beforeend', markup);
+  newsCards.innerHTML = markup;
 }
 
 export { generateCardsMurkup };
