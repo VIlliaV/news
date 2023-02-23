@@ -82,7 +82,7 @@ function addToReadingNews(item) {
   }
   localStorage.setItem('readingNews', JSON.stringify(readingNews));
 }
-
+// testFavorite();
 function getDatesReadingNews() {
   let readingNews = getReadingNews();
   let arrDate = [];

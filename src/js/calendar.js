@@ -130,7 +130,7 @@ function getDate(currYear, currMonth, currDay) {
   // iconDownEl.style.fill = '#a2a2a2';
     inputEl.classList.remove('calendar__open');
     iconUpEl.classList.remove('calendar__open');
-    iconStartEl.classList.remove('calendar__open');
+  iconStartEl.classList.remove('calendar__open');
       localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
      return selectData;
 
