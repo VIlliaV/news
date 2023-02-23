@@ -33,9 +33,7 @@ function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map(
       item => `<li class="favorite-cards__item" id="${item.uri}">
-      <input type="submit" class="favorite-cards__remove-btn" value="${onLoadFavorits(
-        item.uri
-      )}">
+   
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
         }">
@@ -47,6 +45,15 @@ function generateCardsMurkup(cardsArray) {
           <p class="favorite-cards__category">${addDefaultText(
             item.subsection
           )}</p>
+             <button type="submit" class="favorite-cards__remove-btn"  id="${item.uri.slice(
+               38,
+               item.uri.length
+             )}">
+             ${onLoadFavorits(item.uri)}
+             <svg class="favorite-cards__heart-icon" width="32" height="32">
+            <use href="/sprite-full.e7f74a66.svg#heart-full"></use>
+          </svg>
+          </button>
         </a>
         <h2 class="favorite-cards__news-title">${item.title}
         </h2>
@@ -89,23 +96,29 @@ function reformatDate(dateString) {
 newsCards.addEventListener('click', onAddNews);
 
 function onAddNews(e) {
-  if (e.target.nodeName === 'INPUT') {
+  let resultMarkup = [];
+  const svgUrl = document.querySelector('.favorite-cards__heart-icon');
+  if (e.target.nodeName === 'BUTTON') {
     e.preventDefault();
-    idNews = e.target.parentElement.id;
-    if (e.target.value === 'Add to favorite') {
-      e.target.value = 'Remove from favorite';
+    // console.dir(e.target.lastElementChild);
+    console.dir(svgUrl.firstElementChild);
+    idNews = e.target.parentElement.parentElement.id;
+    if (e.target.firstChild.data.trim() === 'Add to favorite') {
+      e.target.firstChild.data = `Remove from favorite`;
+      svgUrl.firstElementChild.href.baseVal =
+        '/sprite-full.e7f74a66.svg#heart-full';
       findIdNews();
     } else {
-      e.target.value = 'Add to favorite';
-      deleteCard();
+      e.target.firstChild.data = `Add to favorite`;
+      svgUrl.firstElementChild.href.baseVal = '/sprite-full.e7f74a66.svg#heart';
+      deleteCard(event);
     }
   }
 }
 
 function deleteCard(event) {
-  const uriIdClean = idNews.slice(0, idNews.length - 1);
-  removeFromFavoriteArticles(uriIdClean);
-  createNewsMarkup(getFavoriteArticles());
+  const uriId = event.target.id;
+  removeFromFavoriteArticles(uriId);
 }
 
 function onLoadFavorits(item) {
@@ -114,12 +127,12 @@ function onLoadFavorits(item) {
   if (localRead) {
     for (let i = 0; i < localRead.length; i += 1) {
       if (localRead[i].uri === item) {
-        return (result = 'Remove from favorite');
+        return (result = `Remove from favorite`);
       }
     }
-    return (result = 'Add to favorite');
+    return (result = `Add to favorite`);
   }
-  return (result = 'Add to favorite');
+  return (result = `Add to favorite`);
 }
 
 function isMedia(item) {
