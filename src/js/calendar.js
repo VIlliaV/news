@@ -31,27 +31,31 @@ const months = [
   'December',
 ];
 
+
+
 inputEl.addEventListener('click', () => {
-  pickerEl.classList.toggle('hidden');
+   pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
   if (!pickerEl.classList.contains('hidden')) {
     inputEl.classList.add('calendar__open');
     iconUpEl.classList.add('calendar__open');
     iconStartEl.classList.add('calendar__open');
+    
   }
+  //  document.addEventListener('click', e => {
+  //    const targetElement = e.target;
+  //    console.log(targetElement);
+  //    console.log(!pickerEl.classList.contains('hidden'));
+  //        if (targetElement !== pickerEl && !pickerEl.classList.contains('hidden')) {
+  //      //  pickerEl.classList.toggle('hidden');
+  //      console.log('Надо прятать');
+  //    }
+  //  });
  
  });
  
 
-//  document.addEventListener('click', e => {
-//    const targetElement = e.target;
-//    console.log(targetElement);
-//    console.log(!pickerEl.classList.contains('hidden'));
-//    if (targetElement !== pickerEl && !pickerEl.classList.contains('hidden')) {
-//      pickerEl.classList.add('hidden');
-//    }
-//  });
 
 function renderCalendar() {
   let firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
