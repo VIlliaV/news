@@ -84,7 +84,7 @@ function initPagination() {
         </li>`
       ).join('')}
     </ul>
-    <button class="pagination__next-btn">
+    <button class="pagination__next-btn disabled">
       <a class="clk btn-right"> Next <span class="i_next">&#8250;</span> </a>
     </button>
   `;
