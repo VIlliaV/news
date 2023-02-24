@@ -229,12 +229,16 @@ header {
 }
 
 .light {
-  color: var(--second);
+  fill: none;
+  // color: var(--second);
   stroke: var(--second);
 }
 
 .dark {
-  color: rgb(95, 103, 117);
+  fill: none;
+  // color: rgb(95, 103, 117);
+  // color: var(--second);
+  stroke: rgb(95, 103, 117);
 }
 
 .visab__text {
