@@ -86,7 +86,7 @@ function onCategoryButtonClick(event) {
     resetMarkup();
     generateCardsMurkupForCategoris(data);
     initPagination();
-    newsAll = data;
+    // newsAll = data;
   });
   // const articles = getNewsByCategory(targetButtonInnerText);
 }

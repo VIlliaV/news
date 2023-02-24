@@ -206,13 +206,17 @@ function onLoadFavorits(item) {
 function isMedia(item) {
   if (item.media && item.media.length !== 0) {
     return item.media.map(el => el['media-metadata'][2].url);
-  } else if (item.multimedia && item.multimedia.length !== 0) {
+  } else if (
+    item.multimedia &&
+    item.multimedia.length !== 0 &&
+    item.multimedia !== ''
+  ) {
     // console.log(item.multimedia && item.multimedia.length !== 0);
     if (item.multimedia[2].crop_name == 'blog480')
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  return '/image-not-found.584be82b.jpg';
+  return '../images/image-not-found.jpg';
 }
 
 function onSearch(e) {
@@ -237,12 +241,11 @@ function onSearch(e) {
     return fullData;
   }
 
-
   const clickCurrentDay = changeDate(currentDate);
   const apiKey = 'ItcTRzMEchmrtb2N2HI5uMgEjAjMlgCo';
   const apiUrlForWordPlusDay = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&begin_date=${clickCurrentDay}&end_date=${clickCurrentDay}&api-key=${apiKey}`;
   const apiUrlForWord = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&api-key=${apiKey}`;
-  
+
   function searchNewsForWordPlusDay() {
     return fetch(apiUrlForWordPlusDay)
       .then(response => response.json())
@@ -359,4 +362,3 @@ export {
   generateCardsMurkupForCategoris,
   resetMarkup,
 };
-
