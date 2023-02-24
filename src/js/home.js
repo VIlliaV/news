@@ -6,7 +6,7 @@ import {
   removeFromFavoriteArticles,
   checkLocalstorage,
 } from './localStorage';
-
+import { initPagination } from './pagination';
 import debounce from 'lodash.debounce';
 
 let idNews = [];
@@ -20,6 +20,7 @@ window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
       generateCardsMurkup(data);
+      initPagination();
       newsAll = data;
       // onloadFavorits();
     })

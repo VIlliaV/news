@@ -153,4 +153,6 @@ function initPagination() {
   nextBtn.disabled = totalPages === 1;
 }
 
-initPagination();
+// initPagination();
+
+export { initPagination };
