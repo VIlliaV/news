@@ -63,6 +63,7 @@
 }
 
 @media (min-width: 768px) {
+ 
   .calendar__input {
     width: 168px;
     margin-left: 40px;
@@ -86,6 +87,9 @@
 }
 
 @media (min-width: 1280px) {
+   .calendar {
+    margin-left: 85px;
+  }
   .calendar__input {
     margin-left: 37px;
   }
