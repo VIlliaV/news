@@ -143,19 +143,17 @@ function deleteCard(event) {
   removeFromFavoriteArticles(uriIdClean);
 }
 
-// markupList.addEventListener('click', goToRead);
+markupList.addEventListener('click', goToRead);
 
 function findIdNews() {
-  console.log(idNews);
-  console.log(newsAll);
   const finded = newsAll.find(option => option.uri == idNews);
-  addToFavoriteArticles(finded);
+  addToReadingNews(finded);
 }
 
-// function goToRead(e) {
-//   if (e.target.nodeName === 'A') {
-//     idNews = e.target.parentElement.id;
-//     window.location.href = e.target.href;
-//     findIdNews();
-//   }
-// }
+function goToRead(e) {
+  if (e.target.nodeName === 'A') {
+    idNews = e.target.parentElement.id;
+    window.location.href = e.target.href;
+    findIdNews();
+  }
+}
