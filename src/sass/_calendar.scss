@@ -6,6 +6,7 @@
 .calendar {
   display: flex;
   align-items: center;
+  margin-left: 24px;
 }
 
 .calendar__title {
@@ -16,18 +17,10 @@
   line-height: 1.39;
 }
 
-.calendar__container {
-  position: relative;
-  width: 168px;
-  height: 31px;
-
-  border: 1px solid #111321;
-  border-radius: 20px;
-}
-
 .calendar__input {
+  position: relative;
   cursor: pointer;
-  width: 168px;
+  width: 152px;
   height: 31px;
   padding: 5px 44px;
 
@@ -42,6 +35,14 @@
   border-radius: 20px;
 }
 
+.calendar__text {
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+
+  color: #111321;
+}
+
 .calendar__input:hover {
   color: #ffffff;
   cursor: pointer;
@@ -53,7 +54,7 @@
 .calendar__up {
   position: absolute;
 
-  left: 141px;
+  left: 124px;
   top: 9px;
   width: 14px;
   height: 14px;
@@ -61,10 +62,20 @@
   fill: #a2a2a2;
 }
 
+@media (min-width: 768px) {
+  .calendar__input {
+    width: 168px;
+  }
+
+  .calendar__down,
+  .calendar__up {
+    left: 141px;
+  }
+}
+
 .calendar__icon--start {
   position: absolute;
-  margin-right: 14px;
-  left: 12px;
+   left: 12px;
   top: 6px;
   width: 20px;
   height: 20px;
@@ -74,6 +85,10 @@
 
 .calendar__input:hover > .calendar__icon--start {
   fill: #ffffff;
+}
+
+.calendar__input:hover > .calendar__text {
+  color: #ffffff;
 }
 
 .calendar__input:hover > .calendar__down {
@@ -87,6 +102,10 @@
   color: #ffffff;
   fill: #ffffff;
   background-color: #4440f6;
+}
+
+.calendar__open > .calendar__text {
+  color: #ffffff;
 }
 
 .picker {
