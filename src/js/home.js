@@ -1,5 +1,5 @@
 import { getPopularNews, getNewsBySearch } from './api';
-import { createWeatherCard, fetchWeatherByGeo } from './weather';
+import { fetchWeather, createWeatherCard } from './weather.js';
 import {
   addToFavoriteArticles,
   getFavoriteArticles,
@@ -37,10 +37,11 @@ function findIdNews() {
 
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
-    .map((item, i) => {
-      // console.log(i);
-      if (i !== 2) {
-        return `<li class="favorite-cards__item" id="${item.uri}">
+    .map(
+      (item, index) =>
+        // console.log(i);
+        // if (index !== 2) {
+        `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
         }">
@@ -74,10 +75,16 @@ function generateCardsMurkup(cardsArray) {
             Read more
           </a>
         </div>
-      </li>`;
-      }
+      </li>`
+      // }
+      // else {
+      //   const data = Date.now();
+      //   console.log(data);
+      //   createWeatherCard(data);
+      // }
       // createWeatherCard(`16166532237676`);
-    })
+      // }
+    )
     .join('');
   // newsCards.insertAdjacentHTML('beforeend', markup);
   newsCards.innerHTML = markup;

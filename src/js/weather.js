@@ -11,7 +11,6 @@ async function fetchWeather() {
 
     if (response.ok) {
       createWeatherCard(data);
-    
     }
 
     // console.log(data);
@@ -104,9 +103,9 @@ function createWeatherCard(data) {
     >weather for week</a
   ></li>`;
 
-//  newsCards.insertAdjacentHTML('afterbegin', card);
-    // newsCards[0].insertAdjacentHTML('afterbegin', card);
-    // console.log(newsCards.childNodes);
+  //  newsCards.insertAdjacentHTML('afterbegin', card);
+  // newsCards[0].insertAdjacentHTML('afterbegin', card);
+  // console.log(newsCards.childNodes);
 }
 
 // const WETHER = createWeatherCard();
@@ -114,7 +113,7 @@ function createWeatherCard(data) {
 
 // console.log('hi');
 
-export { createWeatherCard, fetchWeatherByGeo };
+export { createWeatherCard, fetchWeatherByGeo, fetchWeather };
 
 // <svg>
 //   <use href="./src/images/location.svg"></use>
