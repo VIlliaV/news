@@ -6,11 +6,11 @@
 .calendar {
   display: flex;
   align-items: center;
-  margin-left: 24px;
 }
 
 .calendar__title {
   margin-right: 37px;
+  margin-right: auto;
 
   font-weight: 700;
   font-size: 18px;
@@ -19,6 +19,7 @@
 
 .calendar__input {
   position: relative;
+  margin-left: 24px;
   cursor: pointer;
   width: 152px;
   height: 31px;
@@ -64,21 +65,18 @@
 @media (min-width: 768px) {
   .calendar__input {
     width: 168px;
+    margin-left: 40px;
     padding: 5px 12px 5px 46px;
   }
 
   .calendar__text {
-  font-size: 14px;
-  line-height: 1.5;
-}
+    font-size: 14px;
+    line-height: 1.5;
+  }
 
   .calendar__down,
   .calendar__up {
     left: 141px;
-  }
-
-  .calendar {
-    margin-left: 20px;
   }
 
   .calendar__icon--start {
@@ -88,8 +86,8 @@
 }
 
 @media (min-width: 1280px) {
-  .calendar {
-    margin-left: 95px;
+  .calendar__input {
+    margin-left: 37px;
   }
 }
 
