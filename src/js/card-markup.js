@@ -154,7 +154,7 @@ function findIdNews() {
 function goToRead(e) {
   if (e.target.nodeName === 'A') {
     idNews = e.target.parentElement.id;
-    window.location.href = e.target.href;
+    // window.location.href = e.target.href;
     findIdNews();
   }
 }
