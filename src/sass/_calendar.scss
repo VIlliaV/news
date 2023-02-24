@@ -22,7 +22,7 @@
   cursor: pointer;
   width: 152px;
   height: 31px;
-  padding: 5px 44px;
+  padding: 5px 12px 5px 44px;
 
   font-size: 14px;
   line-height: 1.5;
@@ -36,8 +36,8 @@
 }
 
 .calendar__text {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.75;
   letter-spacing: 0.02em;
 
   color: #111321;
@@ -53,7 +53,6 @@
 .calendar__down,
 .calendar__up {
   position: absolute;
-
   left: 124px;
   top: 9px;
   width: 14px;
@@ -65,20 +64,41 @@
 @media (min-width: 768px) {
   .calendar__input {
     width: 168px;
+    padding: 5px 12px 5px 46px;
   }
+
+  .calendar__text {
+  font-size: 14px;
+  line-height: 1.5;
+}
 
   .calendar__down,
   .calendar__up {
     left: 141px;
   }
+
+  .calendar {
+    margin-left: 20px;
+  }
+
+  .calendar__icon--start {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .calendar {
+    margin-left: 95px;
+  }
 }
 
 .calendar__icon--start {
   position: absolute;
-   left: 12px;
+  left: 12px;
   top: 6px;
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 
   fill: #4440f6;
 }
