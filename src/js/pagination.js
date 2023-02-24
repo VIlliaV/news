@@ -80,7 +80,7 @@ function initPagination() {
         { length: totalPages },
         (_, i) => `
         <li class="pagination__page-link ${i === 0 ? 'active' : ''}">
-          <a class="clk">${i + 1}</a>
+          <a class="clk-btn-card">${i + 1}</a>
         </li>`
       ).join('')}
     </ul>
