@@ -3,12 +3,12 @@ const daysTag = document.querySelector('.day');
 const prevIcon = document.querySelector('.month__arrow--prev');
 const nextIcon = document.querySelector('.month__arrow--next');
 const inputEl = document.querySelector('.calendar__input');
+const calendarEl = document.querySelector('.calendar');
 const dataEl = document.querySelector('.calendar__text');
 const pickerEl = document.querySelector('.picker');
 const iconDownEl = document.querySelector('.calendar__down');
 const iconUpEl = document.querySelector('.calendar__up');
 const iconStartEl = document.querySelector('.calendar__icon--start');
-const bodyEl = document.querySelector('body');
 
 let date = new Date();
 let currYear = date.getFullYear();
@@ -40,11 +40,17 @@ inputEl.addEventListener('click', () => {
     iconUpEl.classList.add('calendar__open');
     iconStartEl.classList.add('calendar__open');
   }
-});
  
-// bodyEl.addEventListener('click', (e) => {
-//    console.log(e);
-//    pickerEl.classList.add('hidden');
+ });
+ 
+
+//  document.addEventListener('click', e => {
+//    const targetElement = e.target;
+//    console.log(targetElement);
+//    console.log(!pickerEl.classList.contains('hidden'));
+//    if (targetElement !== pickerEl && !pickerEl.classList.contains('hidden')) {
+//      pickerEl.classList.add('hidden');
+//    }
 //  });
 
 function renderCalendar() {
@@ -100,16 +106,12 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
-  //  e.target.style.backgroundColor = '#4440f6';
-  //  e.target.style.borderRadius = '50%';
-  //  e.target.style.color = '#ffffff';
-  if (e.target.nodeName !== 'LI') {
+   if (e.target.nodeName !== 'LI') {
     return;
   }
   if (e.target.classList.contains('inactive--prev')) {
     currDay = +e.target.textContent;
-    console.log(currYear, currMonth, currDay);
-    return getDate(currYear, currMonth - 1, currDay);
+       return getDate(currYear, currMonth - 1, currDay);
   }
   if (e.target.classList.contains('inactive--next')) {
     currDay = +e.target.textContent;
@@ -123,7 +125,6 @@ function getDate(currYear, currMonth, currDay) {
     currMonth = 11;
     currYear = currYear - 1;
   }
-
   if (currMonth === 12) {
     currMonth = 0;
     currYear = currYear + 1;
@@ -136,10 +137,6 @@ function getDate(currYear, currMonth, currDay) {
   pickerEl.classList.add('hidden');
   iconDownEl.classList.remove('hidden');
   iconUpEl.classList.add('hidden');
-
-  // inputEl.style.backgroundColor = '#ffffff';
-  // iconStartEl.style.fill = '#4440f6';
-  // iconDownEl.style.fill = '#a2a2a2';
   inputEl.classList.remove('calendar__open');
   iconUpEl.classList.remove('calendar__open');
   iconStartEl.classList.remove('calendar__open');
