@@ -52,13 +52,12 @@ function removeFromFavoriteArticles(itemId) {
   localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   checkLocalstorage();
 }
-
+// testFavorite();
 function testFavorite() {
   getPopularNews().then(resp => {
     localStorage.setItem('favoriteArticles', JSON.stringify(resp));
   });
 }
-
 async function testReding() {
   const news = await getPopularNews();
   for (elNews of news) {

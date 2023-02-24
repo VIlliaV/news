@@ -32,7 +32,14 @@ function toggleColor() {
     mobLogo.style.color = '#f4f4f4';
     burgerBtn.style.fill = '#fff';
     xBtn.style.fill = '#fff';
-    disappearingTitle.style.color = '#fff';
+    checkElement(disappearingTitle);
+    function checkElement(disappearingTitle) {
+      if (disappearingTitle === null) {
+        return;
+      }
+      return (disappearingTitle.style.color = '#fff');
+    }
+
     searchIcon.classList.remove('search-icon-move-black');
     searchIcon.classList.add('search-icon-move-wight');
 
@@ -61,8 +68,14 @@ function toggleColor() {
     mobLogo.style.color = '#111321';
     burgerBtn.style.fill = '#111321';
     xBtn.style.fill = '#111321';
+    checkElement(disappearingTitle);
+    function checkElement(disappearingTitle) {
+      if (disappearingTitle === null) {
+        return;
+      }
+      return (disappearingTitle.style.color = '#000');
+    }
 
-    disappearingTitle.style.color = '#000';
     searchIcon.classList.add('search-icon-move-black');
     searchIcon.classList.remove('search-icon-move-wight');
 
@@ -76,10 +89,6 @@ function toggleColor() {
     element_light_tab.style.color = '#5F6775';
     element_dark_tab.style.stroke = '#4B48DB';
     element_light_tab.style.border = '#4B48DB';
-
-    // if (iconSearchMove.style.width >= 767) {
-    //   iconSearchMove.style.fill = '#000';
-    // }
 
     menuLinks.forEach(function (link) {
       link.classList.remove('color-switch');
