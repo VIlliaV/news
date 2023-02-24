@@ -25,7 +25,7 @@ function createNewsMarkup(newsCard) {
   // console.log(newsCard);
   const newsItemsMarkup = newsCard
     .map(
-      item => `<li class="favorite-cards__item">
+      item => `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" href="${item.url}" target="_blank"
         rel="noopener noreferrer nofollow">
           <img
@@ -98,7 +98,7 @@ function onAddNews(e) {
       e.target.firstChild.data = `Add to favorite`;
       e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
         'transparent';
-      deleteCard(event);
+      deleteCard(e);
     }
   }
 }
@@ -145,10 +145,12 @@ function deleteCard(event) {
 
 // markupList.addEventListener('click', goToRead);
 
-// function findIdNews() {
-//   const finded = newsAll.find(option => option.uri == idNews);
-//   addToFavoriteArticles(finded);
-// }
+function findIdNews() {
+  console.log(idNews);
+  console.log(newsAll);
+  const finded = newsAll.find(option => option.uri == idNews);
+  addToFavoriteArticles(finded);
+}
 
 // function goToRead(e) {
 //   if (e.target.nodeName === 'A') {
