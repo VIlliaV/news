@@ -223,7 +223,7 @@ function isMedia(item) {
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  return '/image-not-found.584be82b.jpgg';
+  return '/image-not-found.584be82b.jpg';
 }
 
 function onSearch(e) {
