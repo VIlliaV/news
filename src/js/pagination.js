@@ -19,11 +19,11 @@ function getWindowWidth() {
 function getCardsPerPage() {
   const windowWidth = getWindowWidth();
   if (windowWidth >= 1200) {
-    return 8;
+    return 9;
   } else if (windowWidth >= 768) {
-    return 7;
+    return 8;
   } else {
-    return 4;
+    return 5;
   }
 }
 
