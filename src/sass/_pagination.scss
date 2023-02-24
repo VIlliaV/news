@@ -79,6 +79,7 @@
 };
 
 .pagination__page-link {
+  
   margin-left: 10px;
   margin-right: 10px;
     height: 28px;
@@ -95,6 +96,7 @@
         margin-right: 8px;
           height: 31px;
           width: 33px;
+          cursor: pointer
       }
     
       @media screen and (min-width: 1200px) {
@@ -102,6 +104,7 @@
         margin-right: 8px;
           height: 31px;
           width: 33px;
+          cursor: pointer
       }
     
 };
@@ -152,3 +155,4 @@
 .pagination__next-btn:disabled {
   cursor: not-allowed;
 }
+/*testGit1*/
