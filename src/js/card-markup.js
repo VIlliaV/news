@@ -22,9 +22,8 @@ function createNewsMarkup(newsCard) {
   const newsItemsMarkup = newsCard
     .map(
       item => `<li class="favorite-cards__item">
-        <a class="favorite-cards__image-link" href="${
-          item.url
-        }" target="_blank">
+        <a class="favorite-cards__image-link" href="${item.url}" target="_blank"
+        rel="noopener noreferrer nofollow">
           <img
             class="favorite-cards__img" width="440"
             src="${getPhoto(item)}"
@@ -48,7 +47,8 @@ function createNewsMarkup(newsCard) {
           <p class="favorite-cards__date">${reformatDate(
             item.published_date
           )}</p>
-          <a class="favorite-cards__link" href="${item.url}">
+          <a class="favorite-cards__link" href="${item.url}" target="_blank"
+          rel="noopener noreferrer nofollow">
             Read more
           </a>
         </div>
@@ -139,17 +139,17 @@ function deleteCard(event) {
   removeFromFavoriteArticles(uriIdClean);
 }
 
-markupList.addEventListener('click', goToRead);
+// markupList.addEventListener('click', goToRead);
 
-function findIdNews() {
-  const finded = newsAll.find(option => option.uri == idNews);
-  addToFavoriteArticles(finded);
-}
+// function findIdNews() {
+//   const finded = newsAll.find(option => option.uri == idNews);
+//   addToFavoriteArticles(finded);
+// }
 
-function goToRead(e) {
-  if (e.target.nodeName === 'A') {
-    idNews = e.target.parentElement.id;
-    window.location.href = e.target.href;
-    findIdNews();
-  }
-}
+// function goToRead(e) {
+//   if (e.target.nodeName === 'A') {
+//     idNews = e.target.parentElement.id;
+//     window.location.href = e.target.href;
+//     findIdNews();
+//   }
+// }
