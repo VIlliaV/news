@@ -1,178 +1,158 @@
-const pg = document.getElementById('pagination-js');
-const btnNextPg = document.querySelector('button.next-page');
-const btnPrevPg = document.querySelector('button.prew-page');
+import { gerCurrentNews } from './api.js';
+import { generateCardsMurkup } from './home.js';
 
-let windowWidth = 0;
-let wetherPosition = 0;
-let updateRemoveItems;
-// setTimeout(() => {
-//   updateRemoveItems = deleteItems.slice(8);
-// }, 1500);
-let sliceItems;
-const refs = {
-  pagination: document.querySelector('.pagination'),
-};
+const newsCards = document.querySelector('.favorite-cards');
+const pagination = document.querySelector('.pagination');
+const prevBtn = document.querySelector('.pagination__prev-btn');
+const nextBtn = document.querySelector('.pagination__next-btn');
 
-refs.pagination.addEventListener('click', e => {
-  if (
-    e.target.classList.contains('next-page') ||
-    e.target.classList.contains('button-next')
-  ) {
-    valuePage.curPage += 1;
+// функция для получения текущей ширины экрана
+function getWindowWidth() {
+  return (
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
+  );
+}
+
+// количество новостей на странице в зависимости от ширины экрана
+function getCardsPerPage() {
+  const windowWidth = getWindowWidth();
+  if (windowWidth >= 1200) {
+    return 9;
+  } else if (windowWidth >= 768) {
+    return 8;
+  } else {
+    return 5;
   }
-  if (
-    e.target.classList.contains('prew-page') ||
-    e.target.classList.contains('button-prew')
-  ) {
-    valuePage.curPage -= 1;
+}
+
+// функция для отображения нужной страницы
+function displayPage(pageNum, cardsPerPage, newsArray) {
+  const startIndex = (pageNum - 1) * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  const pageArray = newsArray.slice(startIndex, endIndex);
+  generateCardsMurkup(pageArray);
+}
+
+// обработчик для кнопки "назад"
+prevBtn.addEventListener('click', () => {
+  const currentPage = parseInt(pagination.querySelector('.active').textContent);
+  if (currentPage === 1) {
+    return;
   }
-  sliceItems = null;
-  if (window.innerWidth < 768) {
-    windowWidth = 4;
-    wetherPosition = -1;
-  }
-  if (window.innerWidth > 768 && window.innerWidth < 1280) {
-    windowWidth = 7;
-    wetherPosition = 0;
-  }
-  if (window.innerWidth >= 1280) {
-    windowWidth = 8;
-    wetherPosition = 1;
-  }
-  window.scrollTo(0, 0);
+  const cardsPerPage = getCardsPerPage();
+  const newsArray = gerCurrentNews();
+  pagination.querySelector('.active').classList.remove('active');
+  pagination.children[currentPage - 2].classList.add('active');
+  newsCards.innerHTML = '';
+  displayPage(currentPage - 1, cardsPerPage, newsArray);
 });
-//add button action//
-document
-  .querySelector('.pagination-page-container')
-  .addEventListener('click', function (e) {
-    switchButton(e.target);
+
+// обработчик для кнопки "вперед"
+nextBtn.addEventListener('click', () => {
+  const currentPage = parseInt(pagination.querySelector('.active').textContent);
+  const totalPages = parseInt(pagination.lastElementChild.textContent);
+  if (currentPage === totalPages) {
+    return;
+  }
+  const cardsPerPage = getCardsPerPage();
+  const newsArray = gerCurrentNews();
+  pagination.querySelector('.active').classList.remove('active');
+  pagination.children[currentPage].classList.add('active');
+  newsCards.innerHTML = '';
+  displayPage(currentPage + 1, cardsPerPage, newsArray);
+});
+
+// инициализация пагинации. создает разметку пагинации, включая кнопки "назад" и "вперед", список номеров страниц и активную страницу (первую страницу).//
+//Затем она настраивает обработчики событий для каждой страницы и кнопок "назад" и "вперед".В обработчиках событий//
+function initPagination() {
+  const newsArray = gerCurrentNews();
+  const cardsPerPage = getCardsPerPage();
+  const totalPages = Math.ceil(newsArray.length / cardsPerPage);
+  const paginationContainer = document.querySelector('.pagination');
+  paginationContainer.innerHTML = `
+    <button class="pagination__prev-btn" disabled>
+      <a class="clk btn-left"> <span class="i_prew">&#8249; Prew</span> </a>
+    </button>
+    <ul class="pagination__list">
+      ${Array.from(
+        { length: totalPages },
+        (_, i) => `
+        <li class="pagination__page-link ${i === 0 ? 'active' : ''}">
+          <a class="clk">${i + 1}</a>
+        </li>`
+      ).join('')}
+    </ul>
+    <button class="pagination__next-btn">
+      <a class="clk btn-right"> Next <span class="i_next">&#8250;</span> </a>
+    </button>
+  `;
+
+  const pageLinks = paginationContainer.querySelectorAll(
+    '.pagination__page-link'
+  );
+  const prevBtn = paginationContainer.querySelector('.pagination__prev-btn');
+  const nextBtn = paginationContainer.querySelector('.pagination__next-btn');
+
+  function setActivePage(target) {
+    paginationContainer.querySelector('.active').classList.remove('active');
+    target.classList.add('active');
+  }
+
+  function displayPage(pageNum) {
+    const startIndex = (pageNum - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    const pageArray = newsArray.slice(startIndex, endIndex);
+    generateCardsMurkup(pageArray);
+  }
+
+  paginationContainer.addEventListener('click', event => {
+    const target = event.target.closest('.pagination__page-link');
+    if (!target) return;
+    const currentPage = parseInt(
+      paginationContainer.querySelector('.active').textContent
+    );
+    const pageNum = parseInt(target.textContent);
+    if (pageNum === currentPage) return;
+    setActivePage(target);
+    newsCards.innerHTML = '';
+    displayPage(pageNum);
+    prevBtn.disabled = pageNum === 1;
+    nextBtn.disabled = pageNum === totalPages;
   });
 
-function switchButton(element) {
-  if (element.classList.contains('prew-page')) {
-    valuePage.curPage--;
-    switchButton();
-    btnNextPg.disabled = false;
-  } else if (element.classList.contains('next-page')) {
-    valuePage.curPage++;
-    switchButtonRight();
-    btnPrevPg.disabled = false;
-  }
-  pagination();
-}
-function switchButtonLeft() {
-  if (valuePage.curPage === 1) {
-    btnPrevPg.disabled = true;
-  } else {
-    btnPrevPg.disabled = false;
-  }
-}
-function switchButtonRight() {
-  if (valuePage.curPage === valuePage.totalPages) {
-    btnNextPg.disabled = true;
-  } else {
-    btnNextPg.disabled = false;
-  }
-}
-
-//render//
-function render(data, number) {
-  let filtredArr = getFiltredArr(data, number);
-  return filtredArr.map(elem => {
-    let opacity = '';
-    let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-    let check = checkLokalStorage(elem, localArr);
-    if (check === true) {
-      opacity = 'opacity';
-    }
-    let mediaElem = elem.media;
-    let mediaUrl =
-      'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
-    if (mediaElem.length !== 0) {
-      mediaUrl = mediaElem[0]['media-metadata'][2].url;
-    }
+  prevBtn.addEventListener('click', () => {
+    const currentPage = parseInt(
+      paginationContainer.querySelector('.active').textContent
+    );
+    if (currentPage === 1) return;
+    const pageNum = currentPage - 1;
+    setActivePage(pageLinks[pageNum - 1]);
+    newsCards.innerHTML = '';
+    displayPage(pageNum);
+    prevBtn.disabled = pageNum === 1;
+    nextBtn.disabled = pageNum === totalPages;
   });
-}
-//add filter//
-function getFiltredArr(value, number) {
-  return value.slice(0, number);
-}
 
-function dateNews(data) {
-  return data.split('').splice(0, 10).join('').replaceAll('-', '/');
-}
+  nextBtn.addEventListener('click', () => {
+    const currentPage = parseInt(
+      paginationContainer.querySelector('.active').textContent
+    );
+    if (currentPage === totalPages) return;
+    const pageNum = currentPage + 1;
+    setActivePage(pageLinks[pageNum - 1]);
+    newsCards.innerHTML = '';
+    displayPage(pageNum);
+    prevBtn.disabled = pageNum === 1;
+    nextBtn.disabled = pageNum === totalPages;
+  });
 
-const valuePage = {
-  curPage: 1,
-  numLinksTwoSide: 1,
-  totalPages: 3,
-};
-
-// pagination();
-
-pg.addEventListener('click', e => {
-  const ele = e.target;
-
-  if (ele.dataset.page) {
-    const pageNumber = parseInt(e.target.dataset.page, 10);
-
-    valuePage.curPage = pageNumber;
-    pagination(valuePage);
-    handleButtonLeft();
-    handleButtonRight();
-  }
-});
-//buttom dynamic pagin//
-function pagination() {
-  const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
-
-  const range = delta + 4;
-
-  let render = '';
-  let renderTwoSide = '';
-  let dot = `<li class="pg-item"><a class="pg-link">...</a></li>`;
-  let countTruncate = 0;
-
-  const numberTruncateLeft = curPage - delta;
-  const numberTruncateRight = curPage + delta;
-
-  let active = '';
-  for (let pos = 1; pos <= totalPages; pos++) {
-    active = pos === curPage ? 'active' : '';
-    if (totalPages >= 2 * range - 1) {
-      if (numberTruncateLeft > 3 && numberTruncateRight < totalPages - 3 + 1) {
-        if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
-          renderTwoSide += renderPage(pos, active);
-        }
-      } else {
-        if (
-          (curPage < range && pos <= range) ||
-          (curPage > totalPages - range && pos >= totalPages - range + 1) ||
-          pos === totalPages ||
-          pos === 1
-        ) {
-          render += renderPage(pos, active);
-        } else {
-          countTruncate++;
-          if (countTruncate === 1) render += dot;
-        }
-      }
-    } else {
-      render += renderPage(pos, active);
-    }
-  }
-
-  if (renderTwoSide) {
-    renderTwoSide =
-      renderPage(1) + dot + renderTwoSide + dot + renderPage(totalPages);
-    pg.innerHTML = renderTwoSide;
-  } else {
-    pg.innerHTML = render;
-  }
+  displayPage(1);
+  prevBtn.disabled = true;
+  nextBtn.disabled = totalPages === 1;
 }
 
-function renderPage(index, active = '') {
-  return ` <li class="pg-item ${active}" data-page="${index}">
-        <a class="pg-link" href="#">${index}</a>
-    </li>`;
-}
+// initPagination();
+
+export { initPagination };

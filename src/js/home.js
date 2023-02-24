@@ -20,6 +20,7 @@ inputSearch.addEventListener('input', debounce(onSearch, 500));
 window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
+      generateCardsMurkup(data);
       initPagination();
       newsAll = data;
       // onloadFavorits();
@@ -225,11 +226,23 @@ function onSearch(e) {
   }
 
   const currentDate = localStorage.getItem('CURRENT_DATA') || `"01/01/1997"`;
+
+  function changeDate(date) {
+    const dateParts = date.split('/');
+
+    const year = dateParts[2].split('"');
+    const month = dateParts[1];
+    const day = dateParts[0].split('"');
+    const fullData = [year[0], month, day[1]].join('');
+    return fullData;
+  }
+
+
   const clickCurrentDay = changeDate(currentDate);
   const apiKey = 'ItcTRzMEchmrtb2N2HI5uMgEjAjMlgCo';
   const apiUrlForWordPlusDay = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&begin_date=${clickCurrentDay}&end_date=${clickCurrentDay}&api-key=${apiKey}`;
   const apiUrlForWord = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${inputValue}&api-key=${apiKey}`;
-
+  
   function searchNewsForWordPlusDay() {
     return fetch(apiUrlForWordPlusDay)
       .then(response => response.json())
@@ -346,3 +359,4 @@ export {
   generateCardsMurkupForCategoris,
   resetMarkup,
 };
+

@@ -52,13 +52,12 @@ function removeFromFavoriteArticles(itemId) {
   localStorage.setItem('favoriteArticles', JSON.stringify(favorite));
   checkLocalstorage();
 }
-
+// testFavorite();
 function testFavorite() {
   getPopularNews().then(resp => {
     localStorage.setItem('favoriteArticles', JSON.stringify(resp));
   });
 }
-
 async function testReding() {
   const news = await getPopularNews();
   for (elNews of news) {
@@ -75,6 +74,7 @@ function addToReadingNews(item) {
   const addNews = item;
   addNews.date = new Date().toLocaleDateString();
   let readingNews = getReadingNews();
+
   if (readingNews === null) {
     readingNews = [addNews];
   } else {
@@ -110,5 +110,6 @@ export {
   addToReadingNews,
   getDatesReadingNews,
   getReadingNewsByDate,
+  getReadingNews,
   testReding,
 };

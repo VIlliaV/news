@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 const API_WETHER_KEY = '8af80306c215ce6fbaa948ab6db624b1';
 const URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
-
 async function fetchWeather() {
   const url = `${URL}q=Kyiv&units=metric&appid=${API_WETHER_KEY}&units=metric`;
   try {
@@ -62,7 +61,7 @@ const weatherCard = document.querySelector('.weather');
 const newsCards = document.querySelector('.favorite-cards');
 
 function createWeatherCard(data) {
-  // console.log(data);
+  // console.log(data.dt);
   //   const timestamp = 1645398199; // приклад Unix Timestamp
   //   const date = new Date(timestamp * 1000); // перетворюємо Unix Timestamp в мілісекунди
   //   const formattedDate = format(date, 'dd/MM/yyyy'); // форматуємо дату у потрібний формат за допомогою date-fns
@@ -115,7 +114,7 @@ function createWeatherCard(data) {
 
 // console.log('hi');
 
-export { createWeatherCard };
+export { createWeatherCard, fetchWeatherByGeo };
 
 // <svg>
 //   <use href="./src/images/location.svg"></use>

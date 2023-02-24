@@ -1,157 +1,87 @@
-.pagination-page-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 60px;
-    margin-top: 40px;
-    font-family: Manrope;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
-    text-align: left;
-    background-color: var(--bg-color);
-
-    @media screen and (min-width: 768px) and (max-width: 1199px) {
-        height: 31px;
-        margin-bottom: 100px;
-        margin-top: 48px;
-    }
-
-    @media screen and (min-width: 1200px) {
-        margin-bottom: 150px;
-        margin-top: 60px;
-    }
-}
-
 .pagination {
-    display: flex;
-    justify-content: center;
-    height: 28px;
-    width: 288px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+  margin-top: 40px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  background-color: var(--bg-color);
 
-    @media screen and (min-width: $tablet) {
-        height: 31px;
-        width: 415px;
-    }
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    height: 31px;
+    margin-bottom: 100px;
+    margin-top: 48px;
+  }
 
-}
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 150px;
+    margin-top: 60px;
+  }
+};
 
-.pagination-page-container a {
-    padding: 4px 12px;
-    font-family: Manrope;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-color);
-}
 
-.pg-item {
+.pagination__prev-btn,
+.pagination__next-btn {
+ width: 72px;
+ border: 1px solid;
+ border-color: #4440F6;
+ border-radius: 2px;
+};
 
-    :hover,
-    :focus {
-        color: var(--white-color);
-        background-color: var(--accent-color);
-    }
 
-    border: 1px solid var(--accent-color);
-    border-radius: 2px;
-}
-
-.pagination-page-container button {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-}
-
-button.prew-page,
-button.next-page {
-    width: 72px;
-    font-family: Manrope;
+.btn-left,
+.btn-right {
+  font-family: Manrope;
     font-size: 14px;
     font-weight: 500;
     line-height: 19px;
     letter-spacing: 0em;
     text-align: left;
-    border: 1px solid var(--accent-color);
-    border-radius: 2px;
+};
+.pagination__list {
+  display: flex;
+  align-items: center;
+};
+
+.pagination__page-link {
+  list-style: none;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 4px;
+};
+
+.pagination__page-link.active {
+  background-color: #4440F6;
+};
+
+.pagination__page-link.active a {
+  color: #F4F4F4;
+};
+
+.pagination__page-link.active a {
+  text-decoration: none;
+  padding: 4px auto;
+  display: inline-block;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  pointer-events: none;
+  color: #111321;
 }
 
-button.prew-page {
-    margin-right: 6px;
+.pagination__page-link:hover {
+  background-color: #4440F6;
 }
 
-button.next-page {
-    margin-left: 6px;
-}
-
-.pagination-page-container button:disabled a {
-    color: var(--text-color);
-    font-family: Manrope;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
-}
-
-#pagination-js {
-    display: flex;
-    align-items: center;
-}
-
-#pagination-js li {
-    list-style: none;
-    cursor: pointer;
-    overflow: hidden;
-    margin: 0 4px;
-}
-
-#pagination-js li.active {
-    background-color: var(--accent-color);
-}
-
-#pagination-js li.active a {
-    color: var(--white-color);
-}
-
-#pagination-js li a {
-    text-decoration: none;
-    padding: 4px auto;
-    display: inline-block;
-    font-family: Manrope;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
-    pointer-events: none;
-    color: var(--text-color);
-}
-
-#pagination-js li:hover {
-    background-color: var(--accent-color);
-}
-
-#pagination-js li:hover a {
-    color: var(--white-color);
-    background-color: var(--accent-color);
-}
-
-.i_prew {
-    font-family: Manrope;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
-}
-
-.pagination-hidden {
-    display: none;
-}
-
-a.clk {
-    height: 28px;
-}
+.pagination__page-link:hover a {
+  color: #F4F4F4;
+  background-color: #4440F6;
+};
