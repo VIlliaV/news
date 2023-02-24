@@ -39,11 +39,13 @@
     @media screen and (min-width: 768px) and (max-width: 1199px) {
           width: 82px;
             height: 31px;
+            cursor: pointer;
       }
     
       @media screen and (min-width: 1200px) {
           width: 82px;
             height: 31px;
+            cursor: pointer;
       }
     
 };
@@ -144,4 +146,9 @@
 .pagination__next-btn:hover {
   background-color: #4440F6;
   color: #F4F4F4;
+}
+
+.pagination__prev-btn:disabled,
+.pagination__next-btn:disabled {
+  cursor: not-allowed;
 }
