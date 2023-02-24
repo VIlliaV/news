@@ -37,7 +37,7 @@ function findIdNews() {
 function generateCardsMurkup(cardsArray) {
   const markup = cardsArray
     .map((item, i) => {
-      console.log(i);
+      // console.log(i);
       if (i !== 2) {
         return `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" target="_blank" href="${
