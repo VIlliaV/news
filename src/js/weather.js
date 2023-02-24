@@ -11,6 +11,7 @@ async function fetchWeather() {
 
     if (response.ok) {
       createWeatherCard(data);
+    
     }
 
     // console.log(data);
@@ -75,7 +76,7 @@ function createWeatherCard(data) {
   const weatherStatus = data.weather[0].main;
   const weatherIcon = data.weather[0].icon;
 
-  const card = `<li class="favorite-cards__item weather" id=""><div class="weather__info">
+  const card = `<li class="favorite-cards__item weather" id="weather"><div class="weather__info">
     <span class="weather__deg">${temp}&deg;</span>
     <div class="weather__geo">
       <span class="weather__value">${weatherStatus}</span>
@@ -103,8 +104,14 @@ function createWeatherCard(data) {
     >weather for week</a
   ></li>`;
 
-  newsCards.insertAdjacentHTML('beforeend', card);
+//  newsCards.insertAdjacentHTML('afterbegin', card);
+    // newsCards[0].insertAdjacentHTML('afterbegin', card);
+    // console.log(newsCards.childNodes);
 }
+
+// const WETHER = createWeatherCard();
+// console.log(createWeatherCard);
+
 // console.log('hi');
 
 export { createWeatherCard, fetchWeatherByGeo };

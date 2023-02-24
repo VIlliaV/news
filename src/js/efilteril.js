@@ -1,6 +1,6 @@
 import { getCategory } from './api';
 import { getNewsByCategory } from './api';
-import { generateCardsMurkup } from './home';
+import { generateCardsMurkupForCategoris, resetMarkup } from './home';
 import { initPagination } from './pagination';
 const categoryBtnsWrapper = document.querySelector('.categoryBtns-wrapper');
 const myDropdown = document.querySelector('#myDropdown');
@@ -83,7 +83,8 @@ function onCategoryButtonClick(event) {
   console.log(targetButtonInnerText);
   getNewsByCategory(targetButtonInnerText).then(data => {
     console.log(data);
-    generateCardsMurkup(data);
+    resetMarkup();
+    generateCardsMurkupForCategoris(data);
     initPagination();
     newsAll = data;
   });
