@@ -43,5 +43,49 @@ export function appendCardsMurkup(cards) {
   newsCards.insertAdjacentHTML('beforeend', generateCardsMurkup(cards));
 }
 
+//  const WETHER = createWeatherCard();
+//  console.log(WETHER);
+// if (window.matchMedia('(max-width: 768px)').matches) {
+      //   if (index === 0) {
+      //     return (
+      //       `<li class="favorite-cards__item weather" id="weather">${WETHER}</li>` +
+      //       MARKUP
+      //     );
+      //   }
+      //   return MARKUP;
+      // } else if (
+      //   window.matchMedia('(min-width: 768px)').matches &&
+      //   window.matchMedia('(max-width: 1280px)').matches
+      // ) {
+      //   if (index === 0) {
+      //     return (
+      //       MARKUP +
+      //       `<li class="favorite-cards__item weather" id="weather">${WETHER}</li>`
+      //     );
+      //   }
+      //   return MARKUP;
+      // } else {
+      //   if (index === 1) {
+      //     return (
+      //       MARKUP +
+      //       `<li class="favorite-cards__item weather" id="weather">${WETHER}</li>`
+      //     );
+      //   }
+      //   return MARKUP;
+      // }
+
+
+       //  if (window.innerWidth <= 540) {
+  //    newsCards.insertAdjacentHTML('afterbegin', card);
+  //  } else if (window.innerWidth > 540 && window.innerWidth <= 960) {
+  //    newsCards.children[1].insertAdjacentHTML('afterend', card);
+  //    console.log(newsCards.children[1]);
+  //  } else if (window.innerWidth > 960 && window.innerWidth <= 1200) {
+  //    newsCards.children[2].insertAdjacentHTML('afterend', card);
+  //  } else {
+  //    newsCards.children[3].insertAdjacentHTML('afterend', card);
+  //  }
+
+  // newsCards.insertAdjacentHTML('beforeend', card);
 
 
