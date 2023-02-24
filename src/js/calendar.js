@@ -8,6 +8,7 @@ const pickerEl = document.querySelector('.picker');
 const iconDownEl = document.querySelector('.calendar__down');
 const iconUpEl = document.querySelector('.calendar__up');
 const iconStartEl = document.querySelector('.calendar__icon--start');
+const bodyEl = document.querySelector('body');
 
 let date = new Date();
 let currYear = date.getFullYear();
@@ -40,6 +41,11 @@ inputEl.addEventListener('click', () => {
     iconStartEl.classList.add('calendar__open');
   }
 });
+ 
+// bodyEl.addEventListener('click', (e) => {
+//    console.log(e);
+//    pickerEl.classList.add('hidden');
+//  });
 
 function renderCalendar() {
   let firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
@@ -112,7 +118,6 @@ daysTag.addEventListener('click', e => {
   return getDate(currYear, currMonth, currDay);
 });
 
-
 function getDate(currYear, currMonth, currDay) {
   if (currMonth === -1) {
     currMonth = 11;
@@ -132,17 +137,14 @@ function getDate(currYear, currMonth, currDay) {
   iconDownEl.classList.remove('hidden');
   iconUpEl.classList.add('hidden');
 
-
   // inputEl.style.backgroundColor = '#ffffff';
   // iconStartEl.style.fill = '#4440f6';
   // iconDownEl.style.fill = '#a2a2a2';
-    inputEl.classList.remove('calendar__open');
-    iconUpEl.classList.remove('calendar__open');
+  inputEl.classList.remove('calendar__open');
+  iconUpEl.classList.remove('calendar__open');
   iconStartEl.classList.remove('calendar__open');
-      localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
-     return selectData;
-
-
+  localStorage.setItem('CURRENT_DATA', JSON.stringify(selectData));
+  return selectData;
 }
 
 export { selectData };
