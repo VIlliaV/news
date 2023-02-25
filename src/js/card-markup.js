@@ -6,7 +6,7 @@ import {
 } from './localStorage';
 import { whenNotFoundMarkup } from './not-found-markup';
 import { gerCurrentNews } from './api';
-import noImg from '../images/image-not-found.jpg
+import noImg from '../images/image-not-found.jpg';
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }

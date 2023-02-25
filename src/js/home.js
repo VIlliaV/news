@@ -9,7 +9,7 @@ import {
 import { initPagination } from './pagination';
 import { selectData } from './calendar';
 import debounce from 'lodash.debounce';
-import noImg from '../images/image-not-found.jpg
+import noImg from '../images/image-not-found.jpg';
 
 let idNews = [];
 let newsAll = [];
@@ -225,7 +225,7 @@ function isMedia(item) {
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  
+
   return noImg;
 }
 

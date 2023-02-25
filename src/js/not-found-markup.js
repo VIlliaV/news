@@ -1,4 +1,4 @@
-import noImg from '../images/image-not-found.jpg
+import noImg from '../images/image-not-found.jpg';
 
 const favoriteGallerySection = document.querySelector(
   '#favorite-galery-section'
