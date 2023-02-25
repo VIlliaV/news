@@ -6,6 +6,7 @@ import {
 } from './localStorage';
 import { whenNotFoundMarkup } from './not-found-markup';
 import { gerCurrentNews } from './api';
+import noImg from '../images/image-not-found.jpg
 function getFavoriteArticles() {
   return JSON.parse(localStorage.getItem('favoriteArticles'));
 }
@@ -128,7 +129,7 @@ function limitText(text) {
 function getPhoto(item) {
   const photoUrl = item.media.map(el => el['media-metadata'][2].url);
   if (photoUrl.length === 0) {
-    return '/image-not-found.584be82b.jpg';
+    return noImg;
   } else return photoUrl;
 }
 

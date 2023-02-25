@@ -1,3 +1,5 @@
+import noImg from '../images/image-not-found.jpg
+
 const favoriteGallerySection = document.querySelector(
   '#favorite-galery-section'
 );
@@ -5,7 +7,7 @@ const favoriteGallerySection = document.querySelector(
 function whenNotFoundMarkup() {
   const notFoundImage = `<img
     class="not-found__img"
-    src="/image-not-found.584be82b.jpg"
+    src="${noImg}"
     alt="Something went wrong"
   />`;
   favoriteGallerySection.innerHTML = notFoundImage;
