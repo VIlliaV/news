@@ -1,50 +1,168 @@
 import {
   getDatesReadingNews,
   getReadingNewsByDate,
-  testReding,
+  // testReding,
   getReadingNews,
 } from './localStorage';
+import { whenNotFoundMarkup } from './not-found-markup';
 
 const readUlEl = document.getElementById('read-ul');
-console.log(readUlEl);
 
-//testReding();
-
-console.log(getReadingNews());
-
-console.log(getDatesReadingNews());
-const arrOfDates = getDatesReadingNews();
-for (date of arrOfDates) {
-  const news = getReadingNewsByDate(date);
-  generateCardsMarkup(news);
-  console.table(date, news);
+function getReadArticles() {
+  return JSON.parse(localStorage.getItem('readingNews'));
 }
 
+let newsAll = [];
+let idNews = [];
+
+const markupList = document.querySelector('#favorite-list');
+generateCardsMarkup(getReadArticles());
+
+getReadingNews();
+
+// getDatesReadingNews();
+// const arrOfDates = getDatesReadingNews();
+// for (date of arrOfDates) {
+//   const news = getReadingNewsByDate(date);
+//   generateCardsMarkup(news);
+// }
+
 function generateCardsMarkup(cardsArray) {
+  // newsAll = newsCard;
+  if (cardsArray === null || cardsArray.length === 0) {
+    return whenNotFoundMarkup();
+  }
+
   const markup = cardsArray.reduce((acc, item) => {
     acc += `<li class="favorite-cards__item" id="${item.uri}">
-      <input type="submit" class="favorite-cards__remove-btn" value="${item.uri}">
-        <a class="favorite-cards__image-link" target="_blank" href="${item.url}">
-          <img
-            class="favorite-cards__img"
-            src="${item}"
-            alt="${item.per_facet}"
-          />
-          <p class="favorite-cards__category">${item.subsection}</p>
-        </a>
-        <h2 class="favorite-cards__news-title">${item.title}
-        </h2>
-        <p class="favorite-cards__dicription">
-        ${item.abstract}
-        </p>
-        <div class="favorite-cards__bottom">
-          <p class="favorite-cards__date">${item.published_date}</p>
-          <a class="favorite-cards__link" href="${item.url}" target="_blank">
-            Read more
-          </a>
-        </div>
-      </li>`;
+    <a class="favorite-cards__image-link" href="${item.url}" target="_blank"
+    rel="noopener noreferrer nofollow">
+      <img
+        class="favorite-cards__img" width="440"
+        src="${getPhoto(item)}"
+        alt="${item.per_facet}"
+      
+      />
+      <p class="favorite-cards__category">${addDefaultText(item.subsection)}</p>
+      <button type="button" class="favorite-cards__remove-btn
+      id="${item.uri.slice(38, item.uri.length)}">
+      ${onLoadFavorits(item.uri)}
+      </button>
+    </a>
+    <h2 class="favorite-cards__news-title">${item.title}
+    </h2>
+    <p class="favorite-cards__dicription">
+    ${limitText(item.abstract)}
+    </p>
+    <div class="favorite-cards__bottom" id="${item.uri}">
+      <p class="favorite-cards__date">${reformatDate(item.published_date)}</p>
+      <a class="favorite-cards__link" href="${item.url}" target="_blank"
+      rel="noopener">
+        Read more
+      </a>
+    </div>
+  </li>`;
     return acc;
   }, `<p class="list-by-date">new data news      ${cardsArray[0].date}</p>`);
   readUlEl.insertAdjacentHTML('beforeend', markup);
+}
+// ${onLoadFavorits(item.uri)}
+
+function onLoadFavorits(item) {
+  const localRead = getReadArticles();
+  let result = [];
+  if (localRead) {
+    for (let i = 0; i < localRead.length; i += 1) {
+      if (localRead[i].uri === item) {
+        return (result = `Remove from read<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="var(--few)" style="stroke: var(--few)" d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
+          </svg>`);
+      }
+    }
+    return (result = `Add to read<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="transparent" style="stroke: var(--few)"  d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
+          </svg>`);
+  }
+  return (result = `Add to read<svg class="favorite-cards__heart-icon" width="36" height="32">
+            <path fill="transparent" style="stroke: var(--few)" d="M10.325 0.875c-1.472 0-2.738 1.197-3.325 2.447-0.587-1.25-1.854-2.447-3.325-2.447-2.029 0-3.675 1.647-3.675 3.675 0 4.127 4.163 5.209 7 9.289 2.682-4.055 7-5.294 7-9.289 0-2.029-1.647-3.675-3.675-3.675z">
+          </svg>`);
+}
+function onAddNews(e) {
+  if (e.target.nodeName === 'BUTTON') {
+    e.preventDefault();
+    idNews = e.target.parentElement.parentElement.id;
+    if (e.target.firstChild.data.trim() === 'Add to favorite') {
+      e.target.firstChild.data = `Remove from favorite`;
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        '#4b48db';
+      findIdNews();
+    } else {
+      e.target.firstChild.data = `Add to favorite`;
+      e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
+        'transparent';
+      deleteCard(e);
+    }
+  }
+}
+
+function limitText(text) {
+  if (text.length > 110) {
+    return text.substring(0, 110) + '...';
+  } else {
+    return text;
+  }
+}
+
+function reformatDate(dateString) {
+  const [year, month, day] = dateString.split('-');
+  const newDate = `${day}/${month}/${year}`;
+  return newDate;
+}
+
+function getPhoto(item) {
+  const photoUrl = item.media.map(el => el['media-metadata'][2].url);
+  if (photoUrl.length === 0) {
+    return '/image-not-found.584be82b.jpg';
+  } else return photoUrl;
+}
+
+function addDefaultText(text) {
+  if (text) {
+    return text;
+  } else {
+    return 'Other...';
+  }
+}
+
+function deleteCard(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+
+  const uriId = event.target.attributes[2].nodeName;
+  const uriIdClean = uriId.slice(0, uriId.length - 1);
+  removeFromFavoriteArticles(uriIdClean);
+}
+
+markupList.addEventListener('click', runSetTimout);
+
+function runSetTimout(e) {
+  setTimeout(() => {
+    goToRead(e);
+  }, 1000);
+}
+
+function goToRead(e) {
+  if (e.target.nodeName === 'A') {
+    e.preventDefault();
+    idNews = e.target.parentElement.id;
+    // window.location.href = e.target.href;
+    findIdNews();
+  }
+}
+
+function findIdNews() {
+  const finded = newsAll.find(option => option.uri == idNews);
+  addToReadingNews(finded);
 }
