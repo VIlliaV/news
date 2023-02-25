@@ -1,10 +1,9 @@
-import { getPopularNews, getNewsBySearch } from './api';
-import { fetchWeather, createWeatherCard } from './weather.js';
+import { getPopularNews } from './api';
+import { fetchWeather } from './weather.js';
 import {
   addToFavoriteArticles,
   getFavoriteArticles,
   removeFromFavoriteArticles,
-  checkLocalstorage,
 } from './localStorage';
 import { initPagination } from './pagination';
 import { selectData } from './calendar';
@@ -21,12 +20,10 @@ inputSearch.addEventListener('input', debounce(onSearch, 500));
 window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
-      // generateCardsMurkup(data);
       initPagination();
       newsAll = data;
-      // onloadFavorits();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
 });
 
 function findIdNews() {
@@ -34,15 +31,11 @@ function findIdNews() {
   addToFavoriteArticles(finded);
 }
 
-// fill = '#4b48da';style="fill: var(--color4, #4b48da)"
-
 function generateCardsMurkup(cardsArray) {
   fetchWeather();
   const markup = cardsArray
     .map(
-      (item, index) =>
-        // console.log(i);
-        // if (index !== 2) {
+      item =>
         `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
@@ -78,27 +71,15 @@ function generateCardsMurkup(cardsArray) {
           </a>
         </div>
       </li>`
-      // }
-      // else {
-      //   const data = Date.now();
-      //   console.log(data);
-      //   createWeatherCard(data);
-      // }
-      // createWeatherCard(`16166532237676`);
-      // }
     )
     .join('');
-  // newsCards.insertAdjacentHTML('beforeend', markup);
   newsCards.innerHTML = markup;
 }
 
 function generateCardsMurkupForCategoris(cardsArray) {
   const markup = cardsArray
-    .map((item, i) => {
-      // console.log(i);
-      console.log(newDate(item.published_date));
-      if (i !== 200) {
-        return `<li class="favorite-cards__item" id="${item.uri}">
+    .map(item => {
+      `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
         }">
@@ -126,26 +107,18 @@ function generateCardsMurkupForCategoris(cardsArray) {
           <p class="favorite-cards__date">${newDate(
             item.published_date
           )}</p><a class="favorite-cards__link" href="${
-          item.url
-        }" target="_blank">
+        item.url
+      }" target="_blank">
             Read more
           </a>
         </div>
       </li>`;
-      }
-      // createWeatherCard(`16166532237676`);
     })
     .join('');
-  // newsCards.insertAdjacentHTML('beforeend', markup);
   newsCards.innerHTML = markup;
 }
 
 function addDefaultText(text) {
-  // if (text) {
-  //   return text;
-  // } else {
-  //   return 'Other...';
-  // }
   if (text === '') {
     return (text = 'Other...');
   } else {
@@ -182,7 +155,7 @@ function onAddNews(e) {
       e.target.firstChild.data = `Add to favorite`;
       e.target.lastElementChild.lastElementChild.attributes.fill.textContent =
         'transparent';
-      deleteCard(event);
+      deleteCard(e);
     }
   }
 }
@@ -220,22 +193,18 @@ function isMedia(item) {
     item.multimedia.length !== 0 &&
     item.multimedia !== ''
   ) {
-    // console.log(item.multimedia && item.multimedia.length !== 0);
     if (item.multimedia[2].crop_name == 'blog480')
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-
   return noImg;
 }
 
 function onSearch(e) {
   e.preventDefault();
   const inputValue = e.target.value;
-  e.target.value = '';
 
   if (!inputValue) {
-    resetMarkup();
     return;
   }
 
@@ -274,26 +243,24 @@ function onSearch(e) {
         return data.response.docs;
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   }
 
   if (selectData !== '') {
     searchNewsForWordPlusDay()
       .then(data => {
-        resetMarkup();
         generateCardsMurkupForInput(data);
         console.log(data);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   } else {
     searchNewsForWord()
       .then(data => {
-        resetMarkup();
         generateCardsMurkupForInput(data);
         console.log(data);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }
 }
 
@@ -305,10 +272,6 @@ function changeDate(date) {
   const day = dateParts[0].split('"');
   const fullData = [year[0], month, day[1]].join('');
   return fullData;
-}
-
-function resetMarkup() {
-  newsCards.innerHTML = '';
 }
 
 function newDate(date) {
@@ -370,5 +333,4 @@ export {
   onLoadFavorits,
   onAddNews,
   generateCardsMurkupForCategoris,
-  resetMarkup,
 };

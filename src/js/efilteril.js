@@ -1,13 +1,13 @@
 import { getCategory } from './api';
 import { getNewsByCategory } from './api';
-import { generateCardsMurkupForCategoris, resetMarkup } from './home';
+import { generateCardsMurkupForCategoris } from './home';
 import { initPagination } from './pagination';
 const categoryBtnsWrapper = document.querySelector('.categoryBtns-wrapper');
 const myDropdown = document.querySelector('#myDropdown');
 const othersButton = document.querySelector('#othersButton');
 const otherBtnWrapper = document.querySelector('.otherBtn-wrapper');
 const othersButtonSpan = document.querySelector('#othersButton span');
-
+const inputSearch = document.querySelector('[data-search]');
 getCategory()
   .then(sections => {
     return sections.map(section => section.display_name);
@@ -77,13 +77,14 @@ dropdownList.addEventListener('click', onCategoryButtonClick);
 // On click fetch data from API by category
 
 function onCategoryButtonClick(event) {
+  inputSearch.value = '';
   const targetButtonInnerText = encodeURIComponent(
     event.target.innerText.toLowerCase()
   );
   console.log(targetButtonInnerText);
   getNewsByCategory(targetButtonInnerText).then(data => {
     console.log(data);
-    resetMarkup();
+
     generateCardsMurkupForCategoris(data);
     initPagination();
     // newsAll = data;
