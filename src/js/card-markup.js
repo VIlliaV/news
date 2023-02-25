@@ -132,6 +132,7 @@ function getPhoto(item) {
 
 function deleteCard(event) {
   event.preventDefault();
+  location.reload();
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }

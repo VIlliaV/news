@@ -26,7 +26,9 @@
   color: #4b48db;
   background-color: #f4f4f4;
   cursor: pointer;
-
+  white-space: nowrap;
+  overflow: hidden;
+ 
   padding-top: 8px;
   padding-right: 21px;
   padding-bottom: 8px;
@@ -53,7 +55,6 @@
   .filter-elements {
     margin-bottom: 48px;
   }
- 
 }
 
 @media screen and (min-width: 320px) and (max-width: 767.98px) {
@@ -131,7 +132,6 @@
     gap: 0;
     margin-top: 24px;
   }
-
 }
 
 @media screen and (min-width: 320px) and (max-width: 1279.98px) {

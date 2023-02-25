@@ -20,7 +20,7 @@ inputSearch.addEventListener('input', debounce(onSearch, 500));
 window.addEventListener('load', () => {
   getPopularNews()
     .then(data => {
-      generateCardsMurkup(data);
+      // generateCardsMurkup(data);
       initPagination();
       newsAll = data;
       // onloadFavorits();
@@ -36,6 +36,7 @@ function findIdNews() {
 // fill = '#4b48da';style="fill: var(--color4, #4b48da)"
 
 function generateCardsMurkup(cardsArray) {
+  fetchWeather();
   const markup = cardsArray
     .map(
       (item, index) =>
@@ -95,7 +96,7 @@ function generateCardsMurkupForCategoris(cardsArray) {
     .map((item, i) => {
       // console.log(i);
       console.log(newDate(item.published_date));
-      if (i !== 2) {
+      if (i !== 200) {
         return `<li class="favorite-cards__item" id="${item.uri}">
         <a class="favorite-cards__image-link" target="_blank" href="${
           item.url
@@ -223,7 +224,7 @@ function isMedia(item) {
       return `https://www.nytimes.com/${item.multimedia[2].url}`;
     else return item.multimedia[2].url;
   }
-  return '/image-not-found.584be82b.jpgg';
+  return '/image-not-found.584be82b.jpg';
 }
 
 function onSearch(e) {

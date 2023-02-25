@@ -52,9 +52,9 @@ async function getGeoposition() {
   //   return;
 }
 
-fetchWeather();
+// fetchWeather();
 
-getGeoposition();
+// getGeoposition();
 
 const weatherCard = document.querySelector('.weather');
 const newsCards = document.querySelector('.favorite-cards');
@@ -103,7 +103,7 @@ function createWeatherCard(data) {
     >weather for week</a
   ></li>`;
 
-  //  newsCards.insertAdjacentHTML('afterbegin', card);
+  newsCards.insertAdjacentHTML('afterbegin', card);
   // newsCards[0].insertAdjacentHTML('afterbegin', card);
   // console.log(newsCards.childNodes);
 }
