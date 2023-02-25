@@ -2,7 +2,7 @@
 import {
   removeFromFavoriteArticles,
   addToReadingNews,
-  addToFavoriteArticles,
+  // addToFavoriteArticles,
 } from './localStorage';
 import { whenNotFoundMarkup } from './not-found-markup';
 import { gerCurrentNews } from './api';
@@ -53,17 +53,15 @@ function createNewsMarkup(newsCard) {
             item.published_date
           )}</p>
           <a class="favorite-cards__link" href="${item.url}" target="_blank"
-          rel="noopener noreferrer nofollow">
+          rel="noopener">
             Read more
           </a>
         </div>
       </li>`
     )
     .join('');
-  // if (newsItemsMarkup !== '') {
   markupList.innerHTML = newsItemsMarkup;
   markupList.addEventListener('click', onAddNews);
-  // }
 }
 
 function onLoadFavorits(item) {
@@ -145,17 +143,24 @@ function deleteCard(event) {
   removeFromFavoriteArticles(uriIdClean);
 }
 
-markupList.addEventListener('click', goToRead);
+markupList.addEventListener('click', runSetTimout);
 
-function findIdNews() {
-  const finded = newsAll.find(option => option.uri == idNews);
-  addToReadingNews(finded);
+function runSetTimout(e) {
+  setTimeout(() => {
+    goToRead(e);
+  }, 1000);
 }
 
 function goToRead(e) {
   if (e.target.nodeName === 'A') {
+    e.preventDefault();
     idNews = e.target.parentElement.id;
     // window.location.href = e.target.href;
     findIdNews();
   }
+}
+
+function findIdNews() {
+  const finded = newsAll.find(option => option.uri == idNews);
+  addToReadingNews(finded);
 }
