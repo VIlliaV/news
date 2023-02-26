@@ -49,9 +49,9 @@
   .categoryBtns-wrapper button:nth-child(n + 5) {
     display: none;
   }
-  .buttons-container,
-  .categoryBtns-wrapper {
-    gap: 14px;
+  .filter-category__item-bt,
+.filter-category__item-othersBtn  {
+    margin-right: 14px;
   }
   .filter-elements {
     margin-bottom: 48px;
@@ -67,6 +67,7 @@
     padding-right: 13px;
     padding-bottom: 7.5px;
     padding-left: 13px;
+    margin-right: 0;
   }
 
   .calendar__input {
