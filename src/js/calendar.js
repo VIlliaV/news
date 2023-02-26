@@ -3,7 +3,6 @@ const daysTag = document.querySelector('.day');
 const prevIcon = document.querySelector('.month__arrow--prev');
 const nextIcon = document.querySelector('.month__arrow--next');
 const inputEl = document.querySelector('.calendar__input');
-const calendarEl = document.querySelector('.calendar');
 const dataEl = document.querySelector('.calendar__text');
 const pickerEl = document.querySelector('.picker');
 const iconDownEl = document.querySelector('.calendar__down');
@@ -31,17 +30,14 @@ const months = [
   'December',
 ];
 
-
-
 inputEl.addEventListener('click', () => {
-   pickerEl.classList.toggle('hidden');
+  pickerEl.classList.toggle('hidden');
   iconDownEl.classList.toggle('hidden');
   iconUpEl.classList.toggle('hidden');
   if (!pickerEl.classList.contains('hidden')) {
     inputEl.classList.add('calendar__open');
     iconUpEl.classList.add('calendar__open');
     iconStartEl.classList.add('calendar__open');
-    
   }
   //  document.addEventListener('click', e => {
   //    const targetElement = e.target;
@@ -52,10 +48,7 @@ inputEl.addEventListener('click', () => {
   //      console.log('Надо прятать');
   //    }
   //  });
- 
- });
- 
-
+});
 
 function renderCalendar() {
   let firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
@@ -110,12 +103,12 @@ nextIcon.addEventListener('click', () => {
 });
 
 daysTag.addEventListener('click', e => {
-   if (e.target.nodeName !== 'LI') {
+  if (e.target.nodeName !== 'LI') {
     return;
   }
   if (e.target.classList.contains('inactive--prev')) {
     currDay = +e.target.textContent;
-       return getDate(currYear, currMonth - 1, currDay);
+    return getDate(currYear, currMonth - 1, currDay);
   }
   if (e.target.classList.contains('inactive--next')) {
     currDay = +e.target.textContent;
