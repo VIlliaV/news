@@ -54,15 +54,15 @@
 .btn-left,
 .btn-right {
   font-family: Manrope;
-    font-size: 16px;
+  font-size: 14px;
     font-weight: 500;
-    line-height: 22px;
+    line-height: 19px;
 
     @media screen and (min-width: 768px) and (max-width: 1199px) {
         font-family: Manrope;
-          font-size: 14px;
+        font-size: 16px;
           font-weight: 500;
-          line-height: 19px;
+          line-height: 22px;
       }
     
       @media screen and (min-width: 1200px) {
@@ -90,6 +90,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F4F4F4;
 
     @media screen and (min-width: 768px) and (max-width: 1199px) {
         margin-left: 8px;
@@ -137,9 +138,21 @@
 .clk-btn-card {
   color: #111321;
   font-family: Manrope;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
+font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+      font-size: 16px;
+        font-weight: 500;
+        line-height: 22px;
+    }
+  
+    @media screen and (min-width: 1200px) {
+      font-size: 16px;
+        font-weight: 500;
+        line-height: 22px;
+    }
 }
 
 .pagination__page-link.active a.clk-btn-card {
@@ -155,4 +168,3 @@
 .pagination__next-btn:disabled {
   cursor: not-allowed;
 }
-/*testGit1*/
