@@ -1,20 +1,19 @@
-.container.section.categories {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
+// .container.section.categories {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: baseline;
+// }
 .buttons-container,
 .categoryBtns-wrapper {
   position: relative;
   display: flex;
-  gap: 16px;
-   // padding-left: 8px;
+  // gap: 16px;
+  // padding-left: 8px;
 }
-
 
 .filter-elements {
   display: flex;
-  justify-content: flex-start;
+  // justify-content: flex-start;
   align-items: center;
 
   margin-top: 28px;
@@ -29,11 +28,12 @@
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
- 
+
   padding-top: 8px;
   padding-right: 21px;
   padding-bottom: 8px;
   padding-left: 21px;
+  margin-right: 16px;
   border-radius: 20px;
   border: 1px solid #4440f7;
 
