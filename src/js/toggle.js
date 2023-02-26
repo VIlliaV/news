@@ -1,4 +1,3 @@
-//
 let colorState = localStorage.getItem('colorState') || '#fff';
 let toggleState = localStorage.getItem('toggleState') || 'off';
 const toggleSwitch = document.querySelector('.toggle input[type="checkbox"]');
@@ -106,3 +105,5 @@ if (toggleState === 'on') {
 }
 
 toggleSwitch.addEventListener('click', toggleColor);
+
+export { toggleState };
