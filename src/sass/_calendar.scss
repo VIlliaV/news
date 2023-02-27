@@ -19,6 +19,7 @@
 
 .calendar__input {
   position: relative;
+  z-index: 1;
   margin-left: 24px;
   cursor: pointer;
   width: 152px;
@@ -63,7 +64,6 @@
 }
 
 @media (min-width: 768px) {
- 
   .calendar__input {
     width: 168px;
     margin-left: 0;
@@ -87,7 +87,7 @@
 }
 
 @media (min-width: 1280px) {
-   .calendar {
+  .calendar {
     margin-left: auto;
   }
   .calendar__input {
